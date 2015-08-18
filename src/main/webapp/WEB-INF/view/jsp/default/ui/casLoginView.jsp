@@ -27,107 +27,60 @@
 
 
 <jsp:directive.include file="includes/top.jsp" />
-<c:out value="${portalLinks.registerUrl}"></c:out>
-Pour créer un compte, vous pouvez en faire la demande en remplissant le formulaire sur <a href="http://www.osivia.org">www.osivia.org</a>
 
 
-			<form:form method="post" id="fm1" cssClass="fm-v clearfix" commandName="${commandName}" htmlEscape="true">
-			    <form:errors path="*" cssClass="errors" id="status" element="div" />
-                <div class="box fl-panel" id="login">
-                <!-- <spring:message code="screen.welcome.welcome" /> -->
-                    <h2><spring:message code="screen.welcome.instructions" /></h2>
-                    <div class="row fl-controls-left">
-                        <label for="username" class="fl-label"><spring:message code="screen.welcome.label.netid" /></label>
-						<c:if test="${not empty sessionScope.openIdLocalId}">
-						<strong>${sessionScope.openIdLocalId}</strong>
-						<input type="hidden" id="username" name="username" value="${sessionScope.openIdLocalId}" />
-						</c:if>
+		<div class="row">
+			<div class="col-xs-12 col-md-2">
+			</div>
+		
+			<div class="col-xs-12 col-md-3">
+				<form:form method="post" id="fm1" commandName="${commandName}" htmlEscape="true">
+				    <form:errors path="*" cssClass="errors" id="status" element="div" />
+	                <div class="panel panel-default">
+	                <!-- <spring:message code="screen.welcome.welcome" /> -->
+	                    <div class="panel-heading"><spring:message code="screen.welcome.instructions" /></div>
+	                    <div class="panel-body">
+		                    <div class="form-group">
+		                        <label for="username"><spring:message code="screen.welcome.label.netid" /></label>
+								<c:if test="${not empty sessionScope.openIdLocalId}">
+								<strong>${sessionScope.openIdLocalId}</strong>
+								<input type="hidden" id="username" name="username" value="${sessionScope.openIdLocalId}" />
+								</c:if>
+		
+								<c:if test="${empty sessionScope.openIdLocalId}">
+								<spring:message code="screen.welcome.label.netid.accesskey" var="userNameAccessKey" />
+								<form:input cssClass="form-control required" cssErrorClass="error" id="username" size="20" tabindex="1" accesskey="${userNameAccessKey}" path="username" autocomplete="false" htmlEscape="true" />
+								</c:if>
+		                    </div>
+		                    <div class="form-group">
+		                        <label for="password"><spring:message code="screen.welcome.label.password" /></label>
+								<%--
+								NOTE: Certain browsers will offer the option of caching passwords for a user.  There is a non-standard attribute,
+								"autocomplete" that when set to "off" will tell certain browsers not to prompt to cache credentials.  For more
+								information, see the following web page:
+								http://www.geocities.com/technofundo/tech/web/ie_autocomplete.html
+								--%>
+								<spring:message code="screen.welcome.label.password.accesskey" var="passwordAccessKey" />
+								<form:password cssClass="form-control required" cssErrorClass="error" id="password" size="20" tabindex="2" path="password"  accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" />
+		                    </div>
+		                    <div class="form-group">
+		                        <input id="warn"  cssClass="form-control" name="warn" value="true" tabindex="3" accesskey="<spring:message code="screen.welcome.label.warn.accesskey" />" type="checkbox" />
+		                        <label for="warn"><spring:message code="screen.welcome.label.warn" /></label>
+		                    </div>
+		                    <div class="form-group">
+								<input type="hidden" name="lt" value="${flowExecutionKey}" />
+								<input type="hidden" name="_eventId" value="submit" />
+		
+		                        <input class="btn btn-primary" name="submit" accesskey="l" value="<spring:message code="screen.welcome.button.login" />" tabindex="4" type="submit" />
+		                        <input class="btn btn-default" name="reset" accesskey="c" value="<spring:message code="screen.welcome.button.clear" />" tabindex="5" type="reset" />
+		                    </div>
+	                    </div>
+	                </div>
+	            </form:form>
+	        </div>
 
-						<c:if test="${empty sessionScope.openIdLocalId}">
-						<spring:message code="screen.welcome.label.netid.accesskey" var="userNameAccessKey" />
-						<form:input cssClass="required" cssErrorClass="error" id="username" size="20" tabindex="1" accesskey="${userNameAccessKey}" path="username" autocomplete="false" htmlEscape="true" />
-						</c:if>
-                    </div>
-                    <div class="row fl-controls-left">
-                        <label for="password" class="fl-label"><spring:message code="screen.welcome.label.password" /></label>
-						<%--
-						NOTE: Certain browsers will offer the option of caching passwords for a user.  There is a non-standard attribute,
-						"autocomplete" that when set to "off" will tell certain browsers not to prompt to cache credentials.  For more
-						information, see the following web page:
-						http://www.geocities.com/technofundo/tech/web/ie_autocomplete.html
-						--%>
-						<spring:message code="screen.welcome.label.password.accesskey" var="passwordAccessKey" />
-						<form:password cssClass="required" cssErrorClass="error" id="password" size="20" tabindex="2" path="password"  accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" />
-                    </div>
-                    <div class="row check">
-                        <input id="warn" name="warn" value="true" tabindex="3" accesskey="<spring:message code="screen.welcome.label.warn.accesskey" />" type="checkbox" />
-                        <label for="warn"><spring:message code="screen.welcome.label.warn" /></label>
-                    </div>
-                    <div class="row btn-row">
-						<input type="hidden" name="lt" value="${flowExecutionKey}" />
-						<input type="hidden" name="_eventId" value="submit" />
-
-                        <input class="btn-submit" name="submit" accesskey="l" value="<spring:message code="screen.welcome.button.login" />" tabindex="4" type="submit" />
-                        <input class="btn-reset" name="reset" accesskey="c" value="<spring:message code="screen.welcome.button.clear" />" tabindex="5" type="reset" />
-                    </div>
-                </div>
-            </form:form>
-
-            <div id="sidebar">
-                <p class="fl-panel fl-note fl-bevel-white fl-font-size-80"><spring:message code="screen.welcome.security" /></p>
-                <div id="list-languages" class="fl-panel">
-                <%final String queryString = request.getQueryString() == null ? "" : request.getQueryString().replaceAll("&locale=([A-Za-z][A-Za-z]_)?[A-Za-z][A-Za-z]|^locale=([A-Za-z][A-Za-z]_)?[A-Za-z][A-Za-z]", "");%>
-					<c:set var='query' value='<%=queryString%>' />
-                    <c:set var="xquery" value="${fn:escapeXml(query)}" />
-                  <h3>Languages:</h3>
-                  <c:choose>
-                     <c:when test="${not empty requestScope['isMobile'] and not empty mobileCss}">
-                        <form method="get" action="login?${xquery}">
-                           <select name="locale">
-                               <option value="en">English</option>
-                               <option value="es">Spanish</option>
-                               <option value="fr">French</option>
-                               <option value="ru">Russian</option>
-                               <option value="nl">Nederlands</option>
-                               <option value="sv">Svenskt</option>
-                               <option value="it">Italiano</option>
-                               <option value="ur">Urdu</option>
-                               <option value="zh_CN">Chinese (Simplified)</option>
-                               <option value="de">Deutsch</option>
-                               <option value="ja">Japanese</option>
-                               <option value="hr">Croatian</option>
-                               <option value="cs">Czech</option>
-                               <option value="sl">Slovenian</option>
-                               <option value="pl">Polish</option>
-                               <option value="ca">Catalan</option>
-                               <option value="mk">Macedonian</option>
-                           </select>
-                           <input type="submit" value="Switch">
-                        </form>
-                     </c:when>
-                     <c:otherwise>
-                        <c:set var="loginUrl" value="login?${xquery}${not empty xquery ? '&' : ''}locale=" />
-						<ul
-							><li class="first"><a href="${loginUrl}en">English</a></li
-							><li><a href="${loginUrl}es">Spanish</a></li
-							><li><a href="${loginUrl}fr">French</a></li
-							><li><a href="${loginUrl}ru">Russian</a></li
-							><li><a href="${loginUrl}nl">Nederlands</a></li
-							><li><a href="${loginUrl}sv">Svenskt</a></li
-							><li><a href="${loginUrl}it">Italiano</a></li
-							><li><a href="${loginUrl}ur">Urdu</a></li
-							><li><a href="${loginUrl}zh_CN">Chinese (Simplified)</a></li
-							><li><a href="${loginUrl}de">Deutsch</a></li
-							><li><a href="${loginUrl}ja">Japanese</a></li
-							><li><a href="${loginUrl}hr">Croatian</a></li
-							><li><a href="${loginUrl}cs">Czech</a></li
-							><li><a href="${loginUrl}sl">Slovenian</a></li
-                            ><li><a href="${loginUrl}ca">Catalan</a></li
-                            ><li><a href="${loginUrl}mk">Macedonian</a></li
-							><li class="last"><a href="${loginUrl}pl">Polish</a></li
-						></ul>
-                     </c:otherwise>
-                   </c:choose>
-                </div>
+            <div class="col-xs-12 col-md-7">
+                <p class=""><spring:message code="screen.welcome.security" /></p>
             </div>
+         </div>
 <jsp:directive.include file="includes/bottom.jsp" />

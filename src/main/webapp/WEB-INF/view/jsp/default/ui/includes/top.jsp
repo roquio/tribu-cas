@@ -18,105 +18,147 @@
 	}
 %>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+
+
+
 <head>
-<title>Osivia &#8211; Authentification</title>
-<c:choose>
-	<c:when
-		test="${not empty requestScope['isMobile'] and not empty mobileCss}">
-		<meta name="viewport"
-			content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<link type="text/css" rel="stylesheet" media="screen"
-			href="<c:url value="/css/fss-framework-1.1.2.css" />" />
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/fss-mobile-${requestScope['browserType']}-layout.css" />" />
-		<link type="text/css" rel="stylesheet" href="${mobileCss}" />
-	</c:when>
-	<c:otherwise>
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/cas.css"/>" />
+	<title>Authentification</title>
 
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/common.css"/>" />
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/tabs.css"/>" />
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/toolbar.css"/>" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/osivia-demo.css"/>" />
-	</c:otherwise>
-</c:choose>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
-<script type="text/javascript" src="<c:url value="/js/cas.js" />"></script>
-<link rel="icon" href="<c:url value="/css/images/favicon.ico" />"
-	type="image/x-icon" />
+    <link rel="stylesheet" href="<c:url value="/css/proto-cns.min.css" />" />
+    <link rel="stylesheet" href="<c:url value="/css/tiles.min.css" />" />
+    <link rel="stylesheet" href="<c:url value="/css/theme-default.min.css" />" />
+    <link rel="stylesheet" href="<c:url value="/css/osivia.min.css"/>" />
+    <link rel="stylesheet" href="<c:url value="/css/glyphicons-halflings.css"/>" />
+
+	<link rel="stylesheet" href="<c:url value="/css/cas.css"/>" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="<c:url value="/js/cas.js" />"></script>
+	<link rel="icon" href="<c:url value="/css/images/favicon.ico" />"
+		type="image/x-icon" />
+
 </head>
+
 <body id="cas">
 
-	<!--
 
- Barre d'outils 
-
--->
-
-	<div id="toolbar">
-
-		<div class="toolbar-content">
-			<!--
-
-         Login 
-
-        -->
-			<a href="http://www.osivia.org">
-
-				S'inscrire </a>
+	
+	
+	<div class="toolbar">
+	    <div class="navbar navbar-default navbar-fixed-top">
+	        <div class="container-fluid">
+	            <div class="navbar-header">
+	                <div class="visible-xs">
+	                    <!-- Menu -->
+	                    <button type="button" onclick="toggleDrawer()" data-toggle="drawer" class="btn btn-link navbar-btn pull-left">
+	                        <span>
+	                            <i class="halflings halflings-menu-hamburger"></i>
+	                            <i class="halflings halflings-arrow-right"></i>
+	                        </span>
+	                    </button>
+	                    
+	                    <!-- State items -->
+	                    
+	
+	                    <!-- Title -->
+	                    <div class="clearfix">
+	                        <p class="navbar-text text-overflow">Connexion</p>
+	                    </div>
+	                </div>
+	                
+	                
+	                <!-- Brand -->
+	                <a href="<%=baseUrl%>" class="navbar-brand hidden-xs">Portail documentaire du CNS</a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+	
+	<header class="container-fluid hidden-xs">
+	    <!-- Banner -->
+		<div class="banner clearfix">
+			<!-- Logo -->
+			<div class="logo">
+				<div id="logo">
+					<div class="">
+	
+						<div class="pull-left">
+							<h1 class="h3">
+								<a href="#"> <img
+									src="<c:url value="/images/logo_MENESR.png" />"
+									alt="Centre National de Services" /> <span>Portail
+											documentaire du CNS</span></a>
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-
-	</div>
-
-
-	<header> <!-- Bannière -->
-	<div id="banner">
-		<!-- Logo -->
-		<div id="logo">
-			<a class="osivia" href="<%=baseUrl%>" title="OSIVIA"></a>
-			<div class="barre"></div>
+	
+		<!-- Onglets -->
+	    <div id="tabs">
+	    	<div class="">
+	
+				<!-- Fixed nav -->
+				
+				<nav class="tabs tabs-default" role="navigation">
+				    <!-- Title -->
+				    <h2 class="hidden">Onglets de navigation</h2>
+				    
+				    
+				    <!-- Home -->
+				    
+				    
+				    
+				    <!-- Tabs -->
+				    <div class="fixed-tabs-container">
+				        <ul class="">
+				            
+				        </ul>
+				    </div>
+				</nav>
+			</div>
 		</div>
-
-		<!--
-
-     	Recherche 
-
-    	-->
-		<div id="search">&nbsp;</div>
-
-	</div>
-
-	<!-- Onglets --> <nav class="">
-	<div id="tabs">
-
-		<div class="dynamic-pages"></div>
-
-
-		<ul class="nav">
-
-
-			<li class="first current"><a href=".">Authentification</a></li>
-
-			<!-- Prevent empty tabs bar -->
-			<li>&nbsp;</li>
-		</ul>
-	</div>
-	</nav> </header>
-
-	<section>
-
-	<div id=""
-		class="content with-menu fl-screenNavigator-scroll-container">
+	</header>
+	
+	
+	
+	<div class="wrapper-outer">
+		<div class="wrapper-inner">
+		    <div id="page-content" class="container-fluid">
+		        <!-- Content navbar -->
+		            
+		
+		
+				<div class="content-navbar">
+				    <!-- Breadcrumb -->
+				    <div class="content-navbar-breadcrumb">
+				        <div id="breadcrumb">
+				        	<div class="">
+				
+								<nav>
+								    <h2 class="hidden">Fil d'Ariane</h2>
+								    <ol class="breadcrumb hidden-xs">
+								        
+								            <li>
+								                <a href="#">Authentification</a>
+								            </li>
+								        
+								    </ol>
+								</nav>
+							</div>
+						</div>
+					</div>
+		
+				</div>
+	
