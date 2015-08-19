@@ -77,7 +77,7 @@
 	                
 	                
 	                <!-- Brand -->
-	                <a href="<%=baseUrl%>" class="navbar-brand hidden-xs">Portail documentaire du CNS</a>
+	                <a href="#" class="navbar-brand hidden-xs">OSIVIA</a>
 	            </div>
 	        </div>
 	    </div>
@@ -94,7 +94,7 @@
 	
 						<div class="pull-left">
 							<h1 class="h3">
-								<a href="#"> <img
+								<a href="<%=baseUrl%>"> <img
 									src="<c:url value="/images/logo_MENESR.png" />"
 									alt="Centre National de Services" /> <span>Portail
 											documentaire du CNS</span></a>

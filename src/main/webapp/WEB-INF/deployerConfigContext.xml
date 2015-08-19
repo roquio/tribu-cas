@@ -28,13 +28,14 @@
             value="${ldap.url}" />
 
         <!-- Manager credentials are only required if your directory does not support anonymous searches. Never provide these credentials for FastBindLdapAuthenticationHandler 
-            since the user's credentials are used for the bind operation. -->
+            since the user's credentials are used for the bind operation.
         <property
             name="userDn"
             value="${ldap.user.dn}" />
         <property
             name="password"
             value="${ldap.user.password}" />
+         -->
 
         <!-- Place JNDI environment properties here. -->
         <property name="baseEnvironmentProperties">
