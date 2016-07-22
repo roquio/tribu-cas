@@ -11,5 +11,15 @@
 </c:forEach>
 		</cas:proxies>
 </c:if>
+
+<cas:attributes>
+
+    <c:forEach var="attr" items="${assertion.chainedAuthentications[fn:length(assertion.chainedAuthentications)-1].principal.attributes}">
+         <cas:${fn:escapeXml(attr.key)}>${fn:escapeXml(attr.value)}</cas:${fn:escapeXml(attr.key)}>
+    </c:forEach>
+
+</cas:attributes>
+
+
 	</cas:authenticationSuccess>
 </cas:serviceResponse>

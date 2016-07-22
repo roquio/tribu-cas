@@ -136,6 +136,7 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 
+
 	<servlet-mapping>
 		<servlet-name>cas</servlet-name>
 		<url-pattern>/logout</url-pattern>
@@ -220,6 +221,16 @@
     <servlet-mapping>
         <servlet-name>cas</servlet-name>
         <url-pattern>/403.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>cas</servlet-name>
+        <url-pattern>/choose</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>cas</servlet-name>
+        <url-pattern>/fim</url-pattern>
     </servlet-mapping>
 
 	<session-config>

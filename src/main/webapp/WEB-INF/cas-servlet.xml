@@ -104,6 +104,8 @@
 				<prop key="/openid/*">openIdProviderController</prop>
                 <prop key="/authorizationFailure.html">passThroughController</prop>
                 <prop key="/403.html">passThroughController</prop>
+				<prop key="/choose">passThroughController</prop>
+				<prop key="/fim">passThroughController</prop>
 			</props>
 		</property>
 		<property
@@ -120,12 +122,17 @@
 	</bean>
 
     <bean id="passThroughController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" /> 
+
+
+
 	
 	<bean
 		id="openIdProviderController"
 		class="org.jasig.cas.web.OpenIdProviderController"
 		p:loginUrl="${cas.securityContext.casProcessingFilterEntryPoint.loginUrl}" />
+
 	
+
 	<bean
 		id="serviceLogoutViewController"
 		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
@@ -214,6 +221,10 @@
 	<bean id="authenticationViaFormAction" class="org.jasig.cas.web.flow.AuthenticationViaFormAction"
 		p:centralAuthenticationService-ref="centralAuthenticationService"
 		p:warnCookieGenerator-ref="warnCookieGenerator" />
+
+<!--ADD-->
+	<bean id="fimSingleSignOnAction" class="org.osivia.cas.fim.FimSingleSignOnAction"
+        p:centralAuthenticationService-ref="centralAuthenticationService" />
 	
 	<bean id="generateServiceTicketAction" class="org.jasig.cas.web.flow.GenerateServiceTicketAction"
 		p:centralAuthenticationService-ref="centralAuthenticationService" />

@@ -8,13 +8,49 @@
         <evaluate expression="initialFlowSetupAction" />
     </on-start>
 
+
+
+	<decision-state id="fim">
+		<if test="externalContext.requestParameterMap['fim'] neq null" then="FimSingleSignOnAction" else="ticketGrantingTicketExistsCheck" />
+	</decision-state>
+
+	<action-state id="FimSingleSignOnAction">
+		<evaluate expression="fimSingleSignOnAction" />
+        <transition on="success" to="sendTicketGrantingTicket" />
+        <transition on="error" to="viewLoginForm" />
+        <transition on="warn" to="warn" />
+	</action-state> 
+
+
+   
+
 	<decision-state id="ticketGrantingTicketExistsCheck">
 		<if test="flowScope.ticketGrantingTicketId neq null" then="hasServiceCheck" else="gatewayRequestCheck" />
 	</decision-state>
+
+
+
     
 	<decision-state id="gatewayRequestCheck">
-		<if test="externalContext.requestParameterMap['gateway'] neq '' &amp;&amp; externalContext.requestParameterMap['gateway'] neq null &amp;&amp; flowScope.service neq null" then="gatewayServicesManagementCheck" else="viewLoginForm" />
+		<if test="externalContext.requestParameterMap['gateway'] neq '' &amp;&amp; externalContext.requestParameterMap['gateway'] neq null &amp;&amp; flowScope.service neq null" then="gatewayServicesManagementCheck" else="mustChoose" />
 	</decision-state>
+
+
+
+	<decision-state id="mustChoose">
+		<if test="externalContext.requestParameterMap['choose'] neq 'false' " then="choose" else="viewLoginForm" />
+	</decision-state>
+
+	<decision-state id="choose">
+		<if test="externalContext.requestParameterMap['service'] neq null " then="chooseService" else="chooseNoService" />
+	</decision-state>
+
+	<end-state id="chooseNoService" view="externalRedirect:choose" />
+
+	<end-state id="chooseService" view="externalRedirect:choose?service=${externalContext.requestParameterMap['service']}" />
+
+
+
 	
 	<decision-state id="hasServiceCheck">
 		<if test="flowScope.service != null" then="renewRequestCheck" else="viewGenericLoginSuccess" />
@@ -23,6 +59,9 @@
 	<decision-state id="renewRequestCheck">
 		<if test="externalContext.requestParameterMap['renew'] neq '' &amp;&amp; externalContext.requestParameterMap['renew'] neq null" then="viewLoginForm" else="generateServiceTicket" />
 	</decision-state>
+
+
+
 	
 	<!-- 
 		The "warn" action makes the determination of whether to redirect directly to the requested

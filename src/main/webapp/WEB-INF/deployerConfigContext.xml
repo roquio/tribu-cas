@@ -82,6 +82,11 @@
                     services by something more or other than an HTTPS URL whereat they are able to | receive a proxy callback, you will need to change this bean declaration (or add 
                     additional declarations). + -->
                 <bean class="org.jasig.cas.authentication.principal.HttpBasedServiceCredentialsToPrincipalResolver" />
+
+ 
+<!--ADD-->
+				<bean class="org.osivia.cas.fim.FimCredentialsToPrincipalResolver" />
+
             </list>
         </property>
 
@@ -92,6 +97,11 @@
             <list>
                 <!-- | This is the authentication handler that authenticates services by means of callback via SSL, thereby validating | a server side SSL certificate. 
                     + -->
+
+
+
+				<bean class="org.osivia.cas.fim.FimCredentialsAuthenticationHandler"/>
+
                 <bean
                     class="org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler"
                     p:httpClient-ref="httpClient" />
@@ -164,6 +174,13 @@
                     <property
                         name="serviceId"
                         value="http://**" />
+
+					 <property name="allowedAttributes">
+						<list>
+						  <value>name</value>
+						</list>             
+					  </property>
+
                 </bean>
 
                 <bean class="org.jasig.cas.services.RegisteredServiceImpl">
