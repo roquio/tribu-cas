@@ -2,7 +2,6 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-ACCES FIM
 
 <%
 	String serviceReport = "";
@@ -17,8 +16,13 @@ ACCES FIM
 	// Récupération header et copie en session
 	// puis redirection vers cas
 
-	request.getSession().setAttribute("fim_id","demo");
-	request.getSession().setAttribute("fim_name","fim name");
+	String uid = "demo2";
+
+	request.getSession().setAttribute("fim_Uid",uid );
+	request.getSession().setAttribute("fim_attr_sn",uid + "Sn");
+	request.getSession().setAttribute("fim_attr_cn",uid + "Cn");
+	request.getSession().setAttribute("fim_attr_displayName",uid + "displayName");
+	request.getSession().setAttribute("fim_attr_mail",uid + ".mail@osivia.com");
 
 	response.sendRedirect("/cas/login?fim=true"+ serviceReport);
 

@@ -20,34 +20,28 @@ import org.springframework.webflow.execution.RequestContext;
 
 public final class FimSingleSignOnAction extends AbstractNonInteractiveCredentialsAction {
 
+    private String FIM_PREFIX = "fim_attr_";
 
     @Override
     protected Credentials constructCredentialsFromRequest(final RequestContext context) {
 
-        String userName = "demo";
-
-//        final String ticketGrantingTicketId = WebUtils.getTicketGrantingTicketId(context);
-//        final Service service = WebUtils.getService(context);
-
-
-        // context.getExternalContext().getSessionMap().put("openIdLocalId", userName);
-
-        // clear the service because otherwise we can fake the username
-        // if (service instanceof OpenIdService && userName == null) {
-        // context.getFlowScope().remove("service");
-        // }
-
-        // if (ticketGrantingTicketId == null || userName == null) {
-        // return null;
-        // }
 
         Map<String, Object> attributes = new HashMap<String, Object>();
-        
-        String name = (String) context.getExternalContext().getSessionMap().get("fim_name");
-        
-        attributes.put("name", name);
 
-        return new FimCredentials(userName, attributes);
+        String userId = (String) context.getExternalContext().getSessionMap().get("fim_Uid");
+
+
+        Map<String, Object> sessionMap = context.getExternalContext().getSessionMap().asMap();
+        for (String key : sessionMap.keySet()) {
+            if (key.startsWith(FIM_PREFIX)) {
+                String name = key.substring(FIM_PREFIX.length());
+                String value = (String) context.getExternalContext().getSessionMap().get(key);
+                attributes.put(name, value);
+            }
+
+        }
+
+
+        return new FimCredentials(userId, attributes);
     }
-
 }

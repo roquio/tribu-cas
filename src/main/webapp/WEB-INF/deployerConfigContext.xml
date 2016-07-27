@@ -177,7 +177,10 @@
 
 					 <property name="allowedAttributes">
 						<list>
-						  <value>name</value>
+						  <value>sn</value>
+						  <value>cn</value>
+						  <value>displayName</value>
+						  <value>mail</value>
 						</list>             
 					  </property>
 

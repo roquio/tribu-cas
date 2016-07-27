@@ -57,7 +57,7 @@
 	</decision-state>
 	
 	<decision-state id="renewRequestCheck">
-		<if test="externalContext.requestParameterMap['renew'] neq '' &amp;&amp; externalContext.requestParameterMap['renew'] neq null" then="viewLoginForm" else="generateServiceTicket" />
+		<if test="externalContext.requestParameterMap['renew'] neq '' &amp;&amp; externalContext.requestParameterMap['renew'] neq null" then="mustChoose" else="generateServiceTicket" />
 	</decision-state>
 
 
@@ -113,7 +113,7 @@
 	<action-state id="generateServiceTicket">
         <evaluate expression="generateServiceTicketAction" />
 		<transition on="success" to ="warn" />
-		<transition on="error" to="viewLoginForm" />
+		<transition on="error" to="mustChoose" />
 		<transition on="gateway" to="gatewayServicesManagementCheck" />
 	</action-state>
 
