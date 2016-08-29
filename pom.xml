@@ -9,7 +9,7 @@
     
     <groupId>org.jasig.cas</groupId>
     <artifactId>cas-server-webapp</artifactId>
-    <version>4.4.0-osivia</version>
+    <version>4.4.0-SNAPSHOT</version>
     
     <packaging>war</packaging>
     <name>JA-SIG CAS Web Application</name>
@@ -120,9 +120,11 @@
     </build>
     
 	<scm>
-		<developerConnection>scm:svn:http://www.osivia.org/repos/osivia-services/cas/webapp/tags/4.4.0-osivia
+		<developerConnection>scm:svn:http://www.osivia.org/repos/osivia-services/cas/webapp/trunk
 		</developerConnection>
-	</scm>   
+	  <connection>scm:svn:https://source.jasig.org/cas3/tags/cas-server-3.4.6/cas-server-webapp</connection>
+    <url>https://source.jasig.org/cas3/tags/cas-server-3.4.6/cas-server-webapp</url>
+  </scm>   
 	
 	<distributionManagement>
 		<repository>
