@@ -122,9 +122,7 @@
 	<scm>
 		<developerConnection>scm:svn:http://www.osivia.org/repos/osivia-services/cas/webapp/trunk
 		</developerConnection>
-	  <connection>scm:svn:https://source.jasig.org/cas3/tags/cas-server-3.4.6/cas-server-webapp</connection>
-    <url>https://source.jasig.org/cas3/tags/cas-server-3.4.6/cas-server-webapp</url>
-  </scm>   
+	</scm>   
 	
 	<distributionManagement>
 		<repository>
