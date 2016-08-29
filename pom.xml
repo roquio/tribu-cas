@@ -4,11 +4,20 @@
         <artifactId>cas-server</artifactId>
         <version>3.4.6</version>
     </parent>
+    
     <modelVersion>4.0.0</modelVersion>
+    
     <groupId>org.jasig.cas</groupId>
     <artifactId>cas-server-webapp</artifactId>
+    <version>4.4.0-SNAPSHOT</version>
+    
     <packaging>war</packaging>
     <name>JA-SIG CAS Web Application</name>
+    
+    <properties>
+    	<cas.version>3.4.6</cas.version>
+    </properties>
+    
     <dependencies>
         <dependency>
             <groupId>com.github.inspektr</groupId>
@@ -36,13 +45,13 @@
         <dependency>
             <groupId>org.jasig.cas</groupId>
             <artifactId>cas-server-core</artifactId>
-            <version>${project.version}</version>
+            <version>${cas.version}</version>
         </dependency>
         
         <dependency>
             <groupId>org.jasig.cas</groupId>
             <artifactId>cas-server-support-ldap</artifactId>
-            <version>${project.version}</version>
+            <version>${cas.version}</version>
         </dependency>        
 
         <dependency>
@@ -95,6 +104,36 @@
                     <warName>cas</warName>
                 </configuration>
             </plugin>
+            
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<tagBase>http://www.osivia.org/repos/osivia-services/cas/webapp/tags</tagBase>
+					<preparationGoals>clean install</preparationGoals>
+					<goals>deploy</goals>
+				</configuration>
+			</plugin>
+            
         </plugins>
     </build>
+    
+	<scm>
+		<developerConnection>scm:svn:http://www.osivia.org/repos/osivia-services/cas/webapp/trunk
+		</developerConnection>
+	</scm>   
+	
+	<distributionManagement>
+		<repository>
+			<id>osivia-releases</id>
+			<url>http://www.osivia.org/nexus/content/repositories/osivia-releases
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>osivia-snapshots</id>
+			<url>http://www.osivia.org/nexus/content/repositories/osivia-snapshots
+			</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
