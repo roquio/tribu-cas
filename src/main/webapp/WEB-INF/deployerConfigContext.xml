@@ -180,6 +180,7 @@
 						  <value>sn</value>
 						  <value>cn</value>
 						  <value>displayName</value>
+						  <value>givenName</value>
 						  <value>mail</value>
 						</list>             
 					  </property>

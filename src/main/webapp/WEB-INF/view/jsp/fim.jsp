@@ -22,6 +22,7 @@
 	request.getSession().setAttribute("fim_attr_sn",uid + "Sn");
 	request.getSession().setAttribute("fim_attr_cn",uid + "Cn");
 	request.getSession().setAttribute("fim_attr_displayName",uid + "displayName");
+	request.getSession().setAttribute("fim_attr_givenName",uid + "givenName");
 	request.getSession().setAttribute("fim_attr_mail",uid + ".mail@osivia.com");
 
 	response.sendRedirect("/cas/login?fim=true"+ serviceReport);
