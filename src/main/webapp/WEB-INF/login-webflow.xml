@@ -29,10 +29,17 @@
 	</decision-state>
 
 
+<!-- 
 
+désactivation temporaire choix (attention, à la remise en place il faudra corriger le bug lié à l'authentification drive 
     
 	<decision-state id="gatewayRequestCheck">
 		<if test="externalContext.requestParameterMap['gateway'] neq '' &amp;&amp; externalContext.requestParameterMap['gateway'] neq null &amp;&amp; flowScope.service neq null" then="gatewayServicesManagementCheck" else="mustChoose" />
+	</decision-state>
+-->
+    
+	<decision-state id="gatewayRequestCheck">
+		<if test="externalContext.requestParameterMap['gateway'] neq '' &amp;&amp; externalContext.requestParameterMap['gateway'] neq null &amp;&amp; flowScope.service neq null" then="gatewayServicesManagementCheck" else="viewLoginForm" />
 	</decision-state>
 
 
