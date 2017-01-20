@@ -1,122 +1,109 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<%@page import="java.net.URL"%>
+<!DOCTYPE html>
 <%@ page session="true"%>
 <%@ page pageEncoding="UTF-8"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<spring:theme code="mobile.custom.css.file" var="mobileCss" text="" />
 
-<%
-	String baseUrl = "http://".concat(request.getServerName()); // Par défaut, retour au root du domaine associé à CAS
-	if(request.getParameter("service") != null) {
-	    // Si possible utiliser le service en paramètre
-		URL serviceUrl = new URL(request.getParameter("service"));
-		baseUrl = serviceUrl.getProtocol().concat("://").concat(serviceUrl.getHost());
-	}
-%>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html>
+
 <head>
-<title>Osivia &#8211; Authentification</title>
-<c:choose>
-	<c:when
-		test="${not empty requestScope['isMobile'] and not empty mobileCss}">
-		<meta name="viewport"
-			content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<link type="text/css" rel="stylesheet" media="screen"
-			href="<c:url value="/css/fss-framework-1.1.2.css" />" />
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/fss-mobile-${requestScope['browserType']}-layout.css" />" />
-		<link type="text/css" rel="stylesheet" href="${mobileCss}" />
-	</c:when>
-	<c:otherwise>
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/cas.css"/>" />
+<meta charset="UTF-8">
 
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/common.css"/>" />
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/tabs.css"/>" />
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/toolbar.css"/>" />
+<title>Authentification - Tribu</title>
 
-		<link type="text/css" rel="stylesheet"
-			href="<c:url value="/css/osivia-demo.css"/>" />
-	</c:otherwise>
-</c:choose>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script type="text/javascript"
-	src="/js/jquery.min.js"></script>
-<script type="text/javascript"
-	src="/js/jquery-ui.min.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="application-name" content="Tribu">
+<meta http-equiv="default-style" content="FOAD">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<script type="text/javascript" src="<c:url value="/js/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/js/jquery-ui.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/js/cas.js" />"></script>
-<link rel="icon" href="<c:url value="/css/images/favicon.ico" />"
-	type="image/x-icon" />
+
+<link rel="icon" href="<c:url value="/img/favicon.ico" />" />
+<link rel="stylesheet" href="<c:url value="/css/osivia.min.css" />" />
+<link rel="stylesheet" href="<c:url value="/css/foad.min.css" />" title="FOAD" />
 </head>
-<body id="cas">
-
-	<!--
-
- Barre d'outils 
-
--->
-
-	<div id="toolbar">
-
-		<div class="toolbar-content">
-			<!--
-
-         Login 
-
-        -->
-			<a href="http://www.osivia.org">
-
-				S'inscrire </a>
-		</div>
-
-	</div>
 
 
-	<header> <!-- Bannière -->
-	<div id="banner">
-		<!-- Logo -->
-		<div id="logo">
-			<a class="osivia" href="<%=baseUrl%>" title="OSIVIA"></a>
-			<div class="barre"></div>
-		</div>
+<body>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <h2 class="sr-only">Barre d'outils</h2>
 
-		<!--
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <!-- Brand -->
+                    <a href="#" class="navbar-brand">
+                        <img src="<c:url value="/img/logo-tribu.png" />" alt="Tribu">
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    
+    <!-- Header -->
+    <header class="banner hidden-xs">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-8">
+                    <!-- Logo -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="logo">
+                                <!-- FOAD -->
+                                <img src="<c:url value="/img/logo-foad.png" />" alt="FOAD, Formation Ouverte À Distance">
 
-     	Recherche 
+                                <!-- Ministère -->
+                                <img src="<c:url value="/img/logo-ministere.png" />" alt="Ministère de l'Éducation Nationale, de l'Enseignement supérieur et de la Recherche">
+                            </div>
+                        </div>
 
-    	-->
-		<div id="search">&nbsp;</div>
+                        <div class="col-sm-6">
+                            <h1 class="logo">
+                                <a href="#"> 
+                                    <img src="<c:url value="/img/logo-tribu.png" />" alt="Tribu">
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	</div>
+        <div class="background-fading"></div>
+    </header>
+    
+    <!-- Tabs -->
+    <div class="tabs-container hidden-xs">
+        <div class="container-fluid">
+            <!-- Fixed nav -->
+            <nav class="tabs" role="navigation">
+                <!-- Title -->
+                <h2 class="sr-only">Onglets de navigation</h2>
 
-	<!-- Onglets --> <nav class="">
-	<div id="tabs">
-
-		<div class="dynamic-pages"></div>
-
-
-		<ul class="nav">
-
-
-			<li class="first current"><a href=".">Authentification</a></li>
-
-			<!-- Prevent empty tabs bar -->
-			<li>&nbsp;</li>
-		</ul>
-	</div>
-	</nav> </header>
-
-	<section>
-
-	<div id=""
-		class="content with-menu fl-screenNavigator-scroll-container">
+                <div class="primary-tabs">
+                    <!-- Home -->
+                    <div class="pull-left">
+                        <ul class="home">
+                            <li role="presentation" class="active">
+                                <a href="#">
+                                    <span>Authentification</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    
+    <div class="wrapper-outer">
+        <div class="wrapper-inner">
+            <main id="page-content" class="container">
