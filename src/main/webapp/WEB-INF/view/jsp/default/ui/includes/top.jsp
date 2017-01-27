@@ -97,6 +97,16 @@
                                     <span>Authentification</span>
                                 </a>
                             </li>
+                            <li role="presentation">
+<%
+	String service = (String) request.getParameter("service");
+%>
+	
+                                <a href="/cas/fim?service=<%= service%>">
+                                    <span>FIM</span>
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                 </div>

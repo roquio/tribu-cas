@@ -13,21 +13,69 @@
 
 
 <%
-	// Récupération header et copie en session
-	// puis redirection vers cas
 
-	String uid = "demo2";
+	if( request.getHeader("ctemail") != null)	{
 
-	request.getSession().setAttribute("fim_Uid",uid );
-	request.getSession().setAttribute("fim_attr_sn",uid + "Sn");
-	request.getSession().setAttribute("fim_attr_cn",uid + "Cn");
-	request.getSession().setAttribute("fim_attr_displayName",uid + "displayName");
-	request.getSession().setAttribute("fim_attr_givenName",uid + "givenName");
-	request.getSession().setAttribute("fim_attr_mail",uid + ".mail@osivia.com");
+		String uid = request.getHeader("ctemail");
+		String prenom = request.getHeader("ctfn");
+		String nom = request.getHeader("ctln");
+		String displayName = concat( prenom, nom);
+		String cn = concat( nom, prenom);
 
-	response.sendRedirect("/cas/login?fim=true"+ serviceReport);
+
+		request.getSession().setAttribute("fim_Uid",uid );
+
+		if( nom != null)
+			request.getSession().setAttribute("fim_attr_sn", nom);
+
+		if( displayName != null)
+			request.getSession().setAttribute("fim_attr_displayName", displayName);
+
+		if( cn != null)
+			request.getSession().setAttribute("fim_attr_cn", cn);
+
+		if( prenom != null)
+			request.getSession().setAttribute("fim_attr_givenName", prenom);
+
+		request.getSession().setAttribute("fim_attr_mail", uid);
+
+
+		response.sendRedirect("/cas/login?fim=true"+ serviceReport);
+	}	else	{
+%>
+
+	Authentification impossible
+
+<%
+
+	}
 
 %>
 
 
+
+
+
+<%!
+private String concat(String s1, String s2)   {
+
+	String res = "";
+	
+	if( s1 != null)
+		res += s1;
+
+	if( s2 != null)	{
+		if( s1.length() > 0)
+			res += " ";
+		res += s2;
+	}
+
+	if( res.length() == 0)
+		res = null;
+
+	return res;
+}
+
+
+%>
 
