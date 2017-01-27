@@ -100,9 +100,13 @@
                             <li role="presentation">
 <%
 	String service = (String) request.getParameter("service");
+	if( service == null)
+		service = "";
+	else
+		service="?service="+service;
 %>
 	
-                                <a href="/cas/fim?service=<%= service%>">
+                                <a href="/cas/fim<%= service%>">
                                     <span>FIM</span>
                                 </a>
                             </li>
