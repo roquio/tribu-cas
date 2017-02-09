@@ -8,6 +8,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<%@ page import="java.net.URLEncoder"%>
 
 <html>
 
@@ -99,11 +100,12 @@
                             </li>
                             <li role="presentation">
 <%
-	String service = (String) request.getParameter("service");
+	String service = (String) request.getAttribute("originalUrl");
+
 	if( service == null)
 		service = "";
 	else
-		service="?service="+service;
+		service="?service="+URLEncoder.encode(service);
 %>
 	
                                 <a href="/cas/fim<%= service%>">

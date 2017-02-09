@@ -90,6 +90,7 @@
         </binder>
         <on-entry>
             <set name="viewScope.commandName" value="'credentials'" />
+			<set name="requestScope.originalUrl" value="flowScope.service.id" />
         </on-entry>
 		<transition on="submit" bind="true" validate="true" to="realSubmit">
             <set name="flowScope.credentials" value="credentials" />

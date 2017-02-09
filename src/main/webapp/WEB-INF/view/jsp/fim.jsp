@@ -2,12 +2,13 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
+<%@ page import="java.net.URLEncoder"%>
 
 <%
 	String serviceReport = "";
 	String service = request.getParameter("service");
 	if( service != null)
-		serviceReport = "&service="+service;
+		serviceReport = "&service="+URLEncoder.encode(service);
 
 %>
 
@@ -78,4 +79,3 @@ private String concat(String s1, String s2)   {
 
 
 %>
-
