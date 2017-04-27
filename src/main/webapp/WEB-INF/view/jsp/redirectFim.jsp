@@ -10,7 +10,7 @@
 	String service = (String) request.getAttribute("originalUrl");
 	if( service != null)
 		serviceReport = "?service="+URLEncoder.encode(service);
-
+/*
 	String chooseReport = serviceReport;
 	if( chooseReport.length() == 0)
 		chooseReport += "?";
@@ -18,10 +18,9 @@
 		chooseReport += "&";
 
 	chooseReport += "choose=false";
+	*/
+	
+	response.sendRedirect("/cas/fim"+ serviceReport);
 %>
 
 
-choisissez :
-
-<a href="fim<%=serviceReport%>">fim</a>
-<a href="login<%=chooseReport%>">local</a>

@@ -22,37 +22,38 @@
 	</action-state> 
 
 
-   
-
 	<decision-state id="ticketGrantingTicketExistsCheck">
 		<if test="flowScope.ticketGrantingTicketId neq null" then="hasServiceCheck" else="gatewayRequestCheck" />
 	</decision-state>
 
-<!--
- 
 	<decision-state id="gatewayRequestCheck">
-		<if test="externalContext.requestParameterMap['gateway'] neq '' &amp;&amp; externalContext.requestParameterMap['gateway'] neq null &amp;&amp; flowScope.service neq null" then="gatewayServicesManagementCheck" else="mustChoose" />
-	</decision-state>
--->
-
-	<decision-state id="gatewayRequestCheck">
-		<if test="externalContext.requestParameterMap['gateway'] neq '' &amp;&amp; externalContext.requestParameterMap['gateway'] neq null &amp;&amp; flowScope.service neq null" then="gatewayServicesManagementCheck" else="viewLoginForm" />
-	</decision-state>
-
-	<decision-state id="mustChoose">
-		<if test="externalContext.requestParameterMap['choose'] neq 'false' " then="choose" else="viewLoginForm" />
+		<if test="externalContext.requestParameterMap['gateway'] neq '' &amp;&amp; externalContext.requestParameterMap['gateway'] neq null &amp;&amp; flowScope.service neq null" then="gatewayServicesManagementCheck" else="choose" />
 	</decision-state>
 
 	<decision-state id="choose">
-		<if test="externalContext.requestParameterMap['service'] neq null " then="chooseService" else="chooseNoService" />
+		<if test="externalContext.requestParameterMap['admin'] neq 'true' " then="fimProcessing" else="viewLoginForm" />
 	</decision-state>
 
 
-	<end-state id="chooseService" view="chooseView" >
+	<decision-state id="fimProcessing">
+		<if test="externalContext.requestParameterMap['service'] neq null " then="fimService" else="fimNoService" />
+	</decision-state>
+
+
+	<end-state id="fimService" view="redirectFimView" >
         <on-entry>
            <set name="requestScope.originalUrl" value="flowScope.service.id" />
         </on-entry>
     </end-state>
+
+
+	<end-state id="fimNoService" view="redirectFimView" >
+
+    </end-state>
+    
+    
+    
+    
 
 	
 	<decision-state id="hasServiceCheck">
@@ -60,7 +61,7 @@
 	</decision-state>
 	
 	<decision-state id="renewRequestCheck">
-		<if test="externalContext.requestParameterMap['renew'] neq '' &amp;&amp; externalContext.requestParameterMap['renew'] neq null" then="mustChoose" else="generateServiceTicket" />
+		<if test="externalContext.requestParameterMap['renew'] neq '' &amp;&amp; externalContext.requestParameterMap['renew'] neq null" then="choose" else="generateServiceTicket" />
 	</decision-state>
 
 
@@ -90,7 +91,6 @@
         </binder>
         <on-entry>
             <set name="viewScope.commandName" value="'credentials'" />
-			<set name="requestScope.originalUrl" value="flowScope.service.id" />
         </on-entry>
 		<transition on="submit" bind="true" validate="true" to="realSubmit">
             <set name="flowScope.credentials" value="credentials" />
@@ -117,7 +117,7 @@
 	<action-state id="generateServiceTicket">
         <evaluate expression="generateServiceTicketAction" />
 		<transition on="success" to ="warn" />
-		<transition on="error" to="mustChoose" />
+		<transition on="error" to="choose" />
 		<transition on="gateway" to="gatewayServicesManagementCheck" />
 	</action-state>
 
