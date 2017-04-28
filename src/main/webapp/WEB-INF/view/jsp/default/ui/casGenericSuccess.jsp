@@ -1,9 +1,11 @@
-<jsp:directive.include file="includes/top.jsp" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
-<div id="msg" class="alert alert-success">
-	<h2 class="h4"><spring:message code="screen.success.header" /></h2>
-	<p><spring:message code="screen.success.success" /></p>
-	<p><spring:message code="screen.success.security" /></p>
-</div>
+<%@ page import="java.net.URLEncoder"%>
 
-<jsp:directive.include file="includes/bottom.jsp" />
+<%
+	response.sendRedirect("/portal/auth");
+%>
+
+
