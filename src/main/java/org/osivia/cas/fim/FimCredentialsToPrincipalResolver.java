@@ -6,15 +6,13 @@
 package org.osivia.cas.fim;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.jasig.cas.authentication.principal.AbstractPersonDirectoryCredentialsToPrincipalResolver;
 import org.jasig.cas.authentication.principal.Credentials;
 import org.jasig.cas.authentication.principal.CredentialsToPrincipalResolver;
 import org.jasig.cas.authentication.principal.Principal;
 import org.jasig.cas.authentication.principal.SimplePrincipal;
-import org.jasig.services.persondir.IPersonAttributes;
+import org.osivia.cas.fim.FimCredentials;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,10 +43,15 @@ CredentialsToPrincipalResolver {
 
         FimCredentials fimCredentials=(FimCredentials) credentials;
         
-        final String principalId = fimCredentials.getUsername();
+        String principalId = fimCredentials.getUsername();
         
         if (principalId == null) {
             return null;
+        }
+        else {
+        	
+        	// Login toujours en minuscule (compatibilité entre comptes manuels et comptes FIM).
+        	principalId = principalId.toLowerCase();
         }
         
         if (log.isDebugEnabled()) {
