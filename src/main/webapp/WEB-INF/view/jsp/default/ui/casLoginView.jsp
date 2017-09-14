@@ -41,9 +41,9 @@
             
             <spring:bind path="username">
                 <div class="form-group required ${status.error ? 'has-error has-feedback' : ''}">
-                    <form:label path="username" cssClass="col-sm-3 control-label"><spring:message code="screen.welcome.label.netid" /></form:label>
+                    <form:label path="username" cssClass="col-sm-3 col-lg-2 control-label"><spring:message code="screen.welcome.label.netid" /></form:label>
                     
-                    <div class="col-sm-9">
+                    <div class="col-sm-9 col-lg-10">
                         <c:if test="${not empty sessionScope.openIdLocalId}">
                             <strong>${sessionScope.openIdLocalId}</strong>
                             <input type="hidden" id="username" name="username" value="${sessionScope.openIdLocalId}" />
@@ -61,14 +61,14 @@
             
             <spring:bind path="password">
                 <div class="form-group required ${status.error ? 'has-error has-feedback' : ''}">
-                    <form:label path="password" cssClass="col-sm-3 control-label"><spring:message code="screen.welcome.label.password" /></form:label>
+                    <form:label path="password" cssClass="col-sm-3 col-lg-2 control-label"><spring:message code="screen.welcome.label.password" /></form:label>
                     <%--
     				NOTE: Certain browsers will offer the option of caching passwords for a user.  There is a non-standard attribute,
     				"autocomplete" that when set to "off" will tell certain browsers not to prompt to cache credentials.  For more
     				information, see the following web page:
     				http://www.geocities.com/technofundo/tech/web/ie_autocomplete.html
     				--%>
-                    <div class="col-sm-9">
+                    <div class="col-sm-9 col-lg-10">
                         <spring:message code="screen.welcome.label.password.accesskey" var="passwordAccessKey" />
                         <form:password cssClass="form-control" id="password" size="20" tabindex="2" path="password" accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" />
                         <form:errors path="password" cssClass="help-block" />
@@ -80,7 +80,7 @@
                 <input type="hidden" name="lt" value="${flowExecutionKey}" />
                 <input type="hidden" name="_eventId" value="submit" />
                 
-                <div class="col-sm-offset-3 col-sm-9">
+                <div class="col-sm-offset-3 col-sm-9 col-lg-offset-2 col-lg-10">
                     <input class="btn btn-primary" name="submit" accesskey="l" value="<spring:message code="screen.welcome.button.login" />" tabindex="4" type="submit" />
                     <input class="btn btn-default" name="reset" accesskey="c" value="<spring:message code="screen.welcome.button.clear" />" tabindex="5" type="reset" />
                 </div>
@@ -88,5 +88,11 @@
         </fieldset>
     </div>
 </form:form>
+
+<div class="row">
+    <div class="col-sm-offset-3 col-sm-9 col-lg-offset-2 col-lg-10">
+        <a href="/cas/login?service=${service}">Retour au choix du mode d'authentification</a>
+    </div>
+</div>
 
 <jsp:directive.include file="includes/bottom.jsp" />

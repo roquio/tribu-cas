@@ -10,6 +10,10 @@
 
 <%@ page import="java.net.URLEncoder"%>
 
+
+<c:set var="service" value="${param['service']}" scope="request" />
+
+
 <html>
 
 <head>
@@ -32,7 +36,7 @@
 </head>
 
 
-<body>
+<body class="fixed-layout">
     <!-- Toolbar -->
     <div class="toolbar">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -59,10 +63,10 @@
                         <div class="col-sm-6">
                             <div class="logo">
                                 <!-- FOAD -->
-                                <img src="<c:url value="/img/logo-foad.png" />" alt="FOAD, Formation Ouverte À Distance">
+                                <img src="<c:url value="/img/logo-foad.png" />" alt="FOAD, Formation Ouverte &Agrave; Distance">
 
                                 <!-- Ministère -->
-                                <img src="<c:url value="/img/logo-ministere.png" />" alt="Ministère de l'Éducation Nationale, de l'Enseignement supérieur et de la Recherche">
+                                <img src="<c:url value="/img/logo-ministere.png" />" alt="Minist&egrave;re de l'&eacute;ducation Nationale, de l'Enseignement sup&eacute;rieur et de la Recherche">
                             </div>
                         </div>
 
@@ -83,36 +87,28 @@
     
     <!-- Tabs -->
     <div class="tabs-container hidden-xs">
-        <div class="container-fluid">
+        <div class="container">
             <!-- Fixed nav -->
             <nav class="tabs" role="navigation">
                 <!-- Title -->
                 <h2 class="sr-only">Onglets de navigation</h2>
 
                 <div class="primary-tabs">
-                    <!-- Home -->
                     <div class="pull-left">
                         <ul class="home">
-                            <li role="presentation" class="active">
-                                <a href="#">
-                                    <span>Authentification</span>
-                                </a>
-                            </li>
+                            <!-- FIM -->
                             <li role="presentation">
-<%
-	String service = (String) request.getAttribute("originalUrl");
-
-	if( service == null)
-		service = "";
-	else
-		service="?service="+URLEncoder.encode(service);
-%>
-	
-                                <a href="/cas/fim<%= service%>">
-                                    <span>FIM</span>
+                                <a href="/cas/login?s=fim&amp;service=${service}">
+                                    <span>ARENA</span>
                                 </a>
                             </li>
-
+                        
+                            <!-- Authentification locale -->
+                            <li role="presentation" class="${param['s'] eq 'local' ? 'active' : ''}">
+                                <a href="/cas/login?s=local&amp;service=${service}">
+                                    <span>Compte externe</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -120,6 +116,5 @@
         </div>
     </div>
     
-    <div class="wrapper-outer">
-        <div class="wrapper-inner">
-            <main id="page-content" class="container">
+    <main>
+        <div class="container scrollbox">

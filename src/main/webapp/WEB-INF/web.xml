@@ -225,11 +225,6 @@
 
     <servlet-mapping>
         <servlet-name>cas</servlet-name>
-        <url-pattern>/choose</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>cas</servlet-name>
         <url-pattern>/fim</url-pattern>
     </servlet-mapping>
 

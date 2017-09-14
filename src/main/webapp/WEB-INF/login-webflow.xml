@@ -9,7 +9,6 @@
     </on-start>
 
 
-
 	<decision-state id="fim">
 		<if test="externalContext.requestParameterMap['fim'] neq null" then="FimSingleSignOnAction" else="ticketGrantingTicketExistsCheck" />
 	</decision-state>
@@ -30,10 +29,10 @@
 		<if test="externalContext.requestParameterMap['gateway'] neq '' &amp;&amp; externalContext.requestParameterMap['gateway'] neq null &amp;&amp; flowScope.service neq null" then="gatewayServicesManagementCheck" else="choose" />
 	</decision-state>
 
-	<decision-state id="choose">
-		<if test="externalContext.requestParameterMap['admin'] neq 'true' " then="fimProcessing" else="viewLoginForm" />
-	</decision-state>
-
+    <decision-state id="choose">
+        <if test="externalContext.requestParameterMap['s'] eq 'fim'" then="fimProcessing"/>
+        <if test="externalContext.requestParameterMap['s'] eq null" then="selector" else="viewLoginForm"/>
+    </decision-state>
 
 	<decision-state id="fimProcessing">
 		<if test="externalContext.requestParameterMap['service'] neq null " then="fimService" else="fimNoService" />
@@ -51,8 +50,8 @@
 
     </end-state>
     
-    
-    
+
+    <view-state id="selector" view="selectorView"/>    
     
 
 	
