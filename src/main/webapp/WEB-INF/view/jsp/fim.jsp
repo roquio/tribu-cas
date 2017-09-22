@@ -40,7 +40,6 @@
 
 		request.getSession().setAttribute("fim_attr_mail", uid);
 
-
 		response.sendRedirect("/cas/login?fim=true"+ serviceReport);
 	}	else	{
 %>

@@ -8,13 +8,8 @@ package org.osivia.cas.fim;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.jasig.cas.authentication.principal.Credentials;
-import org.jasig.cas.authentication.principal.Service;
-
 import org.jasig.cas.web.flow.AbstractNonInteractiveCredentialsAction;
-import org.jasig.cas.web.support.WebUtils;
 import org.springframework.webflow.execution.RequestContext;
 
 
@@ -41,6 +36,8 @@ public final class FimSingleSignOnAction extends AbstractNonInteractiveCredentia
 
         }
 
+
+        attributes.put("source", "fim");
 
         return new FimCredentials(userId, attributes);
     }

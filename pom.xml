@@ -130,6 +130,19 @@
             <version>${slf4j.version}</version>
             <scope>compile</scope>
         </dependency>
+        
+        <!-- Apache directory API util -->
+        <dependency>
+            <groupId>org.apache.directory.api</groupId>
+            <artifactId>api-util</artifactId>
+            <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 	</dependencies>
 
     <build>
