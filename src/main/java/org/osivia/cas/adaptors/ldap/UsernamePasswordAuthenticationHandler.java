@@ -7,6 +7,8 @@ import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.DirContext;
 
+import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.directory.api.util.GeneralizedTime;
 import org.jasig.cas.adaptors.ldap.AbstractLdapUsernamePasswordAuthenticationHandler;
 import org.jasig.cas.authentication.handler.AuthenticationException;
@@ -36,7 +38,9 @@ public class UsernamePasswordAuthenticationHandler extends AbstractLdapUsernameP
     protected boolean authenticateUsernamePasswordInternal(UsernamePasswordCredentials credentials) throws AuthenticationException {
         // Authentication result
         boolean result;
-
+        
+        credentials.setUsername(StringUtils.lowerCase(credentials.getUsername()));
+        
         // LDAP directory context
         DirContext dirContext = null;
         try {
@@ -54,34 +58,50 @@ public class UsernamePasswordAuthenticationHandler extends AbstractLdapUsernameP
             } else {
                 attributes = dirContext.getAttributes(bindDn);
             }
-
-            // Account validity date attribute
-            Attribute validityAttribute;
+            
+            // Account external only
+            Attribute externalAttribute;
             if (attributes == null) {
-                validityAttribute = null;
+                externalAttribute = null;
             } else {
-                validityAttribute = attributes.get("portalPersonValidity");
-            }
+                externalAttribute = attributes.get("portalPersonExternal");
+            }            
 
-            // Account validity date
-            Date validity;
-            if (validityAttribute == null) {
-                validity = null;
-            } else {
-                String validityValue = (String) validityAttribute.get();
-                try {
-                    GeneralizedTime generalizedTime = new GeneralizedTime(validityValue);
-                    validity = generalizedTime.getDate();
-                } catch (ParseException e) {
-                    validity = null;
-                }
+            // If person has external account, no login allowed
+            if(externalAttribute != null && externalAttribute.get() != null && BooleanUtils.toBoolean(externalAttribute.get().toString())) {
+            	result = false;
+            	
             }
-
-            // Check validity date
-            if (validity == null) {
-                result = true;
-            } else {
-                result = validity.after(new Date());
+            else {
+            
+	            // Account validity date attribute
+	            Attribute validityAttribute;
+	            if (attributes == null) {
+	                validityAttribute = null;
+	            } else {
+	                validityAttribute = attributes.get("portalPersonValidity");
+	            }
+	
+	            // Account validity date
+	            Date validity;
+	            if (validityAttribute == null) {
+	                validity = null;
+	            } else {
+	                String validityValue = (String) validityAttribute.get();
+	                try {
+	                	GeneralizedTime generalizedTime = new GeneralizedTime(validityValue);
+	                    validity = generalizedTime.getDate();
+	                } catch (ParseException e) {
+	                    validity = null;
+	                }
+	            }
+	
+	            // Check validity date
+	            if (validity == null) {
+	                result = true;
+	            } else {
+	                result = validity.after(new Date());
+	            }
             }
         } catch (Exception e) {
             result = false;
