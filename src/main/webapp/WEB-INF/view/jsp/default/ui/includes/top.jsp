@@ -85,36 +85,5 @@
         <div class="background-fading"></div>
     </header>
     
-    <!-- Tabs -->
-    <div class="tabs-container hidden-xs">
-        <div class="container">
-            <!-- Fixed nav -->
-            <nav class="tabs" role="navigation">
-                <!-- Title -->
-                <h2 class="sr-only">Onglets de navigation</h2>
-
-                <div class="primary-tabs">
-                    <div class="pull-left">
-                        <ul class="home">
-                            <!-- FIM -->
-                            <li role="presentation">
-                                <a href="/cas/login?s=fim&amp;service=${service}">
-                                    <span>ARENA</span>
-                                </a>
-                            </li>
-                        
-                            <!-- Authentification locale -->
-                            <li role="presentation" class="${param['s'] eq 'local' ? 'active' : ''}">
-                                <a href="/cas/login?s=local&amp;service=${service}">
-                                    <span>Compte externe</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-    
     <main>
         <div class="container scrollbox">
