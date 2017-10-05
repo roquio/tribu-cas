@@ -6,6 +6,7 @@
 
     <on-start>
         <evaluate expression="initialFlowSetupAction" />
+        <evaluate expression="cnsSetupAction" />
     </on-start>
 
 	<decision-state id="ticketGrantingTicketExistsCheck">
@@ -13,7 +14,7 @@
 	</decision-state>
     
 	<decision-state id="gatewayRequestCheck">
-		<if test="externalContext.requestParameterMap['gateway'] neq '' &amp;&amp; externalContext.requestParameterMap['gateway'] neq null &amp;&amp; flowScope.service neq null" then="gatewayServicesManagementCheck" else="viewLoginForm" />
+		<if test="externalContext.requestParameterMap['gateway'] neq '' &amp;&amp; externalContext.requestParameterMap['gateway'] neq null &amp;&amp; flowScope.service neq null" then="gatewayServicesManagementCheck" else="choose" />
 	</decision-state>
 	
 	<decision-state id="hasServiceCheck">
@@ -21,7 +22,7 @@
 	</decision-state>
 	
 	<decision-state id="renewRequestCheck">
-		<if test="externalContext.requestParameterMap['renew'] neq '' &amp;&amp; externalContext.requestParameterMap['renew'] neq null" then="viewLoginForm" else="generateServiceTicket" />
+		<if test="externalContext.requestParameterMap['renew'] neq '' &amp;&amp; externalContext.requestParameterMap['renew'] neq null" then="choose" else="generateServiceTicket" />
 	</decision-state>
 	
 	<!-- 
@@ -32,16 +33,22 @@
 		<if test="flowScope.warnCookieValue" then="showWarningView" else="redirect" />
 	</decision-state>
 	
+    <decision-state id="choose">
+        <if test="flowScope.forums" then="viewForumsLoginForm" else="viewCnsLoginForm" />
+    </decision-state>
+    
+    
 	<!-- 
 	<action-state id="startAuthenticate">
 		<action bean="x509Check" />
 		<transition on="success" to="sendTicketGrantingTicket" />
 		<transition on="warn" to="warn" />
-		<transition on="error" to="viewLoginForm" />
+		<transition on="error" to="choose" />
 	</action-state>
 	 -->
-	<view-state id="viewLoginForm" view="casLoginView" model="credentials">
-        <var name="credentials" class="org.jasig.cas.authentication.principal.UsernamePasswordCredentials" />
+     
+	<view-state id="viewCnsLoginForm" view="casLoginView" model="credentials">
+        <var name="credentials" class="fr.gouv.education.cns.cas.authentication.principal.CnsUsernamePasswordCredentials" />
         <binder>
             <binding property="username" />
             <binding property="password" />
@@ -54,12 +61,27 @@
             <evaluate expression="authenticationViaFormAction.doBind(flowRequestContext, flowScope.credentials)" />
         </transition>
 	</view-state>
+    
+    <view-state id="viewForumsLoginForm" view="casLoginView" model="credentials">
+        <var name="credentials" class="fr.gouv.education.cns.cas.authentication.principal.ForumsUsernamePasswordCredentials" />
+        <binder>
+            <binding property="username" />
+            <binding property="password" />
+        </binder>
+        <on-entry>
+            <set name="viewScope.commandName" value="'credentials'" />
+        </on-entry>
+        <transition on="submit" bind="true" validate="true" to="realSubmit">
+            <set name="flowScope.credentials" value="credentials" />
+            <evaluate expression="authenticationViaFormAction.doBind(flowRequestContext, flowScope.credentials)" />
+        </transition>
+    </view-state>
 
 	<action-state id="realSubmit">
         <evaluate expression="authenticationViaFormAction.submit(flowRequestContext, flowScope.credentials, messageContext)" />
 		<transition on="warn" to="warn" />
 		<transition on="success" to="sendTicketGrantingTicket" />
-		<transition on="error" to="viewLoginForm" />
+		<transition on="error" to="choose" />
 	</action-state>
 	
 	<action-state id="sendTicketGrantingTicket">
@@ -74,7 +96,7 @@
 	<action-state id="generateServiceTicket">
         <evaluate expression="generateServiceTicketAction" />
 		<transition on="success" to ="warn" />
-		<transition on="error" to="viewLoginForm" />
+		<transition on="error" to="choose" />
 		<transition on="gateway" to="gatewayServicesManagementCheck" />
 	</action-state>
 

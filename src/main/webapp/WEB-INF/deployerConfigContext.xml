@@ -12,46 +12,57 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
-    <bean
-        id="contextSource"
-        class="org.springframework.ldap.core.support.LdapContextSource">
+    <bean id="cnsContextSource" class="org.springframework.ldap.core.support.LdapContextSource">
         <!-- DO NOT enable JNDI pooling for context sources that perform LDAP bind operations. -->
-        <property
-            name="pooled"
-            value="false" />
+        <property name="pooled" value="false" />
 
         <!-- Although multiple URLs may defined, it's strongly recommended to avoid this configuration since the implementation attempts hosts in sequence and requires 
             a connection timeout prior to attempting the next host, which incurs unacceptable latency on node failure. A proper HA setup for LDAP directories should use a single 
             virtual host that maps to multiple real hosts using a hardware load balancer. -->
-        <property
-            name="url"
-            value="${ldap.url}" />
+        <property name="url" value="${cns.ldap.url}" />
 
         <!-- Manager credentials are only required if your directory does not support anonymous searches. Never provide these credentials for FastBindLdapAuthenticationHandler 
             since the user's credentials are used for the bind operation.-->
-        <property
-            name="userDn"
-            value="${ldap.user.dn}" />
-        <property
-            name="password"
-            value="${ldap.user.password}" />
-
+        <!-- <property name="userDn" value="${ldap.user.dn}" />
+        <property name="password" value="${ldap.user.password}" /> -->
 
         <!-- Place JNDI environment properties here. -->
         <property name="baseEnvironmentProperties">
             <map>
                 <!-- Three seconds is an eternity to users. -->
-                <entry
-                    key="com.sun.jndi.ldap.connect.timeout"
-                    value="3000" />
-                <entry
-                    key="com.sun.jndi.ldap.read.timeout"
-                    value="3000" />
+                <entry key="com.sun.jndi.ldap.connect.timeout" value="3000" />
+                <entry key="com.sun.jndi.ldap.read.timeout" value="3000" />
 
                 <!-- Explained at http://docs.oracle.com/javase/jndi/tutorial/ldap/security/auth.html -->
-                <entry
-                    key="java.naming.security.authentication"
-                    value="simple" />
+                <entry key="java.naming.security.authentication" value="simple" />
+            </map>
+        </property>
+    </bean>
+    
+    
+    <bean id="forumsContextSource" class="org.springframework.ldap.core.support.LdapContextSource">
+        <!-- DO NOT enable JNDI pooling for context sources that perform LDAP bind operations. -->
+        <property name="pooled" value="false" />
+
+        <!-- Although multiple URLs may defined, it's strongly recommended to avoid this configuration since the implementation attempts hosts in sequence and requires 
+            a connection timeout prior to attempting the next host, which incurs unacceptable latency on node failure. A proper HA setup for LDAP directories should use a single 
+            virtual host that maps to multiple real hosts using a hardware load balancer. -->
+        <property name="url" value="${forums.ldap.url}" />
+
+        <!-- Manager credentials are only required if your directory does not support anonymous searches. Never provide these credentials for FastBindLdapAuthenticationHandler 
+            since the user's credentials are used for the bind operation.-->
+        <!-- <property name="userDn" value="${ldap.user.dn}" />
+        <property name="password" value="${ldap.user.password}" /> -->
+
+        <!-- Place JNDI environment properties here. -->
+        <property name="baseEnvironmentProperties">
+            <map>
+                <!-- Three seconds is an eternity to users. -->
+                <entry key="com.sun.jndi.ldap.connect.timeout" value="3000" />
+                <entry key="com.sun.jndi.ldap.read.timeout" value="3000" />
+
+                <!-- Explained at http://docs.oracle.com/javase/jndi/tutorial/ldap/security/auth.html -->
+                <entry key="java.naming.security.authentication" value="simple" />
             </map>
         </property>
     </bean>
@@ -77,7 +88,7 @@
                     instances conveying the username from the credentials. | | If you've changed your LoginFormAction to use credentials other than UsernamePasswordCredentials then 
                     you will also | need to change this bean declaration (or add additional declarations) to declare a CredentialsToPrincipalResolver that supports the | Credentials 
                     you are using. + -->
-                <bean class="org.jasig.cas.authentication.principal.UsernamePasswordCredentialsToPrincipalResolver" />
+                <bean class="fr.gouv.education.cns.cas.authentication.principal.UsernamePasswordCredentialsToPrincipalResolver" />
                 <!-- | HttpBasedServiceCredentialsToPrincipalResolver supports HttpBasedCredentials. It supports the CAS 2.0 approach of | authenticating services 
                     by SSL callback, extracting the callback URL from the Credentials and representing it as a | SimpleService identified by that callback URL. | | If you are representing 
                     services by something more or other than an HTTPS URL whereat they are able to | receive a proxy callback, you will need to change this bean declaration (or add 
@@ -93,23 +104,19 @@
             <list>
                 <!-- | This is the authentication handler that authenticates services by means of callback via SSL, thereby validating | a server side SSL certificate. 
                     + -->
-                <bean
-                    class="org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler"
-                    p:httpClient-ref="httpClient" />
+                <bean class="org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler" p:httpClient-ref="httpClient" />
+                
                 <!-- | This is the authentication handler declaration that every CAS deployer will need to change before deploying CAS | into production. The default 
                     SimpleTestUsernamePasswordAuthenticationHandler authenticates UsernamePasswordCredentials | where the username equals the password. You will need to replace this 
                     with an AuthenticationHandler that implements your | local authentication strategy. You might accomplish this by coding a new such handler and declaring | edu.someschool.its.cas.MySpecialHandler 
                     here, or you might use one of the handlers provided in the adaptors modules. + -->
-                <bean class="org.jasig.cas.adaptors.ldap.BindLdapAuthenticationHandler">
-                    <property
-                        name="filter"
-                        value="${ldap.filter}" />
-                    <property
-                        name="searchBase"
-                        value="${ldap.searchBase}" />
-                    <property
-                        name="contextSource"
-                        ref="contextSource" />
+                <bean id="cnsAuthenticationHandler" class="fr.gouv.education.cns.cas.adaptors.ldap.CnsUsernamePasswordAuthenticationHandler">
+                    <property name="filter" value="${cns.ldap.filter}" />
+                    <property name="contextSource" ref="cnsContextSource" />
+                </bean>
+                <bean id="forumsAuthenticationHandler" class="fr.gouv.education.cns.cas.adaptors.ldap.ForumsUsernamePasswordAuthenticationHandler">
+                    <property name="filter" value="${forums.ldap.filter}" />
+                    <property name="contextSource" ref="forumsContextSource" />
                 </bean>
             </list>
         </property>
@@ -134,15 +141,9 @@
         class="org.jasig.services.persondir.support.StubPersonAttributeDao">
         <property name="backingMap">
             <map>
-                <entry
-                    key="uid"
-                    value="uid" />
-                <entry
-                    key="eduPersonAffiliation"
-                    value="eduPersonAffiliation" />
-                <entry
-                    key="groupMembership"
-                    value="groupMembership" />
+                <entry key="uid" value="uid" />
+                <entry key="eduPersonAffiliation" value="eduPersonAffiliation" />
+                <entry key="groupMembership" value="groupMembership" />
             </map>
         </property>
     </bean>
@@ -154,71 +155,32 @@
         class="org.jasig.cas.services.InMemoryServiceRegistryDaoImpl">
         <property name="registeredServices">
             <list>
-
                 <bean class="org.jasig.cas.services.RegisteredServiceImpl">
-                    <property
-                        name="id"
-                        value="0" />
-                    <property
-                        name="name"
-                        value="HTTP" />
-                    <property
-                        name="description"
-                        value="Only Allows HTTP Urls" />
-                    <property
-                        name="serviceId"
-                        value="http://**" />
+                    <property name="id" value="0" />
+                    <property name="name" value="HTTP" />
+                    <property name="description" value="Only Allows HTTP Urls" />
+                    <property name="serviceId" value="http://**" />
+                    <property name="allowedAttributes">
+                        <list>
+                            <value>external</value>
+                        </list>
+                    </property>
                 </bean>
 
                 <bean class="org.jasig.cas.services.RegisteredServiceImpl">
-                    <property
-                        name="id"
-                        value="1" />
-                    <property
-                        name="name"
-                        value="HTTPS" />
-                    <property
-                        name="description"
-                        value="Only Allows HTTPS Urls" />
-                    <property
-                        name="serviceId"
-                        value="https://**" />
+                    <property name="id" value="1" />
+                    <property name="name" value="HTTPS" />
+                    <property name="description" value="Only Allows HTTPS Urls" />
+                    <property name="serviceId" value="https://**" />
+                    <property name="allowedAttributes">
+                        <list>
+                            <value>external</value>
+                        </list>
+                    </property>
                 </bean>
-<!-- 
-                <bean class="org.jasig.cas.services.RegisteredServiceImpl">
-                    <property
-                        name="id"
-                        value="2" />
-                    <property
-                        name="name"
-                        value="IMAPS" />
-                    <property
-                        name="description"
-                        value="Only Allows HTTPS Urls" />
-                    <property
-                        name="serviceId"
-                        value="imaps://**" />
-                </bean>
-
-                <bean class="org.jasig.cas.services.RegisteredServiceImpl">
-                    <property
-                        name="id"
-                        value="3" />
-                    <property
-                        name="name"
-                        value="IMAP" />
-                    <property
-                        name="description"
-                        value="Only Allows IMAP Urls" />
-                    <property
-                        name="serviceId"
-                        value="imap://**" />
-                </bean> -->
             </list>
         </property>
     </bean>
 
-    <bean
-        id="auditTrailManager"
-        class="com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager" />
+    <bean id="auditTrailManager" class="com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager" />
 </beans>
