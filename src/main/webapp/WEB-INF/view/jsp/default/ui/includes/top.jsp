@@ -66,26 +66,40 @@
     </div>
     
     <!-- Header -->
-    <header class="hidden-xs">
-        <div class="container-fluid">
-            <!-- Banner -->
-            <div class="banner clearfix">
-                <c:if test="${not forums}">
-                    <!-- Logo -->
-                    <div class="logo">
-                        <div class="pull-left">
-                            <h1 class="h3">
-                                <a href="<c:url value="/" />">
-                                    <img src="<c:url value="/img/cns/logo_MENESR.png" />" alt="Centre National de Services">
-                                    <span>Portail documentaire du CNS</span>
-                                </a>
-                            </h1>
+    <c:choose>
+        <c:when test="${forums}">
+            <header class="jumbotron hidden-xs">
+                <div class="container">
+                    <p class="text-center">
+                        <img src="<c:url value="/img/forums/logo-men.png" />" alt="Logo du Minit&egrave;re de l'&Eacute;ducation Nationale">
+                    </p>
+                
+                    <h1 class="text-center">Forums du CNS</h1>
+                </div>
+            </header>
+        </c:when>
+        
+        <c:otherwise>
+            <header class="hidden-xs">
+                <div class="container-fluid">
+                    <!-- Banner -->
+                    <div class="banner clearfix">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <div class="pull-left">
+                                <h1 class="h3">
+                                    <a href="<c:url value="/" />">
+                                        <img src="<c:url value="/img/cns/logo_MENESR.png" />" alt="Centre National de Services">
+                                        <span>Portail documentaire du CNS</span>
+                                    </a>
+                                </h1>
+                            </div>
                         </div>
                     </div>
-                </c:if>
-            </div>
-        </div>
-    </header>
+                </div>
+            </header>
+        </c:otherwise>
+    </c:choose>
     
     <main>
         <div class="container scrollbox">

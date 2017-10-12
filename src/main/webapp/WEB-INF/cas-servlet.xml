@@ -9,8 +9,14 @@
 
     <bean
         id="casPropertyPlaceholderConfigurer2"
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
-        p:location="/WEB-INF/cas.properties" />
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>/WEB-INF/cas.properties</value>
+                <value>file:${user.home}/cas-config.properties</value>
+            </list>
+        </property>
+    </bean>
        
 	<!-- Theme Resolver -->
     <bean
@@ -269,6 +275,8 @@
         class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"
         p:messageInterpolator-ref="messageInterpolator" />
         
-    <bean id="cnsSetupAction" class="fr.gouv.education.cns.cas.web.flow.SetupAction" />
+    <bean id="cnsSetupAction" class="fr.gouv.education.cns.cas.web.flow.SetupAction">
+        <constructor-arg name="publicUrl" value="${cns.cas.publicUrl}" />
+    </bean>
     
 </beans>
