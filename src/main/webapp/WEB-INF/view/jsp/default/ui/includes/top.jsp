@@ -45,7 +45,7 @@
 </head>
 
 
-<body class="fixed-layout">
+<body>
     <!-- Toolbar -->
     <div class="toolbar">
         <nav class="navbar navbar-default navbar-fixed-top">
