@@ -1,6 +1,9 @@
 package fr.gouv.education.cns.cas.adaptors.ldap;
 
+import java.util.regex.Matcher;
+
 import javax.naming.directory.DirContext;
+import javax.naming.ldap.Rdn;
 
 import org.apache.commons.lang.StringUtils;
 import org.jasig.cas.adaptors.ldap.AbstractLdapUsernamePasswordAuthenticationHandler;
@@ -39,9 +42,9 @@ public abstract class AbstractUsernamePasswordAuthenticationHandler extends Abst
         DirContext dirContext = null;
         try {
             // Transformed username
-            String transformedUsername = getPrincipalNameTransformer().transform(credentials.getUsername());
+            String transformedUsername = Rdn.escapeValue(getPrincipalNameTransformer().transform(credentials.getUsername()));
             // Bind DN
-            String bindDn = LdapUtils.getFilterWithValues(getFilter(), transformedUsername);
+            String bindDn = getFilter().replaceAll("%u", Matcher.quoteReplacement(transformedUsername));
 
             dirContext = this.getContextSource().getContext(bindDn, credentials.getPassword());
 
