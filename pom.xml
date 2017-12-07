@@ -163,9 +163,38 @@
                         <warName>cas</warName>
                     </configuration>
                 </plugin>
-
+                
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.2.1</version>
+					<configuration>
+						<tagBase>http://www.osivia.org/repos/osivia-services/cas/webapp/tags</tagBase>
+						<preparationGoals>clean install</preparationGoals>
+						<goals>deploy</goals>
+					</configuration>
+				</plugin>
             </plugins>
         </pluginManagement>
     </build>
+
+	<scm>
+		<developerConnection>scm:svn:http://www.osivia.org/repos/osivia-services/cas/webapp/branches/cns-cas-webapp
+		</developerConnection>
+	</scm>   
+	
+	<distributionManagement>
+		<repository>
+			<id>osivia-releases</id>
+			<url>http://www.osivia.org/nexus/content/repositories/osivia-releases
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>osivia-snapshots</id>
+			<url>http://www.osivia.org/nexus/content/repositories/osivia-snapshots
+			</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
 
 </project>
