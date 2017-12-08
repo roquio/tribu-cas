@@ -1,6 +1,10 @@
 # LDAP connection properties
 cns.ldap.url=ldap://[URL-CNS]:1389
-cns.ldap.filter=uid=%u,ou=users,dc=osivia,dc=org
+cns.ldap.filter=uid=%u
+cns.ldap.searchBase=ou=users,dc=osivia,dc=org
+cns.ldap.user.dn=cn=directory manager
+cns.ldap.user.password=password
+
 forums.ldap.url=ldap://[URL-FORUMS]:1389
 forums.ldap.filter=uid=%u,ou=users,dc=osivia,dc=org
 

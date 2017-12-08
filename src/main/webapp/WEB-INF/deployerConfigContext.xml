@@ -23,8 +23,8 @@
 
         <!-- Manager credentials are only required if your directory does not support anonymous searches. Never provide these credentials for FastBindLdapAuthenticationHandler 
             since the user's credentials are used for the bind operation.-->
-        <!-- <property name="userDn" value="${ldap.user.dn}" />
-        <property name="password" value="${ldap.user.password}" /> -->
+        <property name="userDn" value="${cns.ldap.user.dn}" /> 
+        <property name="password" value="${cns.ldap.user.password}" /> 
 
         <!-- Place JNDI environment properties here. -->
         <property name="baseEnvironmentProperties">
@@ -109,9 +109,11 @@
                 <!-- | This is the authentication handler declaration that every CAS deployer will need to change before deploying CAS | into production. The default 
                     SimpleTestUsernamePasswordAuthenticationHandler authenticates UsernamePasswordCredentials | where the username equals the password. You will need to replace this 
                     with an AuthenticationHandler that implements your | local authentication strategy. You might accomplish this by coding a new such handler and declaring | edu.someschool.its.cas.MySpecialHandler 
-                    here, or you might use one of the handlers provided in the adaptors modules. + -->
-                <bean id="cnsAuthenticationHandler" class="fr.gouv.education.cns.cas.adaptors.ldap.CnsUsernamePasswordAuthenticationHandler">
+                    here, or you might use one of the handlers provided in the adaptors modules. + 
+                <bean id="cnsAuthenticationHandler" class="fr.gouv.education.cns.cas.adaptors.ldap.CnsUsernamePasswordAuthenticationHandler"> -->
+		<bean id="cnsAuthenticationHandler" class="org.jasig.cas.adaptors.ldap.BindLdapAuthenticationHandler">
                     <property name="filter" value="${cns.ldap.filter}" />
+                    <property name="searchBase" value="${cns.ldap.searchBase}" />
                     <property name="contextSource" ref="cnsContextSource" />
                 </bean>
                 <bean id="forumsAuthenticationHandler" class="fr.gouv.education.cns.cas.adaptors.ldap.ForumsUsernamePasswordAuthenticationHandler">
