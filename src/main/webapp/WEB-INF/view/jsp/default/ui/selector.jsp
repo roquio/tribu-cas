@@ -3,12 +3,12 @@
 <%@ page pageEncoding="UTF-8" isELIgnored="false" %>
 
 
-<c:url value="/cas/login" var="fimUrl">
+<c:url value="/login" var="fimUrl">
     <c:param name="s" value="fim" />
     <c:param name="service" value="${service}" />
 </c:url>
 
-<c:url value="/cas/login" var="localUrl">
+<c:url value="/login" var="localUrl">
     <c:param name="s" value="local" />
     <c:param name="service" value="${service}" />
 </c:url>

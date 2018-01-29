@@ -1,5 +1,9 @@
 <%@ page language="java"  session="false" %>
 <%
-final String queryString = request.getQueryString();
-final String url = request.getContextPath() + "/login" + (queryString != null ? "?" + queryString : "");
+String url = request.getContextPath() + "/login" ;
+
+if (request.getParameter("service") != null) {
+	url += "?service="+request.getParameter("service");
+}
+
 response.sendRedirect(response.encodeURL(url));%>

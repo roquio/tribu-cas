@@ -91,7 +91,7 @@
 
 <div class="row">
     <div class="col-sm-offset-3 col-sm-9 col-lg-offset-2 col-lg-10">
-        <a href="/cas/login?service=${service}">Retour au choix du mode d'authentification</a>
+        <a onclick="history.back()">Retour</a>
     </div>
 </div>
 
