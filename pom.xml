@@ -1,158 +1,69 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd ">
     <modelVersion>4.0.0</modelVersion>
-    
     <groupId>org.jasig.cas</groupId>
     <artifactId>cas-server-webapp</artifactId>
-    <version>4.4.5</version>
+    <version>4.4-SNAPSHOT</version>
     
     <packaging>war</packaging>
-    <name>JA-SIG CAS Web Application</name>
-    
-    <properties>
-    	<cas.version>3.4.6</cas.version>
-        <spring.version>3.0.5.RELEASE</spring.version>    	
-    	<spring.security.version>3.0.5.RELEASE</spring.security.version>
-        <hibernate.validator.version>4.0.2.GA</hibernate.validator.version>
-        <inspektr.version>1.0.2.GA</inspektr.version>
-        <servlet.api.version>2.5</servlet.api.version>
-        <slf4j.version>1.5.8</slf4j.version>        
-    </properties>
-    
-    <dependencies>
-        <dependency>
-            <groupId>com.github.inspektr</groupId>
-            <artifactId>inspektr-support-spring</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-cas-client</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jasig.cas</groupId>
-            <artifactId>cas-server-core</artifactId>
-            <version>${cas.version}</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.jasig.cas</groupId>
-            <artifactId>cas-server-support-ldap</artifactId>
-            <version>${cas.version}</version>
-        </dependency>        
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.opensymphony.quartz</groupId>
-            <artifactId>quartz</artifactId>
-            <version>1.6.1</version>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.1.2</version>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>1.1.2</version>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>ognl</groupId>
-            <artifactId>ognl</artifactId>
-            <version>2.7.3</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        
-	    <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>runtime</scope>
-            <type>jar</type>
-            <exclusions>
-                <exclusion>
-                    <groupId>log4j</groupId>
-                    <artifactId>log4j</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        
-        <!-- Apache directory API util -->
-        <dependency>
-            <groupId>org.apache.directory.api</groupId>
-            <artifactId>api-util</artifactId>
-            <version>1.0.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-	</dependencies>
+    <name>Apereo CAS Web Application - custom Tribu</name>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.rimerosolutions.maven.plugins</groupId>
+          	<artifactId>wrapper-maven-plugin</artifactId>
+          	<version>0.0.4</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.6</version>
                 <configuration>
                     <warName>cas</warName>
+                    <overlays>
+                        <overlay>
+                            <groupId>org.jasig.cas</groupId>
+                            <artifactId>cas-server-webapp</artifactId>
+                            <excludes>
+                                <exclude>WEB-INF/cas.properties</exclude>
+                                <exclude>WEB-INF/classes/log4j2.xml</exclude>
+                            </excludes>
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${maven-jetty-plugin.version}</version>
+                <configuration>
+                    <jettyXml>${basedir}/etc/jetty/jetty.xml,${basedir}/etc/jetty/jetty-ssl.xml,${basedir}/etc/jetty/jetty-https.xml</jettyXml>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>org.eclipse.jetty.annotations.maxWait</name>
+                            <value>240</value>
+                        </systemProperty>
+                    </systemProperties>
+                    <webApp>
+                        <contextPath>/cas</contextPath>
+                        <overrideDescriptor>${basedir}/etc/jetty/web.xml</overrideDescriptor>
+                    </webApp>
+	                <webAppConfig>
+	                    <allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
+	                </webAppConfig>
+                    <jvmArgs>-Dlog4j.configurationFile=/etc/cas/log4j2.xml -Xdebug -Xrunjdwp:transport=dt_socket,address=5000,server=y,suspend=n</jvmArgs>
                 </configuration>
             </plugin>
             
@@ -165,13 +76,47 @@
 					<preparationGoals>clean install</preparationGoals>
 					<goals>deploy</goals>
 				</configuration>
-			</plugin>
-            
+			</plugin>            
         </plugins>
+        
+        <finalName>cas</finalName>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jasig.cas</groupId>
+            <artifactId>cas-server-webapp</artifactId>
+            <version>${cas.version}</version>
+            <type>war</type>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <cas.version>4.2.7</cas.version>
+        <maven-jetty-plugin.version>9.3.6.v20151106</maven-jetty-plugin.version>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>sonatype-releases</id>
+            <url>http://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>sonatype-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>shibboleth-releases</id>
+            <url>https://build.shibboleth.net/nexus/content/repositories/releases</url>
+        </repository>
+    </repositories>
     
 	<scm>
-		<developerConnection>scm:svn:http://www.osivia.org/repos/osivia-services/cas/webapp/tags/4.4.5
+		<developerConnection>scm:svn:http://www.osivia.org/repos/osivia-services/cas/webapp/branches/foad-cas-webapp42
 		</developerConnection>
 	</scm>   
 	
@@ -187,72 +132,5 @@
 			</url>
 		</snapshotRepository>
 	</distributionManagement>
-	
-	<dependencyManagement>
-		<dependencies>
-		
-            <dependency>
-                <groupId>com.github.inspektr</groupId>
-                <artifactId>inspektr-support-spring</artifactId>
-                <version>${inspektr.version}</version>
-            </dependency>
-            
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-core</artifactId>
-                <version>${spring.security.version}</version>
-            </dependency>
-
-            <!-- Spring Security Managed Dependencies -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-cas-client</artifactId>
-                <version>${spring.security.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-config</artifactId>
-                <version>${spring.security.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            
-			<!-- Spring Managed Dependencies -->			
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-aop</artifactId>
-				<version>${spring.version}</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-context-support</artifactId>
-				<version>${spring.version}</version>
-			</dependency>			                        
-            
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>${hibernate.validator.version}</version>
-            </dependency>
-		
-		    <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>${servlet.api.version}</version>
-            </dependency>
-		
-		</dependencies>
-	</dependencyManagement>
+	    
 </project>
