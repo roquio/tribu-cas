@@ -213,6 +213,16 @@
         <url-pattern>/v1/services/*</url-pattern>
     </servlet-mapping>
     
+    <!-- Specific FIM -->
+    <servlet-mapping>
+        <servlet-name>cas</servlet-name>
+        <url-pattern>/choose</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cas</servlet-name>
+        <url-pattern>/fim</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <!-- Default to 5 minute session timeouts -->
         <session-timeout>5</session-timeout>
