@@ -95,5 +95,9 @@
 	       baseDn="${ldap.baseDn}"
 	       subtreeSearch="${ldap.subtree.search:false}"
 	       userFilter="${ldap.authn.searchFilter}"/>
-		
+	
+	<!-- Ehcache -->
+	<alias name="ehcacheTicketRegistry" alias="ticketRegistry" />
+	
+	
 </beans>
