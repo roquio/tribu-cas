@@ -61,6 +61,7 @@
             </spring:bind>
             
             <div class="form-group">
+            	<input type="hidden" name="lt" value="${loginTicket}" />
                 <input type="hidden" name="execution" value="${flowExecutionKey}" />
                 <input type="hidden" name="_eventId" value="submit" />
                 

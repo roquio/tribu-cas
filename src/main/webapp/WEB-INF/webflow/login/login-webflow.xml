@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed to Apereo under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Apereo licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License.  You may obtain a
+    copy of the License at the following location:
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+
+-->
 <flow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns="http://www.springframework.org/schema/webflow"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
-    <var name="credential" class="org.jasig.cas.authentication.UsernamePasswordCredential"/>
-
-    <!--
-    <var name="credential" class="org.jasig.cas.authentication.RememberMeUsernamePasswordCredential" />
-    -->
     <on-start>
         <evaluate expression="initialFlowSetupAction"/>
-    </on-start>
-
+    </on-start>    
+    
+	<decision-state id="fim">
+		<if test="externalContext.requestParameterMap['fim'] != null" then="FimSingleSignOnAction" else="ticketGrantingTicketCheck" />
+	</decision-state>
+	<action-state id="FimSingleSignOnAction">
+		<evaluate expression="fimSingleSignOnAction" />
+        <transition on="success" to="sendTicketGrantingTicket" />
+        <transition on="error" to="viewLoginForm" />
+        <transition on="warn" to="warn" />
+	</action-state>     
+	
     <action-state id="ticketGrantingTicketCheck">
         <evaluate expression="ticketGrantingTicketCheckAction"/>
         <transition on="notExists" to="gatewayRequestCheck"/>
@@ -30,6 +55,7 @@
             then="gatewayServicesManagementCheck" else="choose"/>
     </decision-state>
     
+    
     <!-- Specific FOAD -->
     <decision-state id="choose">
         <if test="externalContext.requestParameterMap['s'] == 'fim'" then="fimProcessing"/>
@@ -41,26 +67,15 @@
 	
 	<end-state id="fimService" view="redirectFimView" >
         <on-entry>
-           <set name="requestScope.originalUrl" value="flowScope.service.id" />
+           <set name="requestScope.originalUrl" value="flowScope.service" />
         </on-entry>
     </end-state>
 
 	<end-state id="fimNoService" view="redirectFimView" >
     </end-state>
     
-    <view-state id="selector" view="selectorView"/>    
-    
-	<decision-state id="fim">
-		<if test="externalContext.requestParameterMap['fim'] != null" then="FimSingleSignOnAction" else="ticketGrantingTicketExistsCheck" />
-	</decision-state>
-	<action-state id="FimSingleSignOnAction">
-		<evaluate expression="fimSingleSignOnAction" />
-        <transition on="success" to="sendTicketGrantingTicket" />
-        <transition on="error" to="viewLoginForm" />
-        <transition on="warn" to="warn" />
-	</action-state> 
-	    
-	<!-- End specific FOAD -->    	
+    <view-state id="selector" view="selectorView"/>    	    
+	<!-- End specific FOAD -->        
 
     <decision-state id="hasServiceCheck">
         <if test="flowScope.service != null" then="renewRequestCheck" else="viewGenericLoginSuccess"/>
@@ -74,7 +89,7 @@
     <!-- Do a service authorization check early without the need to login first -->
     <action-state id="serviceAuthorizationCheck">
         <evaluate expression="serviceAuthorizationCheck"/>
-        <transition to="initializeLogin"/>
+        <transition to="generateLoginTicket"/>
     </action-state>
 
     <!--
@@ -85,19 +100,26 @@
         <if test="flowScope.warnCookieValue" then="showWarningView" else="redirect"/>
     </decision-state>
 
-    <action-state id="initializeLogin">
-        <evaluate expression="'success'"/>
-        <transition on="success" to="viewLoginForm"/>
+    <!--
+    <action-state id="startAuthenticate">
+        <action bean="x509Check" />
+        <transition on="success" to="sendTicketGrantingTicket" />
+        <transition on="warn" to="warn" />
+        <transition on="error" to="generateLoginTicket" />
+    </action-state>
+     -->
+
+    <action-state id="generateLoginTicket">
+        <evaluate expression="generateLoginTicketAction.generate(flowRequestContext)"/>
+        <transition on="generated" to="viewLoginForm"/>
     </action-state>
 
     <view-state id="viewLoginForm" view="casLoginView" model="credential">
+    	<var name="credential" class="org.jasig.cas.authentication.UsernamePasswordCredential"/>
+    	
         <binder>
             <binding property="username" required="true"/>
             <binding property="password" required="true"/>
-
-            <!--
-            <binding property="rememberMe" />
-            -->
         </binder>
         <on-entry>
             <set name="viewScope.commandName" value="'credential'"/>
@@ -120,8 +142,27 @@
         <transition on="success" to="sendTicketGrantingTicket"/>
         <transition on="successWithWarnings" to="showMessages"/>
         <transition on="authenticationFailure" to="handleAuthenticationFailure"/>
-        <transition on="error" to="initializeLogin"/>
+        <transition on="error" to="generateLoginTicket"/>
     </action-state>
+
+    <!-- Enable AUP flow
+    <action-state id="acceptableUsagePolicyCheck">
+      <evaluate expression="acceptableUsagePolicyFormAction.verify(flowRequestContext, flowScope.credential, messageContext)" />
+      <transition on="success" to="sendTicketGrantingTicket" />
+      <transition to="acceptableUsagePolicyView" />
+    </action-state>
+
+    <view-state id="acceptableUsagePolicyView" view="casAcceptableUsagePolicyView">
+        <transition on="submit" to="aupAcceptedAction" />
+        <transition to="generateLoginTicket" />
+    </view-state>
+
+    <action-state id="aupAcceptedAction">
+      <evaluate expression="acceptableUsagePolicyFormAction.submit(flowRequestContext, flowScope.credential, messageContext)" />
+      <transition on="error" to="generateLoginTicket" />
+      <transition on="success" to="sendTicketGrantingTicket" />
+    </action-state>
+    -->
 
     <view-state id="showMessages" view="casLoginMessageView">
         <on-entry>
@@ -139,9 +180,9 @@
         <transition on="CredentialExpiredException" to="casExpiredPassView"/>
         <transition on="InvalidLoginLocationException" to="casBadWorkstationView"/>
         <transition on="InvalidLoginTimeException" to="casBadHoursView"/>
-        <transition on="FailedLoginException" to="initializeLogin"/>
-        <transition on="AccountNotFoundException" to="initializeLogin"/>
-        <transition on="UNKNOWN" to="initializeLogin"/>
+        <transition on="FailedLoginException" to="generateLoginTicket"/>
+        <transition on="AccountNotFoundException" to="generateLoginTicket"/>
+        <transition on="UNKNOWN" to="generateLoginTicket"/>
     </action-state>
 
     <action-state id="sendTicketGrantingTicket">
@@ -157,7 +198,7 @@
         <evaluate expression="generateServiceTicketAction"/>
         <transition on="success" to="warn"/>
         <transition on="authenticationFailure" to="handleAuthenticationFailure"/>
-        <transition on="error" to="initializeLogin"/>
+        <transition on="error" to="generateLoginTicket"/>
         <transition on="gateway" to="gatewayServicesManagementCheck"/>
     </action-state>
 
@@ -191,16 +232,16 @@
 
 
     <!--
-    The "showWarningView" end state is the end state for when the user has requested privacy settings (to be "warned")
-    to be turned on.  It delegates to a view defines in default_views.properties that display the
-    "Please click here to go to the service." message.
+    The "showWarningView" end state is the end state for when the user has requested privacy settings (to be "warned") to be turned on.  It delegates to a
+    view defines in default_views.properties that display the "Please click here to go to the service." message.
     -->
     <end-state id="showWarningView" view="casConfirmView"/>
+
 
     <!-- Password policy failure states -->
     <end-state id="abstactPasswordChangeView">
         <on-entry>
-            <set name="flowScope.passwordPolicyUrl" value="passwordPolicyConfiguration.passwordPolicyUrl"/>
+            <set name="flowScope.passwordPolicyUrl" value="passwordPolicy.passwordPolicyUrl"/>
         </on-entry>
     </end-state>
     <end-state id="casExpiredPassView" view="casExpiredPassView" parent="#abstactPasswordChangeView"/>
@@ -239,6 +280,5 @@
         <transition to="viewServiceErrorView"
                     on-exception="org.springframework.webflow.execution.repository.NoSuchFlowExecutionException"/>
         <transition to="serviceUnauthorizedCheck" on-exception="org.jasig.cas.services.UnauthorizedServiceException"/>
-        <transition to="serviceUnauthorizedCheck" on-exception="org.jasig.cas.services.UnauthorizedServiceForPrincipalException" />
     </global-transitions>
 </flow>
