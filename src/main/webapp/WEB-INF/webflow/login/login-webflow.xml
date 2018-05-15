@@ -23,7 +23,8 @@
       xmlns="http://www.springframework.org/schema/webflow"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow.xsd">
-
+	<var name="credential" class="org.jasig.cas.authentication.UsernamePasswordCredential"/>
+	
     <on-start>
         <evaluate expression="initialFlowSetupAction"/>
     </on-start>    
@@ -67,7 +68,7 @@
 	
 	<end-state id="fimService" view="redirectFimView" >
         <on-entry>
-           <set name="requestScope.originalUrl" value="flowScope.service" />
+           <set name="requestScope.originalUrl" value="flowScope.service.id" />
         </on-entry>
     </end-state>
 
@@ -114,9 +115,7 @@
         <transition on="generated" to="viewLoginForm"/>
     </action-state>
 
-    <view-state id="viewLoginForm" view="casLoginView" model="credential">
-    	<var name="credential" class="org.jasig.cas.authentication.UsernamePasswordCredential"/>
-    	
+    <view-state id="viewLoginForm" view="casLoginView" model="credential">   	
         <binder>
             <binding property="username" required="true"/>
             <binding property="password" required="true"/>
