@@ -66,7 +66,9 @@
                    | set its name to something other than its default name (typically the simple class name).
                    -->
                 <!-- <entry key-ref="proxyAuthenticationHandler" value-ref="proxyPrincipalResolver" />  -->
-                <entry key-ref="ldapAuthenticationHandler" value-ref="primaryPrincipalResolver" />
+                <entry key-ref="ldapAuthenticationHandler"><value>#{null}</value>
+                	
+                </entry>
                 <entry key-ref="fimAuthenticationHandler" value-ref="fimCredentialsToPrincipalResolver" />
             </map>
         </constructor-arg>
@@ -101,27 +103,6 @@
           class="org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler"
           p:httpClient-ref="supportsTrustStoreSslSocketFactoryHttpClient" />
 
-    <!--
-       | TODO: Replace this component with one suitable for your enviroment.
-       |
-       | This component provides authentication for the kind of credential used in your environment. In most cases
-       | credential is a username/password pair that lives in a system of record like an LDAP directory.
-       | The most common authentication handler beans:
-       |
-       | * org.jasig.cas.authentication.LdapAuthenticationHandler
-       | * org.jasig.cas.adaptors.jdbc.QueryDatabaseAuthenticationHandler
-       | * org.jasig.cas.adaptors.x509.authentication.handler.support.X509CredentialsAuthenticationHandler
-       | * org.jasig.cas.support.spnego.authentication.handler.support.JCIFSSpnegoAuthenticationHandler
-       -->
-    <bean id="primaryAuthenticationHandler"
-          class="org.jasig.cas.authentication.AcceptUsersAuthenticationHandler">
-        <property name="users">
-            <map>
-                <entry key="casuser" value="Mellon"/>
-            </map>
-        </property>
-    </bean>
-
     <!-- Required for proxy ticket mechanism -->
     <bean id="proxyPrincipalResolver"
           class="org.jasig.cas.authentication.principal.BasicPrincipalResolver" />
@@ -129,16 +110,16 @@
     <!--
        | Resolves a principal from a credential using an attribute repository that is configured to resolve
        | against a deployer-specific store (e.g. LDAP).
-       -->
+       
     <bean id="primaryPrincipalResolver"
           class="org.jasig.cas.authentication.principal.PersonDirectoryPrincipalResolver"
           p:principalFactory-ref="principalFactory"
-          p:attributeRepository-ref="attributeRepository" />
+          p:attributeRepository-ref="attributeRepository" /> -->
 
     <!--
     Bean that defines the attributes that a service may return.  This example uses the Stub/Mock version.  A real implementation
     may go against a database or LDAP server.  The id should remain "attributeRepository" though.
-    +-->
+    +
     <bean id="attributeRepository" class="org.jasig.services.persondir.support.NamedStubPersonAttributeDao"
           p:backingMap-ref="attrRepoBackingMap" />
 
@@ -154,7 +135,7 @@
                 <value>org</value>
             </list>
         </entry>
-    </util:map>
+    </util:map>-->
 
     <bean id="serviceRegistryDao" class="org.jasig.cas.services.JsonServiceRegistryDao"
           c:configDirectory="${service.registry.config.location:classpath:services}" />
@@ -181,16 +162,19 @@
     
     <!-- LDAP config -->
 	<bean id="ldapAuthenticationHandler"
-		class="org.jasig.cas.authentication.LdapAuthenticationHandler"
+		class="org.osivia.cas.adaptors.ldap.AccountValidityHandler"
 		init-method="initialize" p:principalIdAttribute="uid"
 		c:authenticator-ref="authenticator">
-		<property name="principalAttributeList">
-			<list>
-				<value>displayName</value>
-				<value>mail</value>
-				<value>memberOf</value>
-			</list>
-		</property>
+		<property name="principalAttributeMap">
+	        <map>
+	            <entry key="displayName" value="simpleName" />
+	            <entry key="mail" value="email" />
+	            <entry key="memberOf" value="membership" />
+	            <entry key="portalPersonExternal" value="portalPersonExternal" />
+	            <entry key="portalPersonValidity" value="portalPersonValidity" />
+	        </map>
+	    </property>
+
 	</bean>
 	<bean id="authenticator" class="org.ldaptive.auth.Authenticator"
 	      c:resolver-ref="dnResolver"
