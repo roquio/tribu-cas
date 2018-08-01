@@ -12,6 +12,14 @@
     <p><spring:message code="screen.cookies.disabled.message" /></p>
 </div>
 
+<div class="clearfix">
+</div>
+<div id="maintenance" class="alert bg-warning">
+    <h2 class="text-warning">Maintenance du 30 juillet</h2>
+    <p>Une intervention est en cours sur la plateforme Tribu.
+    <br />En cas de difficultés, veuillez renouveler votre tentative de connexion ultérieurement.</p>
+</div>
+
 <c:out value="${portalLinks.registerUrl}"></c:out>
 
 <form:form method="post" id="fm1" cssClass="form-horizontal" commandName="${commandName}" htmlEscape="true" role="form">
@@ -76,7 +84,7 @@
 
 <div class="row">
     <div class="col-sm-offset-3 col-sm-9 col-lg-offset-2 col-lg-10">
-        <a onclick="history.back()">Retour</a>
+        <a onclick="history.back()"><spring:message code="screen.welcome.button.back" /></a>
     </div>
 </div>
 

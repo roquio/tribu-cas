@@ -75,7 +75,15 @@
 	<end-state id="fimNoService" view="redirectFimView" >
     </end-state>
     
-    <view-state id="selector" view="selectorView"/>    	    
+    <view-state id="selector" view="selectorView">
+    	<on-render>
+    		<evaluate expression="fimRewriteUrlService.getUrls(externalContext.requestParameterMap['service'])"
+    			result="viewScope.selectorForm" ></evaluate>
+    		
+    	</on-render>
+    </view-state>    	    
+
+
 	<!-- End specific FOAD -->        
 
     <decision-state id="hasServiceCheck">
