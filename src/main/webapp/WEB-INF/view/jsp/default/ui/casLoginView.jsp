@@ -12,13 +12,6 @@
     <p><spring:message code="screen.cookies.disabled.message" /></p>
 </div>
 
-<div class="clearfix">
-</div>
-<div id="maintenance" class="alert bg-warning">
-    <h2 class="text-warning">Maintenance du 30 juillet</h2>
-    <p>Une intervention est en cours sur la plateforme Tribu.
-    <br />En cas de difficultés, veuillez renouveler votre tentative de connexion ultérieurement.</p>
-</div>
 
 <c:out value="${portalLinks.registerUrl}"></c:out>
 

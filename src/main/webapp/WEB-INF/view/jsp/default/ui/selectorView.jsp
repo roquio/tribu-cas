@@ -12,15 +12,6 @@
 
 <jsp:directive.include file="includes/top.jsp" />
 
-<div class="clearfix">
-</div>
-<div id="maintenance" class="alert bg-warning">
-    <h2 class="text-warning">Maintenance du 30 juillet</h2>
-    <p>Une intervention est en cours sur la plateforme Tribu.
-    <br />En cas de difficultés, veuillez renouveler votre tentative de connexion ultérieurement.</p>
-</div>
-
-
 
 <p>
 	<fieldset>
@@ -34,7 +25,8 @@
 		<!-- FIM aca -->
 		<div class="panel panel-default">
 		    <div class="panel-body">
-		        <p class="text-muted"><strong><spring:message code="screen.choose.useraca" /></strong></p>    
+		        <p class="text-muted"><strong><spring:message code="screen.choose.useraca" /></strong>
+		        	<br />&nbsp;</p>    
 		        <p class="h3">
 		            <a class="btn btn-primary" href="${selectorForm.acaUrl}"><spring:message code="screen.choose.connect" /></a>
 		        </p>
