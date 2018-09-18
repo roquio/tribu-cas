@@ -34,8 +34,16 @@ public class FimRewriteUrlService {
 		String redirectSupService = "";
 		if(StringUtils.isNotBlank(service)) {
 			
+			// Skip escape chars (in nuxeo drive eg)
+			service = service.replace("+", "%2B");
+			
 			URI uri = new URI(URLDecoder.decode(service, "UTF-8"));
-			String path = uri.getPath() + uri.getQuery();
+			String path = uri.getPath();
+			
+			// Append query if needed
+			if(uri.getQuery() != null) {
+				path = path + uri.getQuery();
+			}
 			
 			URL redirectedAcaUrl = new URL("https",sf.getBaseAcaUrl(), path);
 			redirectAcaService = "&service="+URLEncoder.encode(redirectedAcaUrl.toString(), "UTF-8");

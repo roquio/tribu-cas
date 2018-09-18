@@ -49,7 +49,7 @@ public class AccountValidityHandler extends LdapAuthenticationHandler {
                 if(portalPersonValidity != null) {
                 	try {
 						String dayOfValidity = portalPersonValidity.toString().substring(0, 8);
-						Date validity = DateUtils.parseDate(dayOfValidity, "YYYYMMDD");
+						Date validity = DateUtils.parseDate(dayOfValidity, "yyyyMMdd");
 						
 						if(validity.before(new Date())) {
 			        		throw new FailedLoginException("Account has expired");
