@@ -42,7 +42,7 @@ public class FimRewriteUrlService {
 			
 			// Append query if needed
 			if(uri.getQuery() != null) {
-				path = path + uri.getQuery();
+				path = path + "?" +uri.getQuery();
 			}
 			
 			URL redirectedAcaUrl = new URL("https",sf.getBaseAcaUrl(), path);
