@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <%@ page session="true"%>
 <%@ page pageEncoding="UTF-8"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
@@ -14,7 +15,7 @@
 <c:set var="service" value="${param['service']}" scope="request" />
 
 
-<html>
+<html lang="fr">
 
 <head>
 <meta charset="UTF-8">
@@ -28,58 +29,48 @@
 
 <link rel="icon" href="<c:url value="/img/favicon.ico" />" />
 <link rel="stylesheet" href="<c:url value="/css/osivia.min.css" />" />
+<link rel="stylesheet" href="<c:url value="/css/glyphicons.min.css" />" />
 <link rel="stylesheet" href="<c:url value="/css/foad.min.css" />" title="FOAD" />
 </head>
 
 
-<body class="fixed-layout">
-    <!-- Toolbar -->
-    <div class="toolbar">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <h2 class="sr-only">Barre d'outils</h2>
-
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <!-- Brand -->
-                    <a href="#" class="navbar-brand">
-                        <img src="<c:url value="/img/logo-tribu.png" />" alt="Tribu">
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </div>
-    
-    <!-- Header -->
-    <header class="banner hidden-xs">
+<body>
+    <header>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-8">
-                    <!-- Logo -->
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="logo">
-                                <!-- FOAD -->
-                                <img src="<c:url value="/img/logo-foad.png" />" alt="FOAD, Formation Ouverte &Agrave; Distance">
+                <div class="col">
+                    <!-- Logo EN -->
+                    <div class="logo-en hidden-xs">
+                        <img src="<c:url value="/img/logo-en.png" />" alt="Minist&egrave;re de l'&Eacute;ducation nationale">
+                    </div>
+                </div>
 
-                                <!-- Ministère -->
-                                <img src="<c:url value="/img/logo-ministere.png" />" alt="Minist&egrave;re de l'&eacute;ducation Nationale, de l'Enseignement sup&eacute;rieur et de la Recherche">
-                            </div>
-                        </div>
+                <div class="col"></div>
+            </div>
 
-                        <div class="col-sm-6">
-                            <h1 class="logo">
-                                <a href="#"> 
-                                    <img src="<c:url value="/img/logo-tribu.png" />" alt="Tribu">
-                                </a>
-                            </h1>
-                        </div>
+            <div class="row hidden-xs">
+                <div class="col"></div>
+
+                <div class="col">
+                    <div class="dots">
+                        <span class="dot-blue"></span>
+                        <span class="dot-green"></span>
+                        <span class="dot-yellow"></span>
+                        <span class="dot-orange"></span>
+                        <span class="dot-pink"></span>
+                        <span class="dot-violet"></span>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="background-fading"></div>
+            <!-- Logo Tribu large -->
+            <h1 class="logo-tribu-large">
+                <img src="<c:url value="/img/logo-tribu-large.png" />" alt="Tribu">
+            </h1>
+        </div>
     </header>
     
     <main>
-        <div class="container scrollbox">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-offset-1 col-sm-10 col-lg-offset-2 col-lg-8">
