@@ -27,7 +27,7 @@
     		<!-- FIM aca -->
     		<div class="panel panel-default">
     		    <div class="panel-body">
-    		        <p>
+    		        <p class="text-min-height">
                         <strong><spring:message code="screen.choose.useraca" /></strong>
                     </p>
     		        
@@ -44,7 +44,7 @@
     		<!-- FIM sup -->
     		<div class="panel panel-default">
     		    <div class="panel-body">
-    		        <p>
+    		        <p class="text-min-height">
                         <strong><spring:message code="screen.choose.usersup" /></strong>
                     </p>
                     
@@ -62,7 +62,7 @@
     <!-- Authentification locale -->
     <div class="panel panel-default">
         <div class="panel-body">
-        	<p>
+        	<p class="text-min-height">
                 <span><spring:message code="screen.choose.userlocal" /></span>
             </p>
             
