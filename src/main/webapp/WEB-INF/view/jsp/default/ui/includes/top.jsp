@@ -42,7 +42,7 @@
                 <div class="col">
                     <!-- Logo EN -->
                     <div class="logo-en hidden-xs">
-                        <img src="<c:url value="/img/logo-en.png" />" alt="Minist&egrave;re de l'&Eacute;ducation nationale">
+                        <img src="<c:url value="/img/logo-en.jpg" />" alt="Minist&egrave;re de l'&Eacute;ducation nationale et de la jeunesse">
                     </div>
                 </div>
 
