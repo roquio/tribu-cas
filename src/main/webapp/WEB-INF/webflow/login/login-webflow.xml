@@ -29,7 +29,6 @@
         <evaluate expression="initialFlowSetupAction"/>
     </on-start>    
     
-    <!-- 
 	<decision-state id="fim">
 		<if test="externalContext.requestParameterMap['fim'] != null" then="FimSingleSignOnAction" else="ticketGrantingTicketCheck" />
 	</decision-state>
@@ -39,9 +38,7 @@
         <transition on="error" to="viewLoginForm" />
         <transition on="warn" to="warn" />
 	</action-state>     
-	 -->
-	 
-	 
+	
     <action-state id="ticketGrantingTicketCheck">
         <evaluate expression="ticketGrantingTicketCheckAction"/>
         <transition on="notExists" to="gatewayRequestCheck"/>
@@ -56,11 +53,11 @@
 
     <decision-state id="gatewayRequestCheck">
         <if test="requestParameters.gateway != '' and requestParameters.gateway != null and flowScope.service != null"
-            then="gatewayServicesManagementCheck" else="serviceAuthorizationCheck"/>
+            then="gatewayServicesManagementCheck" else="choose"/>
     </decision-state>
     
     
-    <!-- Specific FOAD 
+    <!-- Specific FOAD -->
     <decision-state id="choose">
         <if test="externalContext.requestParameterMap['s'] == 'fim'" then="fimProcessing"/>
         <if test="externalContext.requestParameterMap['s'] == null" then="selector" else="viewLoginForm"/>
@@ -86,7 +83,8 @@
     	</on-render>
     </view-state>    	    
 
- 	End specific FOAD -->        
+
+	<!-- End specific FOAD -->        
 
     <decision-state id="hasServiceCheck">
         <if test="flowScope.service != null" then="renewRequestCheck" else="viewGenericLoginSuccess"/>

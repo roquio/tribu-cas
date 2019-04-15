@@ -48,7 +48,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan base-package="org.jasig.cas" />
-	<!-- <context:component-scan base-package="org.osivia.cas.fim" />  -->
+	<context:component-scan base-package="org.osivia.cas.fim" />
 	
     <context:annotation-config/>
  	
@@ -71,9 +71,7 @@
                 <entry key-ref="ldapAuthenticationHandler"><value>#{null}</value>
                 	
                 </entry>
-                <!-- 
                 <entry key-ref="fimAuthenticationHandler" value-ref="fimCredentialsToPrincipalResolver" />
-                 -->
             </map>
         </constructor-arg>
 
@@ -97,12 +95,10 @@
         </property>
     </bean>
     
-    <!-- Authent. externe (TODO supprimer)
     <bean id="fimAuthenticationHandler" class="org.osivia.cas.fim.FimCredentialsAuthenticationHandler"
     	/>
     <bean id="fimCredentialsToPrincipalResolver" class="org.osivia.cas.fim.FimCredentialsToPrincipalResolver"
     	/>
-    	 -->
 
     <!-- Required for proxy ticket mechanism. -->
     <bean id="proxyAuthenticationHandler"
