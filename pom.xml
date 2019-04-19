@@ -78,6 +78,7 @@
 	</build>
 
 	<dependencies>
+		<!-- main application -->
 		<dependency>
 			<groupId>org.jasig.cas</groupId>
 			<artifactId>cas-server-webapp</artifactId>
@@ -86,18 +87,35 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- ldap auth support -->
 		<dependency>
 			<groupId>org.jasig.cas</groupId>
 			<artifactId>cas-server-support-ldap</artifactId>
 			<version>${cas.version}</version>
 		</dependency>
-
+		<!-- tickets cache support -->
 		<dependency>
 			<groupId>org.jasig.cas</groupId>
 			<artifactId>cas-server-integration-ehcache</artifactId>
 			<version>${cas.version}</version>
 		</dependency>
-
+		
+		<!-- Delegate CAS auth support -->
+		<dependency>
+    		<groupId>org.jasig.cas</groupId>
+    		<artifactId>cas-server-support-pac4j</artifactId>
+    		<version>${cas.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.pac4j</groupId>
+		    <artifactId>pac4j-core</artifactId>
+		    <version>${pac4j.version}</version>
+		</dependency>		
+		<dependency>
+		    <groupId>org.pac4j</groupId>
+		    <artifactId>pac4j-cas</artifactId>
+		    <version>${pac4j.version}</version>
+		</dependency>		
 	</dependencies>
 
 	<properties>
@@ -106,6 +124,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<pac4j.version>1.7.2</pac4j.version>
 	</properties>
 
 	<repositories>

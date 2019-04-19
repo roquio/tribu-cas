@@ -40,7 +40,21 @@
         <transition on="warn" to="warn" />
 	</action-state>     
 	 -->
-	 
+
+	<!-- si paramètre pronote-st présent dans la requête, appel CAS Client -->
+	<decision-state id="loggedInPronoteCasCheck">
+		<if test="externalContext.requestParameterMap['ticket'] != null" then="casClientAction" 
+		else="ticketGrantingTicketCheck" />
+	</decision-state>
+	<!-- CAS client, effectue un serviceValidate -->
+	<action-state id="casClientAction">
+		<evaluate expression="clientAction" />
+		<transition on="success" to="sendTicketGrantingTicket" />
+		<transition on="error" to="ticketGrantingTicketCheck" />
+		<transition on="stop" to="stopWebflow" />
+	</action-state>
+	
+	<view-state id="stopWebflow" />
 	 
     <action-state id="ticketGrantingTicketCheck">
         <evaluate expression="ticketGrantingTicketCheckAction"/>
