@@ -37,7 +37,7 @@
   | The base-package indicates where components stored. Spring will scan this
   | folder and find out the annotated beans and register it in Spring container.
   -->
-  <context:component-scan base-package="org.jasig.cas" />
+  <context:component-scan base-package="org.jasig.cas.pronote" />
   <context:annotation-config/>
 
   <!-- Scan CAS artifacts to mvc annotations, such as controllers.
@@ -123,7 +123,6 @@
         <prop key="/validate">legacyValidateController</prop>
         <prop key="/proxy">proxyController</prop>
         <prop key="/authorizationFailure.html">passThroughController</prop>
-        <prop key="/fim">passThroughController</prop>
       </util:properties>
     </property>
     <!--
@@ -139,10 +138,6 @@
 
   <bean id="passThroughController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
 					
-  <!-- FIM controller -->
-	<bean id="fimSingleSignOnAction" class="org.osivia.cas.fim.FimSingleSignOnAction"
-		p:centralAuthenticationService-ref="centralAuthenticationService" />
-
   <!-- login webflow configuration -->
   <bean id="loginFlowHandlerMapping" class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping"
         p:flowRegistry-ref="loginFlowRegistry" p:order="2">

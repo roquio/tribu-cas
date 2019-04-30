@@ -48,7 +48,6 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan base-package="org.jasig.cas" />
-	<!-- <context:component-scan base-package="org.osivia.cas.fim" />  -->
 	
     <context:annotation-config/>
  	
@@ -67,14 +66,11 @@
                    | If more than one instance of the same handler class is configured, you must explicitly
                    | set its name to something other than its default name (typically the simple class name).
                    -->
-                <!-- <entry key-ref="proxyAuthenticationHandler" value-ref="proxyPrincipalResolver" />  -->
                 <entry key-ref="casClientAuthenticationHandler"><value>#{null}</value>
                 </entry>
                 <entry key-ref="ldapAuthenticationHandler"><value>#{null}</value>
                 </entry>
-                <!-- 
-                <entry key-ref="fimAuthenticationHandler" value-ref="fimCredentialsToPrincipalResolver" />
-                 -->
+
             </map>
         </constructor-arg>
 
@@ -98,12 +94,22 @@
         </property>
     </bean>
     
-    <!-- Authent. externe (TODO supprimer)
-    <bean id="fimAuthenticationHandler" class="org.osivia.cas.fim.FimCredentialsAuthenticationHandler"
-    	/>
-    <bean id="fimCredentialsToPrincipalResolver" class="org.osivia.cas.fim.FimCredentialsToPrincipalResolver"
-    	/>
-    	 -->
+    <!-- Pronote Client -->
+	<bean id="casClientAuthenticationHandler"
+		class="org.osivia.cas.pronote.PronoteCasClientHandler"
+		c:dnResolverForClient-ref="dnResolverForClient" />
+		
+	<bean id="dnResolverForClient" class="org.ldaptive.auth.PooledSearchDnResolver"
+	      p:baseDn="${ldap.authn.baseDn}"
+	      p:subtreeSearch="false"
+	      p:allowMultipleDns="false"
+	      p:connectionFactory-ref="searchPooledLdapConnectionFactory"
+	      p:userFilter="${ldap.authn.uidSearchFilter}" />
+		
+	<bean id="clientAction" class="org.osivia.cas.pronote.PronoteCasClientAction"
+		c:theCentralAuthenticationService-ref="centralAuthenticationService"/>
+				
+	<!-- end Pronote Client -->
 
     <!-- Required for proxy ticket mechanism. -->
     <bean id="proxyAuthenticationHandler"
@@ -129,12 +135,9 @@
 		p:searchControls-ref="searchControls"
 		p:resultAttributeMapping-ref="attrRepoBackingMap" />
 	<bean id="searchControls" class="javax.naming.directory.SearchControls"/>
+	-->
 	
-    <util:map id="attrRepoBackingMap">
-        <entry key="uid" value="uid" />
-    </util:map>
-       -->
-
+	
     <!--
     Bean that defines the attributes that a service may return.  This example uses the Stub/Mock version.  A real implementation
     may go against a database or LDAP server.  The id should remain "attributeRepository" though.
@@ -281,25 +284,4 @@
 	
 	<bean id="bindConnectionConfig" parent="abstractConnectionConfig" />
 
-
-	<!-- CAS client -->
-	<bean id="clientAction" class="org.jasig.cas.support.pac4j.web.flow.ClientAction"
-	    c:theCentralAuthenticationService-ref="centralAuthenticationService"
-	    c:theClients-ref="clients"/>
-	<bean id="clients" class="org.pac4j.core.client.Clients">
-		<property name="callbackUrl"
-			value="https://cloud-ens.index-education.local/index-cloud-portal-ens-ws/html/test.html" />
-		<property name="clients">
-			<list>
-				<ref bean="cas-pronote" />
-			</list>
-		</property>
-	</bean>
-	<bean id="cas-pronote" class="org.pac4j.cas.client.CasClient">
-		<property name="name" value="cas-pronote" />	
-		<property name="casLoginUrl" value="https://cloud-ens.index-education.local/cas-pronote/login" />
-	</bean>
-	<bean id="casClientAuthenticationHandler"
-		class="org.jasig.cas.support.pac4j.authentication.handler.support.ClientAuthenticationHandler"
-		c:theClients-ref="clients" />
 </beans>
