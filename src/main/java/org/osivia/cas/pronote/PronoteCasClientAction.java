@@ -12,7 +12,7 @@ import org.springframework.webflow.execution.RequestContext;
 /**
  * 
  * Action appelée si le portail indique une URL avec des paramètres :
- * - urlCAS (lien vers le serviceValidate), ticket & service
+ * - urlCAS (lien vers le serviceValidate), ticket et service
  * Renseigne un Credential avec ces paramètres gérés par le handler
  * 
  * @author Loïc Billon
