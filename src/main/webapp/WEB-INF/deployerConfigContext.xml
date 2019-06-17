@@ -97,7 +97,8 @@
     <!-- Pronote Client -->
 	<bean id="casClientAuthenticationHandler"
 		class="org.osivia.cas.pronote.PronoteCasClientHandler"
-		c:dnResolverForClient-ref="dnResolverForClient" />
+		c:dnResolverForClient-ref="dnResolverForClient"
+		p:casValidateUrl="${pronote.cas.serviceValidate}" />
 		
 	<bean id="dnResolverForClient" class="org.ldaptive.auth.PooledSearchDnResolver"
 	      p:baseDn="${ldap.authn.baseDn}"

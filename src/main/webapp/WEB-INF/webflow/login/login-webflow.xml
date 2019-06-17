@@ -31,9 +31,9 @@
 
 
 	<!-- === PRONOTE CLIENT === -->
-	<!-- si paramètre urlCAS présent dans la requête, appel CAS Client -->
+	<!-- si paramètre casName présent dans la requête, appel CAS Client -->
 	<decision-state id="loggedInPronoteCasCheck">
-		<if test="externalContext.requestParameterMap['urlCAS'] != null" then="casClientAction" 
+		<if test="externalContext.requestParameterMap['casName'] != null" then="casClientAction" 
 		else="ticketGrantingTicketCheck" />
 	</decision-state>
 	<!-- CAS client, effectue un serviceValidate -->

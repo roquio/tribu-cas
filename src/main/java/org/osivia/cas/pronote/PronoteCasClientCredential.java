@@ -12,32 +12,18 @@ import org.jasig.cas.authentication.Credential;
  */
 public class PronoteCasClientCredential implements Credential {
 
-	private String casServiceValidateUrl;
-	
 	private String serviceTicket;
 	
 	private String serviceUrl;
+
+	private String casName;
 	
 	/* (non-Javadoc)
 	 * @see org.jasig.cas.authentication.Credential#getId()
 	 */
 	@Override
 	public String getId() {
-		return serviceTicket + "@" + casServiceValidateUrl;	
-	}
-
-	/**
-	 * @return the casServiceValidateUrl
-	 */
-	public String getCasServiceValidateUrl() {
-		return casServiceValidateUrl;
-	}
-
-	/**
-	 * @param casServiceValidateUrl the casServiceValidateUrl to set
-	 */
-	public void setCasServiceValidateUrl(String casServiceValidateUrl) {
-		this.casServiceValidateUrl = casServiceValidateUrl;
+		return serviceTicket + "@" + casName;	
 	}
 
 	/**
@@ -60,12 +46,29 @@ public class PronoteCasClientCredential implements Credential {
 	public String getServiceUrl() {
 		return serviceUrl;
 	}
+	
+	
+
+	/**
+	 * @return the casName
+	 */
+	public String getCasName() {
+		return casName;
+	}
 
 	/**
 	 * @param serviceUrl the serviceUrl to set
 	 */
 	public void setServiceUrl(String serviceUrl) {
 		this.serviceUrl = serviceUrl;
+	}
+
+	/**
+	 * @param casName
+	 */
+	public void setCasName(String casName) {
+		this.casName = casName;
+		
 	}
 
 }

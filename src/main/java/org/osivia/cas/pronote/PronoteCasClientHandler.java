@@ -52,6 +52,9 @@ public class PronoteCasClientHandler extends AbstractAuthenticationHandler {
 	
 	/** Pour vérifier que le login pronote est présent dans l'annuaire cloud-ens */
 	private final DnResolver dnResolverForClient;
+	
+	/** Pronote CAS url validate */
+	private String casValidateUrl;
 
 	
 	public PronoteCasClientHandler(DnResolver dnResolverForClient) {
@@ -77,12 +80,17 @@ public class PronoteCasClientHandler extends AbstractAuthenticationHandler {
 			throw new GeneralSecurityException("credential is null");
 		}
 
-//		BufferedReader rd;
 		CloseableHttpClient client ;
 		try {
+			
+			if(!pronoteCredential.getCasName().equals("pronote")) {
+				throw new GeneralSecurityException("Upstream Cas name "+pronoteCredential.getCasName()+" unknown");
+			}
+			
+			
 			client = HttpClientBuilder.create().build();
-
-			URIBuilder builder = new URIBuilder(pronoteCredential.getCasServiceValidateUrl());
+			
+			URIBuilder builder = new URIBuilder(casValidateUrl);
 			builder.setParameter("ticket", pronoteCredential.getServiceTicket());
 			builder.setParameter("service", pronoteCredential.getServiceUrl());
 
@@ -177,5 +185,21 @@ public class PronoteCasClientHandler extends AbstractAuthenticationHandler {
 		return credential instanceof PronoteCasClientCredential;
 
 	}
+
+	/**
+	 * @return the casValidateUrl
+	 */
+	public String getCasValidateUrl() {
+		return casValidateUrl;
+	}
+
+	/**
+	 * @param casValidateUrl the casValidateUrl to set
+	 */
+	public void setCasValidateUrl(String casValidateUrl) {
+		this.casValidateUrl = casValidateUrl;
+	}
+	
+	
 
 }

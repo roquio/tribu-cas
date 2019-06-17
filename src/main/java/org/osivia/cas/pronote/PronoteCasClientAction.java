@@ -35,20 +35,20 @@ public class PronoteCasClientAction extends AbstractNonInteractiveCredentialsAct
 	protected Credential constructCredentialsFromRequest(RequestContext context) {
 		
 		String serviceTicket = context.getRequestParameters().get("ticket");
-		String casServiceValidateUrl = context.getRequestParameters().get("urlCAS");
+		String casName = context.getRequestParameters().get("casName");
 		String serviceUrl = context.getRequestParameters().get("service");
 
 		
 		if(logger.isDebugEnabled()) {
-			logger.debug("About to validate serviceTickat "+serviceTicket+" for "+serviceUrl+" to "+casServiceValidateUrl);
+			logger.debug("About to validate serviceTickat "+serviceTicket+" for "+serviceUrl+" to "+casName);
 		}
 		
 		PronoteCasClientCredential credential = null;
-		if(StringUtils.isNotBlank(casServiceValidateUrl) && StringUtils.isNotBlank(serviceTicket)) {
+		if(StringUtils.isNotBlank(casName) && StringUtils.isNotBlank(serviceTicket)) {
 		
 			credential = new PronoteCasClientCredential();
 			credential.setServiceTicket(serviceTicket);
-			credential.setCasServiceValidateUrl(casServiceValidateUrl);
+			credential.setCasName(casName);
 			credential.setServiceUrl(serviceUrl);;
 		}
 		else {
