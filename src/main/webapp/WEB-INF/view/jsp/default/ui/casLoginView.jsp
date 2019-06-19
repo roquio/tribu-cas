@@ -131,7 +131,7 @@
 	        <h2><spring:message code="password.forgotten" /></h2>
 			<p><spring:message code="password.forgotten.info" />
 				<a href="#" target="popup" 
-	  				onclick="window.open('/portal/portal/default/Changer+de+mot+de+passe','popup','width=800,height=600'); return false;"><spring:message code="password.forgotten.btn" /></a>
+	  				onclick="window.open('/portal/portal/default/change-password','popup','width=800,height=600'); return false;"><spring:message code="password.forgotten.btn" /></a>
 	   		</p>
         </section>
     </form:form>
