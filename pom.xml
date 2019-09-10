@@ -72,6 +72,27 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>2.2.1</version>
 			</plugin>
+
+			<!-- SASS -->
+			<plugin>
+				<groupId>com.github.warmuuh</groupId>
+				<artifactId>libsass-maven-plugin</artifactId>
+				<version>0.2.10-libsass_3.5.3</version>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<inputPath>${project.basedir}/src/main/sass/</inputPath>
+					<outputPath>${project.build.directory}/cas/css</outputPath>
+					<outputStyle>compressed</outputStyle>
+					<sourceMapOutputPath>${project.build.directory}/cas/css</sourceMapOutputPath>
+				</configuration>
+			</plugin>
 		</plugins>
 
 		<finalName>cas</finalName>

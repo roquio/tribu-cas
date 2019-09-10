@@ -1,0 +1,49 @@
+@import "../osivia/variables";
+
+
+.profile-decorator {
+  $caret-size: 8px;
+
+  position: relative;
+
+  margin: {
+    left: map_get($spacers, 3);
+    right: map_get($spacers, 3);
+  }
+
+  padding-top: $caret-size;
+
+  border: {
+    color: $gray-600;
+    width: 1px;
+    bottom-style: solid;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: $caret-size * 2;
+    width: $caret-size * 2;
+
+    margin: {
+      left: auto;
+      right: auto;
+    }
+
+    background-color: $blue-lighter;
+
+    border: {
+      color: $gray-600;
+      width: 1px;
+      top-style: solid;
+      right-style: solid;
+    }
+
+    transform: rotate(-45deg);
+  }
+}
