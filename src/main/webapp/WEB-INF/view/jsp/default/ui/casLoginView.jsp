@@ -52,7 +52,7 @@
                                         <c:otherwise>
                                             <spring:message code="login.username.placeholder" var="userNamePlaceholder" />
                                             <spring:message code="screen.welcome.label.netid.accesskey" var="userNameAccessKey" />
-                                            <form:input path="username" cssClass="form-control" cssErrorClass="is-invalid" placeholder="${userNamePlaceholder}" tabindex="1" accesskey="${userNameAccessKey}" autocomplete="off" htmlEscape="true" />
+                                            <form:input path="username" cssClass="form-control" cssErrorClass="form-control is-invalid" placeholder="${userNamePlaceholder}" tabindex="1" accesskey="${userNameAccessKey}" autocomplete="off" htmlEscape="true" />
                                             <form:errors path="username" cssClass="invalid-feedback"/>
                                         </c:otherwise>
                                     </c:choose>
@@ -63,7 +63,7 @@
                                     <form:label path="password" cssClass="sr-only"><spring:message code="screen.welcome.label.password" /></form:label>
                                     <spring:message code="login.password.placeholder" var="passwordPlaceholder" />
                                     <spring:message code="screen.welcome.label.password.accesskey" var="passwordAccessKey" />
-                                    <form:password path="password" cssClass="form-control" cssErrorClass="is-invalid" placeholder="${passwordPlaceholder}" tabindex="2"  accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" />
+                                    <form:password path="password" cssClass="form-control" cssErrorClass="form-control is-invalid" placeholder="${passwordPlaceholder}" tabindex="2"  accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" />
                                     <span id="capslock-on" class="form-text" style="display:none;"><spring:message code="screen.capslock.on" /></span>
                                     <form:errors path="password" cssClass="invalid-feedback"/>
                                 </div>
