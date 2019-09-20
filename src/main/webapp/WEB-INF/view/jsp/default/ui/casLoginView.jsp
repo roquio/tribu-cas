@@ -25,6 +25,8 @@
     <div class="row">
         <div class="col-lg-4 offset-lg-4">
             <form:form method="post" id="fm1" commandName="${commandName}" htmlEscape="true">
+                
+             
                 <div class="card bg-blue-lighter border-0 shadow-lg">
                     <div class="card-body">
                         <fieldset>
@@ -40,6 +42,9 @@
                                 <div class="profile-decorator"></div>
                             </div>
 
+                               <form:errors path="*" id="msg" cssClass="invalid-feedback d-block my-3 text-center" element="div" htmlEscape="false" />
+
+
                             <div class="px-5">
                                 <%--Username--%>
                                 <div class="form-group">
@@ -53,7 +58,7 @@
                                             <spring:message code="login.username.placeholder" var="userNamePlaceholder" />
                                             <spring:message code="screen.welcome.label.netid.accesskey" var="userNameAccessKey" />
                                             <form:input path="username" cssClass="form-control" cssErrorClass="form-control is-invalid" placeholder="${userNamePlaceholder}" tabindex="1" accesskey="${userNameAccessKey}" autocomplete="off" htmlEscape="true" />
-                                            <form:errors path="username" cssClass="invalid-feedback"/>
+
                                         </c:otherwise>
                                     </c:choose>
                                 </div>
@@ -65,7 +70,7 @@
                                     <spring:message code="screen.welcome.label.password.accesskey" var="passwordAccessKey" />
                                     <form:password path="password" cssClass="form-control" cssErrorClass="form-control is-invalid" placeholder="${passwordPlaceholder}" tabindex="2"  accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" />
                                     <span id="capslock-on" class="form-text" style="display:none;"><spring:message code="screen.capslock.on" /></span>
-                                    <form:errors path="password" cssClass="invalid-feedback"/>
+
                                 </div>
                             </div>
 
