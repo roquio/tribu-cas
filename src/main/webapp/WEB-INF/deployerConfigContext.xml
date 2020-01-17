@@ -48,6 +48,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan base-package="org.jasig.cas" />
+	<context:component-scan base-package="org.osivia.cas.autologon" />	
 	<context:component-scan base-package="org.osivia.cas.fim" />
 	
     <context:annotation-config/>
@@ -72,6 +73,9 @@
                 	
                 </entry>
                 <entry key-ref="fimAuthenticationHandler" value-ref="fimCredentialsToPrincipalResolver" />
+                
+                <entry key-ref="autoLogonHandler"><value>#{null}</value>
+                </entry>
             </map>
         </constructor-arg>
 
@@ -95,10 +99,34 @@
         </property>
     </bean>
     
+    <!-- FIM -->
     <bean id="fimAuthenticationHandler" class="org.osivia.cas.fim.FimCredentialsAuthenticationHandler"
     	/>
     <bean id="fimCredentialsToPrincipalResolver" class="org.osivia.cas.fim.FimCredentialsToPrincipalResolver"
     	/>
+    	
+    <!-- Autologin -->
+    <bean id="autoLogonHandler" class="org.osivia.cas.autologon.AutoLogonHandler"
+    	c:dao-ref="personDao" p:validityHandler-ref="ldapAuthenticationHandler"
+    	/>
+	<bean id="personDao"
+		class="org.jasig.services.persondir.support.ldap.LdaptivePersonAttributeDao"
+		p:connectionFactory-ref="pooledLdapConnectionFactory"
+		p:baseDN="${ldap.authn.baseDn}" p:searchFilter="uid={0}"
+		p:searchControls-ref="searchControls">
+		<property name="resultAttributeMapping">
+			<map>
+				<entry key="displayname" value="displayname" />
+				<entry key="portalpersonprofile" value="portalpersonprofile" />
+	            <entry key="portalpersonexternal" value="portalpersonexternal" />
+	            <entry key="portalpersonvalidity" value="portalpersonvalidity" />
+			</map>
+		</property>
+	</bean>
+	<bean id="searchControls" class="javax.naming.directory.SearchControls"
+	 />
+	
+
 
     <!-- Required for proxy ticket mechanism. -->
     <bean id="proxyAuthenticationHandler"

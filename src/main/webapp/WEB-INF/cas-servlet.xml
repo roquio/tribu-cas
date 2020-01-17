@@ -143,6 +143,12 @@
 	<bean id="fimSingleSignOnAction" class="org.osivia.cas.fim.FimSingleSignOnAction"
 		p:centralAuthenticationService-ref="centralAuthenticationService" />
 
+	<!-- Autologon controller -->
+	<bean id="AutoLogonAction" class="org.osivia.cas.autologon.AutoLogonAction"
+		p:centralAuthenticationService-ref="centralAuthenticationService" />
+
+
+
   <!-- login webflow configuration -->
   <bean id="loginFlowHandlerMapping" class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping"
         p:flowRegistry-ref="loginFlowRegistry" p:order="2">
