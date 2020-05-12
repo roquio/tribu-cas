@@ -80,15 +80,18 @@
                                 </a>
                             </div>
 
+<!--  
                             <div class="px-5">
                                 <hr class="my-2">
                             </div>
+
 
                             <div class="text-center">
                                 <button type="button" class="btn btn-link p-0" disabled>
                                     <span><spring:message code="create.account" /></span>
                                 </button>
                             </div>
+-->                            
                         </fieldset>
                     </div>
 

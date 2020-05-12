@@ -72,6 +72,11 @@ public class PronoteCasClientHandler extends AbstractAuthenticationHandler {
 	@Override
 	public HandlerResult authenticate(Credential credential) throws GeneralSecurityException, PreventedException {
 
+        if (logger.isDebugEnabled()) {
+            logger.debug("authenticate");
+        }
+	    
+	    
 		PronoteCasClientCredential pronoteCredential = null;
 		if (credential != null) {
 			pronoteCredential = (PronoteCasClientCredential) credential;
@@ -105,10 +110,19 @@ public class PronoteCasClientHandler extends AbstractAuthenticationHandler {
 				logger.debug("GET " + request.getURI().toASCIIString() + " returned HTTP " + statusCode);
 			}
 
+            if (logger.isDebugEnabled()) {
+                logger.debug("analyse response ");
+            }
+			
 			if (statusCode == 200) {
 
 				DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 				String xml = EntityUtils.toString(response.getEntity());
+				
+				
+		        if (logger.isDebugEnabled()) {
+		            logger.debug("response " + xml);
+		        }
 
 				Document casResponse = docBuilder.parse(new InputSource(new StringReader(xml)));
 //				XPath xPath = XPathFactory.newInstance().newXPath();
