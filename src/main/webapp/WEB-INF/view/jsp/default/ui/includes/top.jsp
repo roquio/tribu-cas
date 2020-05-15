@@ -51,7 +51,7 @@
         <nav class="navbar navbar-expand navbar-light">
             <%--Brand--%>
             <a class="navbar-brand d-none d-md-inline-block mx-auto py-0" href="/portal">
-                <img alt="Cloud PRONOTE" src="<c:url value="/img/logo-cloud-pronote.png" />" height="50">
+                <img alt="Cloud PRONOTE" src="<c:url value="/img/logo-cloud-pronote-large.png" />" height="50">
             </a>
         </nav>
     </header>
