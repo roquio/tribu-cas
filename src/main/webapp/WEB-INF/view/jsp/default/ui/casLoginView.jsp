@@ -79,19 +79,23 @@
                                     <span><spring:message code="password.forgotten" /></span>
                                 </a>
                             </div>
+                            
+ 
+                            <spring:eval expression="@casProperties['pronote.cas.newAccountUrl']" var="newAccountUrl"/>
+                            
+                            <c:if test="${not empty newAccountUrl}">
 
-<!--  
-                            <div class="px-5">
-                                <hr class="my-2">
-                            </div>
-
-
-                            <div class="text-center">
-                                <button type="button" class="btn btn-link p-0" disabled>
-                                    <span><spring:message code="create.account" /></span>
-                                </button>
-                            </div>
--->                            
+	                            <div class="px-5">
+	                                <hr class="my-2">
+	                            </div>
+	
+	
+	                            <div class="text-center">
+	                               <a href="<c:out value="${newAccountUrl}" />" class="text-dark">
+	                                    <span><spring:message code="create.account" /></span>
+	                               </a>
+                                </div>
+                            </c:if>                            
                         </fieldset>
                     </div>
 
