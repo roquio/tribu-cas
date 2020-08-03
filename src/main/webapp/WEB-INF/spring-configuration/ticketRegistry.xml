@@ -51,7 +51,7 @@
 
 	<bean id="cacheManager"
 		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
-		p:configLocation="file:/appli/conf/ehcache-replicated.xml" p:shared="false"
+		p:configLocation="file:/etc/cas/ehcache-replicated.xml" p:shared="false"
 		p:cacheManagerName="ticketRegistryCacheManager" />
 
 	<bean id="ticketRMISynchronousCacheReplicator"
