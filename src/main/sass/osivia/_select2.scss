@@ -1,11 +1,8 @@
-@import "variables";
-
-
 .select2-container--bootstrap4 {
   .select2-selection {
     display: block;
     width: 100%;
-    height: $input-height;
+
     padding: $input-padding-y $input-padding-x;
     font-family: $input-font-family;
     @include font-size($input-font-size);
@@ -30,16 +27,20 @@
 
 
     &.select2-selection--single {
-
+      height: $input-height;
     }
 
     &.select2-selection--multiple {
       height: auto;
+      min-height: $input-height;
+
+      padding-top: calc(#{$input-padding-y - .1rem} - #{$border-width});
+      padding-bottom: 0;
     }
   }
 
 
-  &.select2-container--focus {
+  &.select2-container--open, &.select2-container--focus {
     .select2-selection {
       color: $input-focus-color;
       background-color: $input-focus-bg;
@@ -76,6 +77,7 @@
     flex-wrap: wrap;
 
     margin-bottom: 0 !important;
+    margin-right: -(map_get($spacers, 1));
     padding-left: 0 !important;
     padding-right: 0 !important;
 
@@ -83,21 +85,42 @@
   }
 
   .select2-selection__choice {
-    margin-right: map_get($spacers, 1);
+    overflow: hidden;
+    text-overflow: ellipsis;
 
-    &:nth-last-child(2) {
-      margin-right: map_get($spacers, 2);
+    margin: {
+      bottom: map_get($spacers, 1);
+      right: map_get($spacers, 1);
+    }
+    padding: {
+      top: .1rem;
+      bottom: .1rem;
+      left: 0;
+      right: map_get($spacers, 1);
     }
 
-    &:not(:nth-last-child(2)) {
-      &::after {
-        content: ",";
-      }
+    border: {
+      style: solid;
+      width: $border-width;
+      color: $border-color;
+      radius: $border-radius;
     }
+
+    background-color: $gray-100;
   }
 
   .select2-selection__choice__remove {
-    display: none;
+    //display: none;
+    padding: {
+      left: map_get($spacers, 1);
+      right: map_get($spacers, 1);
+    }
+
+    color: $text-muted;
+
+    &:hover {
+      color: $primary;
+    }
   }
 
   .select2-search--inline {
@@ -110,7 +133,10 @@
     max-width: 100%;
     @include text-truncate;
 
-    margin-top: 0 !important;
+    margin: {
+      top: calc(.1rem + #{$border-width}) !important;
+      bottom: calc(.1rem + #{$border-width}) !important;
+    }
 
     color: $primary;
     font-style: italic;
@@ -130,25 +156,25 @@
     border-color: $input-border-color;
   }
 
-  //.select2-results__options {
-  //  max-height: 15rem;
-  //  overflow-y: auto;
-  //}
+  .select2-results__options {
+    max-height: 15rem;
+    overflow-y: auto;
+  }
 
   .select2-results__option {
     padding: $input-padding-y $input-padding-x;
     @include text-truncate;
 
     &.select2-results__option--highlighted {
-      background-color: $gray-300;
+      color: $white;
+      background-color: $primary;
     }
 
     &[aria-selected=true] {
-      color: $white;
-      background-color: $primary;
+      background-color: $gray-100;
 
       &.select2-results__option--highlighted {
-        background-color: darken($primary, 7.5%);
+        background-color: $primary;
       }
     }
 

@@ -1,3 +1,50 @@
+@import "../cloud-ens/variables";
+
+
+small {
+  font-size: .625rem !important; // 10px
+}
+
+
+.form-control {
+  height: 3rem !important;
+
+  padding: {
+    top: .75rem !important;
+    bottom: .75rem !important;
+  }
+
+  border-style: none !important;
+
+  &::placeholder {
+    font-size: $small-font-size;
+  }
+}
+
+
+ul.list-marker-green {
+  padding-left: 0;
+
+  list-style: none;
+
+  li {
+    display: flex;
+
+    &::before {
+      content: "\2022"; // Add content: \2022 is the CSS Code/unicode for a bullet
+
+      margin-right: .5rem;
+
+      color: $green-500;
+
+      font-family: initial;
+      font-weight: bold;
+    }
+  }
+}
+
+
+/*
 @import "../osivia/variables";
 
 
@@ -47,3 +94,4 @@
     transform: rotate(-45deg);
   }
 }
+*/

@@ -36,7 +36,7 @@
     <title><spring:message code="window.title"/></title>
 
     <link rel="stylesheet" href="<c:url value="/css/cloud-ens.css" />"/>
-    <link rel="icon" href="<c:url value="/favicon.ico" />" type="image/x-icon"/>
+    <link rel="icon" href="<c:url value="/img/favicon.ico" />" type="image/x-icon"/>
 
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
@@ -44,16 +44,18 @@
 </head>
 
 
-<body id="cas" class="vh-100 overflow-hidden d-flex flex-column uncluttered">
+<body id="cas" class="fullheight overflow-hidden d-flex flex-column">
 
-<div id="container" class="d-flex flex-column flex-grow-1 overflow-auto">
-    <header>
-        <nav class="navbar navbar-expand navbar-light">
+<div id="container" class="d-flex flex-column flex-grow-1 overflow-hidden">
+    <header class="flex-shrink-0">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <%--Brand--%>
-            <a class="navbar-brand d-none d-md-inline-block mx-auto py-0" href="/portal">
-                <img alt="Cloud PRONOTE" src="<c:url value="/img/logo-cloud-pronote-large.png" />" height="32">
+            <a href="/portal" class="navbar-brand py-0">
+                <img alt="Cloud PRONOTE"
+                     src="<c:url value="/img/logo-cloud-pronote-toolbar.png" />" height="45">
             </a>
         </nav>
     </header>
-    <main id="content" class="d-flex flex-column flex-grow-1 overflow-auto">
-        <div class="container my-auto py-4">
+
+    <main id="content" class="d-flex flex-column flex-grow-1 overflow-auto bg-green-light background-clouds">
+        <div class="container d-flex flex-column flex-grow-1 flex-shrink-0 justify-content-center py-4">
