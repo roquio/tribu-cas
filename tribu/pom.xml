@@ -4,7 +4,7 @@
 	
 	<parent>
 		<groupId>org.jasig.cas</groupId>
-		<artifactId>cas-server-parent</artifactId>
+		<artifactId>tribu-cas-server-parent</artifactId>
 		<version>4.4-SNAPSHOT</version>
 	</parent>
 	
