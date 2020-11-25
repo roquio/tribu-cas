@@ -113,39 +113,5 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>sonatype-releases</id>
-			<url>http://oss.sonatype.org/content/repositories/releases/</url>
-		</repository>
-		<repository>
-			<id>sonatype-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</repository>
-		<repository>
-			<id>shibboleth-releases</id>
-			<url>https://build.shibboleth.net/nexus/content/repositories/releases</url>
-		</repository>
-	</repositories>
-
-	<scm>
-		<url>https://github.com/osivia/cas-webapp</url>
-		<connection>scm:git:ssh://git@github.com/osivia/cas-webapp.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/osivia/cas-webapp.git</developerConnection>
-		<tag>HEAD</tag>
-	</scm>
-
-	<distributionManagement>
-		<repository>
-			<id>osivia-releases</id>
-			<url>http://www.osivia.org/nexus/content/repositories/osivia-releases
-			</url>
-		</repository>
-		<snapshotRepository>
-			<id>osivia-snapshots</id>
-			<url>http://www.osivia.org/nexus/content/repositories/osivia-snapshots
-			</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 </project>
