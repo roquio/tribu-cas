@@ -15,7 +15,7 @@
 	
 	<dependencies>
 		<dependency>
-			<groupId>org.jasig.cas</groupId>
+	    	<groupId>fr.gouv.education.foad</groupId>
 			<artifactId>cas-server-webapp</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
