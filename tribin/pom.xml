@@ -3,8 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>org.jasig.cas</groupId>
-		<artifactId>tribu-cas-server-parent</artifactId>
+	    <groupId>fr.gouv.education.foad</groupId>
+		<artifactId>cas-server-parent</artifactId>
 		<version>4.4-SNAPSHOT</version>
 	</parent>
 	
