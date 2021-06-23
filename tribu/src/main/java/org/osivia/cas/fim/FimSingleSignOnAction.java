@@ -29,11 +29,24 @@ public class FimSingleSignOnAction extends AbstractNonInteractiveCredentialsActi
             }
 
         }
-
+        
 
         attributes.put("source", "fim");
+        
+        FimCredentials fimCredentials = new FimCredentials(id, attributes);
+        
+        if (context.getExternalContext().getSessionMap().get("fim_hashnumen") != null) {
+        
+        	fimCredentials.setHashNumen((String) context.getExternalContext().getSessionMap().get("fim_hashnumen"));
+        }
+        if (context.getExternalContext().getSessionMap().get("fim_mailaca") != null) {
+            
+        	fimCredentials.setMailAca((String) context.getExternalContext().getSessionMap().get("fim_mailaca"));
+        }
 
-        return new FimCredentials(id, attributes);
+
+
+        return fimCredentials;
 	}
 
 }

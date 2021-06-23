@@ -12,7 +12,13 @@ public class FimCredentials extends AbstractCredential {
 
 
     private final String id;
-    private final Map<String, Object> attributes;    
+    private final Map<String, Object> attributes;
+
+
+	private String hashNumen;
+
+
+	private String mailAca;
     
 
     
@@ -41,4 +47,27 @@ public class FimCredentials extends AbstractCredential {
 		return this.id;
 	}
 
+
+	public String getHashNumen() {
+		return hashNumen;
+	}
+
+
+	public void setHashNumen(String hashNumen) {
+		this.hashNumen = hashNumen;
+	}
+
+	
+
+	public String getMailAca() {
+		return mailAca;
+	}
+
+
+	public void setMailAca(String mailAca) {
+		this.mailAca = mailAca;
+		
+	}
+
+	
 }

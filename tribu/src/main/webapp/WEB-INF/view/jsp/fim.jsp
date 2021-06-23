@@ -20,6 +20,9 @@
 		String uid = request.getHeader("ctemail");
 		String prenom = request.getHeader("ctfn");
 		String nom = request.getHeader("ctln");
+		String employeeNumber = request.getHeader("employeeNumber");
+		String mailaca = request.getHeader("mailaca");
+		
 		String displayName = concat( prenom, nom);
 		String cn = concat( nom, prenom);
 
@@ -38,6 +41,15 @@
 		if( prenom != null)
 			request.getSession().setAttribute("fim_attr_givenName", prenom);
 
+
+		if( employeeNumber != null) {
+			request.getSession().setAttribute("fim_hashnumen", employeeNumber);
+		}
+		if( mailaca != null) {
+			request.getSession().setAttribute("fim_mailaca", mailaca);
+		}		
+		
+		
 		request.getSession().setAttribute("fim_attr_mail", uid);
 
 		response.sendRedirect("/cas/login?fim=true"+ serviceReport);

@@ -98,6 +98,7 @@
     <bean id="fimAuthenticationHandler" class="org.osivia.cas.fim.FimCredentialsAuthenticationHandler"
     	/>
     <bean id="fimCredentialsToPrincipalResolver" class="org.osivia.cas.fim.FimCredentialsToPrincipalResolver"
+    	c:connectionFactory-ref="pooledLdapConnectionFactory" 
     	/>
 
     <!-- Required for proxy ticket mechanism. -->
