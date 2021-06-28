@@ -59,20 +59,47 @@
     </div>
     
     
-    <!-- Authentification locale -->
+    <div class="row">
+    	<div class="col-md-6">
+    	
+		    <!-- Authentification locale -->
+		    <div class="panel panel-default">
+		        <div class="panel-body">
+		        	<p class="text-min-height">
+		                <span><spring:message code="screen.choose.userlocal" /></span>
+		            </p>
+		            
+		            <div>
+		                <a class="btn btn-default" href="${localUrl}">
+		                    <span><spring:message code="screen.choose.connect" /></span>
+		                </a>
+		            </div>
+		        </div>
+		    </div>    	
+		    	
+    	</div>
+		<div class="col-md-6">
+		
+    <!-- Réiniit locale -->
     <div class="panel panel-default">
         <div class="panel-body">
-        	<p class="text-min-height">
-                <span><spring:message code="screen.choose.userlocal" /></span>
-            </p>
+	        	<p class="text-min-height">
+	                <span><spring:message code="screen.choose.userlocal.pwdlost" /></span>
+	            </p>
+		                    
             
             <div>
-                <a class="btn btn-default" href="${localUrl}">
-                    <span><spring:message code="screen.choose.connect" /></span>
+                <a class="btn btn-default" href="https://foad.phm.education.gouv.fr/tribu-reset/index.php"  target="_blank">
+                    <span><spring:message code="screen.choose.reset" /></span>
                 </a>
             </div>
         </div>
-    </div>
+    </div>		
+		
+    	</div>
+    </div>        
+    
+
 </div>
 
 
