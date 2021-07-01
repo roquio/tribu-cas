@@ -30,7 +30,6 @@
 <link rel="icon" href="<c:url value="/img/favicon.ico" />" />
 <link rel="stylesheet" href="<c:url value="/css/cas.css" />" />
 <link rel="stylesheet" href="<c:url value="/css/osivia.min.css" />" />
-<link rel="stylesheet" href="<c:url value="/css/glyphicons.min.css" />" />
 <link rel="stylesheet" href="<c:url value="/css/foad.min.css" />" title="FOAD" />
 </head>
 
