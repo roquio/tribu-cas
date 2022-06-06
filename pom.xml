@@ -4,7 +4,7 @@
 	
     <groupId>fr.gouv.education.foad</groupId>
     <artifactId>cas-server-parent</artifactId>
-	<version>4.4.30.1</version>
+	<version>4.4-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 	<name>Apereo CAS Web Application - parent</name>
@@ -34,7 +34,7 @@
 		<url>https://github.com/osivia/cas-webapp</url>
 		<connection>scm:git:ssh://git@github.com/osivia/cas-webapp.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/osivia/cas-webapp.git</developerConnection>
-		<tag>4.4.30.1</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
