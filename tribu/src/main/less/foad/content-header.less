@@ -1,0 +1,158 @@
+//
+// Charte FOAD - Content header
+// -----------------------------------------------------
+
+
+.content-header-container {
+    .breadcrumb {
+        margin-bottom: floor(@line-height-computed / 2);
+        padding: 0;
+        
+        li {
+            &::before {
+                color: @text-color;
+            }
+        }
+        
+        a {
+            color: @text-color;
+            
+            &:hover, &:focus {
+                color: darken(@text-color, 15%);
+            }
+        }
+        
+        .active {
+            color: @text-color;
+        }
+    }
+    
+    
+    .content-header-navbar {
+        display: flex;
+        align-items: end;
+        
+        margin-bottom: 24px;
+        
+        > :first-child {
+            flex-grow: 1;
+        }
+    }
+    
+    
+    .content-title {
+        margin: 0;
+        
+        font-weight: 300;
+        line-height: 1;
+        white-space: pre-wrap;
+    }
+    
+    
+    .portlet-container {
+        margin-bottom: 24px;
+    }
+    
+    
+    .menubar {
+        @menubar-item-size: @font-size-h1;
+        
+        &, > li, > li > ul {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            
+            margin-bottom: 0;
+            padding-left: 0;
+            
+            list-style: none;
+        }
+        
+        
+        > li > ul > li {
+            > a, > .label {
+                display: block;
+                height: @menubar-item-size;
+                min-width: @menubar-item-size;
+                
+                margin-left: @line-height-computed;
+                
+                border-radius: floor(@menubar-item-size / 2);
+                line-height: @menubar-item-size;
+            }
+            
+            > a {
+                color: @white;
+                background-color: @text-color;
+                text-decoration: none;
+                text-align: center;
+                
+                &:hover, &:focus {
+                    background-color: darken(@text-color, 15%);
+                }
+
+                &.disabled {
+                    cursor: @cursor-disabled;
+                    .opacity(.65);
+
+                    &:hover, &:focus {
+                        background-color: @text-color;
+                    }
+                }
+            }
+            
+            > .label {
+                padding-top: 0;
+                padding-bottom: 0; 
+                
+                font-size: 100%;
+            }
+        }
+    }
+    
+    
+    @media (max-width: @screen-xs-max) {
+        .breadcrumb {
+            margin-bottom: floor(@line-height-computed / 2);
+        }
+        
+        .content-header-navbar {
+            flex-direction: column-reverse;
+            align-items: unset;
+            
+            body.home & {
+                flex-direction: row;
+            }
+            
+            > :first-child {
+                align-self: start;
+            }
+        }
+        
+        .content-title {
+            font-size: @font-size-h3;
+        }
+        
+        .menubar {
+            justify-content: unset;
+            
+            margin-bottom: floor(@line-height-computed / 2);
+            
+            > li:first-child {
+                flex-grow: 1;
+                
+                &.visible-xs-inline {
+                    > ul {
+                        justify-content: flex-start;
+                        
+                        > li:first-child {
+                            > a {
+                                margin-left: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

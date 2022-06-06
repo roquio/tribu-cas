@@ -1,0 +1,165 @@
+//
+// Charte FOAD - Tiles
+// -----------------------------------------------------
+
+
+.tiles {
+    margin-bottom: floor(@line-height-computed / 2);
+    
+    .panel {
+        margin-bottom: floor(@line-height-computed / 2);
+        
+        border-style: none;
+        
+        .box-shadow(@shadow: 0 1px 4px fade(@gray, 50%));
+    }
+    
+    .panel-body, .media {
+        &, > div {
+            > :last-child {
+                margin-bottom: 0; 
+            }
+        }
+    }
+    
+    .media-left {
+        padding-right: @padding-base-horizontal;
+    }
+    
+    .media-object {
+        @object-size: 60px;
+        
+        max-width: @object-size;
+        
+        &.avatar {
+            height: @object-size;
+            max-height: unset;
+            width: @object-size;
+            max-width: unset;
+        }
+    }
+    
+    h3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        margin: 0;
+        padding-bottom: floor(@line-height-computed / 2);
+        
+        font-size: @font-size-h4;
+        
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+    
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        
+        > :not(:last-child) {
+            margin-right: 5px;
+        }
+    }
+    
+    .label, .btn {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+        margin-top: floor(@line-height-computed / 2);
+        padding: 8px;
+        
+        font-size: 13px;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+    
+    .label {
+        display: inline-block;
+        
+        border-style: solid;
+        border-width: 1px;
+        border-color: transparent;
+        border-radius: @border-radius-base;
+        line-height: @line-height-base;
+        
+        &.workspace-type {
+            &.label-success {
+                background-color: @green;
+            }
+            
+            &.label-warning {
+                background-color: @pink;
+            }
+        }
+    }
+    
+    .btn-tile {
+        .button-variant(@color: @white; @background: @text-color; @border: darken(@text-color, 5%));
+    }
+    
+    .date {
+        font-weight: 500;
+    }
+    
+    .flat-color-event {
+        width: 40px;
+
+        padding-top: floor(@line-height-computed / 2);
+        padding-bottom: floor(@line-height-computed / 2);
+
+        border-radius: @border-radius-base;
+        font-weight: 900;
+        text-align: center;
+        text-transform: uppercase;
+        
+        > :last-child {
+            font-size: 12px;
+        }
+    }
+}
+
+
+.pagination {
+    margin-top: 0;
+    margin-bottom: floor(@line-height-computed / 2);
+    
+    .box-shadow(@shadow: 0 1px 4px fade(@gray, 50%));
+}
+
+
+.fragment-tile {
+    .panel, .panel-body, .title, .description {
+        display: block;
+    }
+    
+    a.panel {
+        color: @white;
+        background-color: @gray;
+        border-style: none;
+        text-decoration: none;
+        
+        .box-shadow(@shadow: 0 1px 4px fade(@gray, 50%));
+        
+        &:hover, &:focus {
+            background-color: darken(@gray, 10%);
+        }
+    }
+    
+    .title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        margin: 0;
+        padding-bottom: floor(@line-height-computed / 2);
+        
+        font-family: @headings-font-family;
+        font-size: @font-size-h4;
+        font-weight: @headings-font-weight;
+        line-height: @headings-line-height;
+    }
+    
+    .description {
+        white-space: pre-wrap;
+    }
+}

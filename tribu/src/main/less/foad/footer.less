@@ -1,0 +1,84 @@
+//
+// Charte FOAD - Footer
+// -----------------------------------------------------
+
+
+footer {
+    padding-top: @padding-xs-vertical;
+    padding-bottom: @padding-xs-vertical;
+    
+    color: @gray-700;
+    background-color: @white;
+    border-top: thin solid @gray-700;
+    
+    
+    font-size: @font-size-small;
+
+	height: 45px;    
+    
+    .footer-row {
+        display: flex;
+        line-height: 40px;
+        
+        > * {
+            flex: 1;
+            
+            &:nth-child(2) {
+                flex: 2;
+                
+                padding-left: @padding-xs-horizontal;
+                padding-right: @padding-xs-horizontal;
+            }
+        }
+    }
+    
+    
+    img {
+//        float: left;
+        height: @line-height-computed;
+        margin-top: 14px;
+        display:block;
+        
+//        margin-right: @padding-small-horizontal;
+        
+//        ~ * {
+//            overflow: hidden;
+//        }
+    }
+    
+    ul {
+        &.list-inline {
+            margin-bottom: 0;
+        }
+//        padding-left: 0;
+        
+//        
+//        list-style: none;
+//        text-align: center;
+        
+//        > li {
+//            display: inline-block;
+//            
+//            padding-left: @padding-small-horizontal;
+//            padding-right: @padding-small-horizontal;
+//        }
+    }
+    
+    a {
+        color: @gray-lighter;
+        
+        &:hover, &:focus {
+            color: @white;
+        }
+        
+        &[data-toggle=dropdown] {
+            font-weight: 700;
+            white-space: nowrap;
+        }
+    }
+    
+    
+    @media (max-width: @screen-xs-max) {
+        display: none;   
+    }
+}
