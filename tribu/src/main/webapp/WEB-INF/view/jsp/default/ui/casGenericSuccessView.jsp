@@ -5,5 +5,5 @@
 <%@ page import="java.net.URLEncoder"%>
 
 <%
-	response.sendRedirect("/portal_v2/tribu-app");
+	response.sendRedirect("/portal_v2/tribu-app/auth");
 %>
