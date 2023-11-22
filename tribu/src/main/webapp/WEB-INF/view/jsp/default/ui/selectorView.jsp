@@ -60,7 +60,7 @@
     
     
     <div class="row">
-    	<div class="col-md-6">
+    	<div class="col-md-12">
     	
 		    <!-- Authentification locale -->
 		    <div class="panel panel-default">
@@ -70,31 +70,30 @@
 		            </p>
 		            
 		            <div>
-		                <a class="btn btn-default" href="${localUrl}">
+		                <a class="btn btn-primary" href="${localUrl}">
 		                    <span><spring:message code="screen.choose.connect" /></span>
 		                </a>
 		            </div>
-		        </div>
-		    </div>    	
-		    	
-    	</div>
-		<div class="col-md-6">
-		
-    <!-- Réiniit locale -->
-    <div class="panel panel-default">
-        <div class="panel-body">
-	        	<p class="text-min-height">
-	                <span><spring:message code="screen.choose.userlocal.pwdlost" /></span>
-	            </p>
-		                    
-            
-            <div>
-                <a class="btn btn-default" href="https://foad.phm.education.gouv.fr/tribu-reset/index.php"  target="_blank">
-                    <span><spring:message code="screen.choose.reset" /></span>
-                </a>
-            </div>
-        </div>
-    </div>		
+
+
+					<div>
+
+
+					</div>
+
+					<div>
+						<a class="btn btn-default" href="${selectorForm.pwmCreateAccountUrl}"  target="_blank">
+							<span><spring:message code="screen.choose.createAccount" /></span>
+						</a>
+						<a class="btn btn-default" href="${selectorForm.pwmReinitAccountUrl}"  target="_blank">
+							<span><spring:message code="screen.choose.reiniAccount" /></span>
+						</a>
+						<a class="btn btn-default" href="${selectorForm.pwmReactivateAccountUrl}"  target="_blank">
+							<span><spring:message code="screen.choose.reactivateAccount" /></span>
+						</a>
+					</div>
+				</div>
+			</div>
 		
     	</div>
     </div>        

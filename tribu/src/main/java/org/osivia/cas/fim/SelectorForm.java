@@ -21,6 +21,14 @@ public class SelectorForm {
 	private String acaUrl;
 	
 	private String supUrl;
+
+	private String pwmCreateAccountUrl;
+
+	private String pwmReinitAccountUrl;
+
+	private String pwmReactivateAccountUrl;
+
+
 	
 	public String getBaseAcaUrl() {
 		return baseAcaUrl;
@@ -55,6 +63,31 @@ public class SelectorForm {
 	public void setSupUrl(String supUrl) {
 		this.supUrl = supUrl;
 	}
-	
-	
+
+
+	public String getPwmCreateAccountUrl() {
+		return pwmCreateAccountUrl;
+	}
+
+	@Value(value="${pwm.createAccountUrl:#}")
+	public void setPwmCreateAccountUrl(String pwmCreateAccountUrl) {
+		this.pwmCreateAccountUrl = pwmCreateAccountUrl;
+	}
+
+	public String getPwmReinitAccountUrl() {
+		return pwmReinitAccountUrl;
+	}
+
+	@Value(value="${pwm.reinitAccountUrl:#}")
+	public void setPwmReinitAccountUrl(String pwmReinitAccountUrl) {
+		this.pwmReinitAccountUrl = pwmReinitAccountUrl;
+	}
+
+	public String getPwmReactivateAccountUrl() {
+		return pwmReactivateAccountUrl;
+	}
+	@Value(value="${pwm.reactivateAccountUrl:#}")
+	public void setPwmReactivateAccountUrl(String pwmReactivateAccountUrl) {
+		this.pwmReactivateAccountUrl = pwmReactivateAccountUrl;
+	}
 }
