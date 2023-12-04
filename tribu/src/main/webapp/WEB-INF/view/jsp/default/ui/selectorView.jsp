@@ -66,7 +66,7 @@
 		    <div class="panel panel-default">
 		        <div class="panel-body">
 		        	<p class="text-min-height">
-		                <span><spring:message code="screen.choose.userlocal" /></span>
+		                <strong><spring:message code="screen.choose.userlocal" /></strong>
 		            </p>
 		            
 		            <div>
