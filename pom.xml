@@ -14,7 +14,7 @@
 		<module>tribin</module>
 	</modules>
 
-
+<!--
 	<repositories>
 		<repository>
 			<id>sonatype-releases</id>
@@ -29,7 +29,7 @@
 			<url>https://build.shibboleth.net/nexus/content/repositories/releases</url>
 		</repository>
 	</repositories>
-
+-->
 	<scm>
 		<url>https://github.com/osivia/cas-webapp</url>
 		<connection>scm:git:ssh://git@github.com/osivia/cas-webapp.git</connection>
