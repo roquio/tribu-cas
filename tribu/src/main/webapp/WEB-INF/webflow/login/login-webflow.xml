@@ -135,6 +135,11 @@
             <evaluate expression="samlMetadataUIParserAction" />
             -->
         </on-entry>
+        <on-render>
+            <evaluate expression="fimRewriteUrlService.getUrls(externalContext.requestParameterMap['service'])"
+                      result="viewScope.selectorForm" ></evaluate>
+
+        </on-render>
         <transition on="submit" bind="true" validate="true" to="realSubmit"/>
     </view-state>
 
