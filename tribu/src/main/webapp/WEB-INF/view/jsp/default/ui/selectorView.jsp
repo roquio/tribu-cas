@@ -26,13 +26,11 @@
                         <p class="logo">
                             <span>Minist&egrave;re</span>
                             <br>
-                            <span>de l&rsquo;&Eacute;ducation Nationale,</span>
+                            <span>de l&rsquo;&Eacute;ducation</span>
                             <br>
-                            <span>de la Jeunesse, des Sports</span>
+                            <span>Nationale</span>
                             <br>
-                            <span>et des Jeux Olympiques</span>
-                            <br>
-                            <span>et Paralympiques</span>
+                            <span>et de la Jeunesse</span>
                         </p>
                     </div>
 
