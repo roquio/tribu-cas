@@ -1,0 +1,139 @@
+.fancytree {
+  user-select: none;
+
+  &.fixed-height {
+    > .fancytree-container {
+      height: 20 * map-get($spacers, 3);
+      overflow: auto;
+    }
+  }
+  
+  &.ui-fancytree-disabled {
+        opacity: 0.65;
+        
+     &, .fancytree-node {
+       cursor: not-allowed;
+       pointer-event: none;
+     }
+  }
+
+  ul {
+    padding-left: 0;
+
+    list-style: none;
+
+    ul {
+      padding-left: map-get($spacers, 4);
+    }
+  }
+}
+
+.fancytree-container {
+  outline: none;
+}
+
+.fancytree-node {
+  display: flex;
+  align-items: center;
+  gap: map-get($spacers, 1);
+
+  padding: .1rem map-get($spacers, 1);
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--grey-lightest);
+  }
+
+  &.current {
+    font-weight: $font-weight-bold;
+  }
+
+  &.not-allowed {
+    > :not(.fancytree-expander) {
+      cursor: not-allowed;
+    }
+  }
+  
+   &.fancytree-active {
+    .fancytree-selector & {
+      color: $white;
+      background-color: $primary;
+
+      &:hover {
+        background-color: darken($primary, 5%);
+      }
+    }
+  }
+  
+}
+
+.fancytree-hide {
+  display: none;
+}
+
+.fancytree-match {
+  font-weight: $font-weight-bold;
+}
+
+.fancytree-submatch:not(.fancytree-match) {
+  opacity: .65;
+}
+
+.fancytree-drop-accept {
+  cursor: move;
+}
+
+.fancytree-drop-reject {
+  cursor: not-allowed;
+}
+
+.fancytree-statusnode-error {
+  color: var(--error-strong);
+}
+
+.fancytree-expander {
+  width: 1.25rem;
+
+  color: var(--grey-light);
+
+  transform: rotate(-90deg);
+
+  @include transition();
+
+  &:hover {
+    color: var(--blue-france-strong);
+  }
+
+  &.glyphicons {
+    &::before {
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+  }
+
+  .fancytree-node:not(.fancytree-has-children) & {
+    visibility: hidden;
+  }
+
+  .fancytree-expanded > & {
+    color: inherit;
+
+    transform: rotate(0);
+  }
+}
+
+.fancytree-icon {
+  width: map-get($spacers, 4);
+
+  &.glyphicons {
+    &::before {
+      height: map-get($spacers, 4);
+      width: map-get($spacers, 4);
+    }
+  }
+}
+
+.fancytree-title {
+  @include text-truncate();
+}

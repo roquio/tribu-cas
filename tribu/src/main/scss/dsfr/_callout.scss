@@ -1,0 +1,58 @@
+.callout {
+  position: relative;
+
+  margin-bottom: map-get($spacers, 4);
+  padding: map-get($spacers, 4);
+
+  background-color: var(--grey-lighter);
+
+  box-shadow: inset map-get($spacers, 1) 0 0 0 var(--blue-france-main);
+
+  $url: glyphicons-url("basic", 196, "circle-empty-info");
+  @include glyphicons-mask($url);
+
+  @include media-breakpoint-up(md) {
+    padding: 2rem map-get($spacers, 5);
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    height: 1.5rem;
+    width: 1.5rem;
+
+    margin-top: -(map-get($spacers, 2));
+    margin-bottom: map-get($spacers, 2);
+
+    color: var(--grey-black);
+    background-color: currentColor;
+
+    @include media-breakpoint-up(md) {
+      margin-top: -(map-get($spacers, 3));
+      margin-bottom: map-get($spacers, 3);
+      margin-left: -2rem;
+    }
+  }
+}
+
+
+.callout-title {
+  margin-bottom: map-get($spacers, 2);
+
+  color: var(--grey-black);
+  font-size: $h4-font-size;
+  line-height: $line-height-computed-lg;
+
+  @include media-breakpoint-up(md) {
+    font-size: $h3-font-size;
+    line-height: $line-height-computed-xl;
+  }
+}
+
+
+.callout-text {
+  margin-bottom: 0;
+
+  font-size: $font-size-lg;
+  line-height: $line-height-computed-lg;
+}

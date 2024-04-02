@@ -1,0 +1,82 @@
+:root, [data-bs-theme="light"] {
+  --shadow-color: rgba(0,0,18,0.16);
+  --raised-shadow: 0 1px 3px var(--shadow-color);
+
+  @each $color, $values in $blue-france-light-colors {
+    --blue-france-#{$color}: #{nth($values, 1)};
+    --blue-france-#{$color}-hover: #{nth($values, 2)};
+    --blue-france-#{$color}-active: #{nth($values, 3)};
+  }
+
+  @each $color, $values in $grey-light-colors {
+    --grey-#{$color}: #{nth($values, 1)};
+    --grey-#{$color}-hover: #{nth($values, 2)};
+    --grey-#{$color}-active: #{nth($values, 3)};
+  }
+
+  @each $color, $values in $info-light-colors {
+    --info-#{$color}: #{nth($values, 1)};
+    --info-#{$color}-hover: #{nth($values, 2)};
+    --info-#{$color}-active: #{nth($values, 3)};
+  }
+
+  @each $color, $values in $success-light-colors {
+    --success-#{$color}: #{nth($values, 1)};
+    --success-#{$color}-hover: #{nth($values, 2)};
+    --success-#{$color}-active: #{nth($values, 3)};
+  }
+
+  @each $color, $values in $warning-light-colors {
+    --warning-#{$color}: #{nth($values, 1)};
+    --warning-#{$color}-hover: #{nth($values, 2)};
+    --warning-#{$color}-active: #{nth($values, 3)};
+  }
+
+  @each $color, $values in $error-light-colors {
+    --error-#{$color}: #{nth($values, 1)};
+    --error-#{$color}-hover: #{nth($values, 2)};
+    --error-#{$color}-active: #{nth($values, 3)};
+  }
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark, true) {
+    --shadow-color: rgba(0,0,18,0.32);
+
+    @each $color, $values in $blue-france-dark-colors {
+      --blue-france-#{$color}: #{nth($values, 1)};
+      --blue-france-#{$color}-hover: #{nth($values, 2)};
+      --blue-france-#{$color}-active: #{nth($values, 3)};
+    }
+
+    @each $color, $values in $grey-dark-colors {
+      --grey-#{$color}: #{nth($values, 1)};
+      --grey-#{$color}-hover: #{nth($values, 2)};
+      --grey-#{$color}-active: #{nth($values, 3)};
+    }
+
+    @each $color, $values in $info-dark-colors {
+      --info-#{$color}: #{nth($values, 1)};
+      --info-#{$color}-hover: #{nth($values, 2)};
+      --info-#{$color}-active: #{nth($values, 3)};
+    }
+
+    @each $color, $values in $success-dark-colors {
+      --success-#{$color}: #{nth($values, 1)};
+      --success-#{$color}-hover: #{nth($values, 2)};
+      --success-#{$color}-active: #{nth($values, 3)};
+    }
+
+    @each $color, $values in $warning-dark-colors {
+      --warning-#{$color}: #{nth($values, 1)};
+      --warning-#{$color}-hover: #{nth($values, 2)};
+      --warning-#{$color}-active: #{nth($values, 3)};
+    }
+
+    @each $color, $values in $error-dark-colors {
+      --error-#{$color}: #{nth($values, 1)};
+      --error-#{$color}-hover: #{nth($values, 2)};
+      --error-#{$color}-active: #{nth($values, 3)};
+    }
+  }
+}

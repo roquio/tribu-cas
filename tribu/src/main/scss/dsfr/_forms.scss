@@ -1,0 +1,117 @@
+.form-control {
+  &, &:focus {
+    outline-color: $outline-color !important;
+    outline-offset: $outline-size !important;
+    outline-width: $outline-size !important;
+
+    color: var(--grey-black);
+    background-color: var(--grey-lighter);
+    border-style: none;
+    border-top-left-radius: map-get($spacers, 1);
+    border-top-right-radius: map-get($spacers, 1);
+
+    box-shadow: inset 0 -2px 0 0 var(--grey-strongest);
+  }
+
+  &.is-invalid {
+    &, &:focus {
+      box-shadow: inset 0 -2px 0 0 var(--error-strong);
+    }
+  }
+
+  &:focus, &:focus-visible {
+    outline-style: solid !important;
+  }
+
+  &:disabled, &.disabled, fieldset:disabled & {
+    color: var(--grey-soft);
+
+    box-shadow: inset 0 -2px 0 0 var(--grey-light);
+
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: var(--grey-strong);
+    font-style: italic;
+  }
+}
+
+
+.form-check-input {
+  height: map-get($spacers, 4);
+  width: map-get($spacers, 4);
+
+  margin-top: 0;
+
+  border-style: none;
+  border-radius: map-get($spacers, 1);
+  cursor: pointer;
+
+  &, &:focus {
+    outline-color: $outline-color !important;
+    outline-offset: $outline-size !important;
+    outline-width: $outline-size !important;
+
+    box-shadow: inset 0 0 0 1px var(--grey-black);
+  }
+
+  &:focus-visible {
+    outline-style: solid !important;
+  }
+
+  &:checked {
+    background-color: var(--blue-france-strong);
+  }
+
+  &:disabled, &.disabled, fieldset:disabled & {
+    cursor: not-allowed;
+    opacity: 1;
+    pointer-events: unset;
+
+    &, &:focus {
+      box-shadow: inset 0 0 0 1px var(--grey-light);
+    }
+
+    ~ .form-check-label {
+      color: var(--grey-soft);
+      cursor: not-allowed;
+      opacity: 1;
+    }
+  }
+}
+
+.form-check-label {
+  color: var(--grey-black);
+}
+
+.form-check {
+  position: relative;
+
+  padding-left: 0;
+
+  .form-check-input {
+    position: absolute;
+    float: none;
+
+    margin-left: 0;
+  }
+
+  .form-check-label {
+    margin-left: map-get($spacers, 4) + map-get($spacers, 2);
+
+    cursor: pointer;
+  }
+}
+
+
+.input-group {
+  gap: map-get($spacers, 2);
+}
+
+
+.form-label {
+  &.is-invalid {
+    color: var(--error-strong);
+  }
+}

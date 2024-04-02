@@ -1,0 +1,23 @@
+.carousel-viewer-bootstrap-5 {
+  .carousel {
+    .carousel-indicators {
+      [data-bs-target] {
+        background-color: var(--grey-white) !important;
+      }
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+      &, &:hover, &:focus {
+        color: var(--grey-white);
+      }
+    }
+
+    .carousel-control-next {
+      &, &:hover, &:focus {
+        @include media-breakpoint-up(lg) {
+          color: var(--grey-black);
+        }
+      }
+    }
+  }
+}

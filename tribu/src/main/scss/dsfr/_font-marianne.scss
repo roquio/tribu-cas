@@ -1,0 +1,26 @@
+$font-folder: "../font/Marianne/";
+
+$weights: (
+  $font-weight-lighter: "Thin",
+  $font-weight-light: "Light",
+  $font-weight-normal: "Regular",
+  $font-weight-semibold: "Medium",
+  $font-weight-bold: "Bold",
+  $font-weight-bolder: "ExtraBold"
+);
+$styles: (
+  normal: "",
+  italic: "_Italic"
+);
+
+@each $weightValue, $weightName in $weights {
+  @each $styleValue, $styleName in $styles {
+    @font-face {
+      font-family: "Marianne";
+      font-weight: $weightValue;
+      font-style: $styleValue;
+      font-stretch: normal;
+      src: url($font-folder + "Marianne-#{$weightName}#{$styleName}.woff2") format("woff2"), url($font-folder + "Marianne-#{$weightName}#{$styleName}.woff") format("woff");
+    }
+  }
+}

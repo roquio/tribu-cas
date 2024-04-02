@@ -1,0 +1,37 @@
+$dot-size: 10px;
+
+.tribu-dots {
+  display: flex;
+  gap: $dot-size;
+}
+
+.tribu-dot {
+  display: block;
+  height: $dot-size;
+  width: $dot-size;
+  border-radius: 50%;
+}
+
+.tribu-dot-blue {
+  background-color: #0098ff;
+}
+
+.tribu-dot-green {
+  background-color: #74cc00;
+}
+
+.tribu-dot-yellow {
+  background-color: #f8af18;
+}
+
+.tribu-dot-orange {
+  background-color: #f47a00;
+}
+
+.tribu-dot-pink {
+  background-color: #ff3868;
+}
+
+.tribu-dot-violet {
+  background-color: #c645ff;
+}

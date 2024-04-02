@@ -1,0 +1,101 @@
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "marianne": $marianne,
+  )
+);
+
+
+$blue-france-light-colors: (
+  "strong": $blue-france-sun-113 $blue-france-sun-113-hover $blue-france-sun-113-active,
+  "softest": $blue-france-850 $blue-france-850-hover $blue-france-850-active,
+  "light": $blue-france-925 $blue-france-925-hover $blue-france-925-active,
+  "lighter": $blue-france-950 $blue-france-950-hover $blue-france-950-active,
+  "lightest": $blue-france-975 $blue-france-975-hover $blue-france-975-active,
+  "main": $blue-france-main-525 $blue-france-main-525-hover $blue-france-main-525-active,
+  "inverted": $blue-france-975 $blue-france-975-hover $blue-france-975-active
+);
+
+$blue-france-dark-colors: (
+  "strong": $blue-france-625 $blue-france-625-hover $blue-france-625-active,
+  "softest": $blue-france-200 $blue-france-200-hover $blue-france-200-active,
+  "light": $blue-france-125 $blue-france-125-hover $blue-france-125-active,
+  "lighter": $blue-france-100 $blue-france-100-hover $blue-france-100-active,
+  "lightest": $blue-france-75 $blue-france-75-hover $blue-france-75-active,
+  "main": $blue-france-main-525 $blue-france-main-525-hover $blue-france-main-525-active,
+  "inverted": $blue-france-sun-113 $blue-france-sun-113-hover $blue-france-sun-113-active
+);
+
+$grey-light-colors: (
+  "black": $grey-50 $grey-50-hover $grey-50-active,
+  "darkest": $grey-75 $grey-75-hover $grey-75-active,
+  "dark": $grey-125 $grey-125-hover $grey-125-active,
+  "strongest": $grey-200 $grey-200-hover $grey-200-active,
+  "strong": $grey-425 $grey-425-hover $grey-425-active,
+  "soft": $grey-625 $grey-625-hover $grey-625-active,
+  "softest": $grey-850 $grey-850-hover $grey-850-active,
+  "light": $grey-925 $grey-925-hover $grey-925-active,
+  "lighter": $grey-950 $grey-950-hover $grey-950-active,
+  "lightest": $grey-975 $grey-975-hover $grey-975-active,
+  "white": $grey-1000 $grey-1000-hover $grey-1000-active,
+  "elevated": $grey-1000 $grey-1000-hover $grey-1000-active,
+  "main": $grey-main-525 $grey-main-525-hover $grey-main-525-active,
+  "default" : $grey-900 $grey-900-hover $grey-900-active
+);
+
+$grey-dark-colors: (
+  "black": $grey-1000 $grey-1000-hover $grey-1000-active,
+  "darkest": $grey-975 $grey-975-hover $grey-975-active,
+  "dark": $grey-925 $grey-925-hover $grey-925-active,
+  "strongest": $grey-850 $grey-850-hover $grey-850-active,
+  "strong": $grey-625 $grey-625-hover $grey-625-active,
+  "soft": $grey-425 $grey-425-hover $grey-425-active,
+  "softest": $grey-200 $grey-200-hover $grey-200-active,
+  "light": $grey-125 $grey-125-hover $grey-125-active,
+  "lighter": $grey-100 $grey-100-hover $grey-100-active,
+  "lightest": $grey-75 $grey-75-hover $grey-75-active,
+  "white": $grey-50 $grey-50-hover $grey-50-active,
+  "elevated": $grey-75 $grey-75-hover $grey-75-active,
+  "main": $grey-main-525 $grey-main-525-hover $grey-main-525-active,
+  "default" : $grey-175 $grey-175-hover $grey-175-active
+);
+
+$info-light-colors: (
+  "strong": $info-425 $info-425-hover $info-425-active,
+  "lighter": $info-950 $info-950-hover $info-950-active
+);
+
+$info-dark-colors: (
+  "strong": $info-625 $info-625-hover $info-625-active,
+  "lighter": $info-100 $info-100-hover $info-100-active
+);
+
+$success-light-colors: (
+  "strong": $success-425 $success-425-hover $success-425-active,
+  "lighter": $success-950 $success-950-hover $success-950-active
+);
+
+$success-dark-colors: (
+  "strong": $success-625 $success-625-hover $success-625-active,
+  "lighter": $success-100 $success-100-hover $success-100-active
+);
+
+$warning-light-colors: (
+  "strong": $warning-425 $warning-425-hover $warning-425-active,
+  "lighter": $warning-950 $warning-950-hover $warning-950-active
+);
+
+$warning-dark-colors: (
+  "strong": $warning-625 $warning-625-hover $warning-625-active,
+  "lighter": $warning-100 $warning-100-hover $warning-100-active
+);
+
+$error-light-colors: (
+  "strong": $error-425 $error-425-hover $error-425-active,
+  "lighter": $error-950 $error-950-hover $error-950-active
+);
+
+$error-dark-colors: (
+  "strong": $error-625 $error-625-hover $error-625-active,
+  "lighter": $error-100 $error-100-hover $error-100-active
+);

@@ -1,0 +1,42 @@
+$contextual-color: (
+  "primary": "blue-france-strong",
+  "secondary": "grey-strong",
+  "success": "success-strong",
+  "info": "info-strong",
+  "warning": "warning-strong",
+  "danger": "error-strong",
+  "light": "grey-light",
+  "dark": "grey-dark",
+);
+
+@each $state, $values in $contextual-color {
+  $color: nth($values, 1);
+
+  .text-#{$state} {
+    color: var(--#{$color}) !important;
+  }
+
+  .bg-#{$state} {
+    background-color: var(--#{$color}) !important;
+  }
+
+  .text-bg-#{$state} {
+    color: var(--grey-white) !important;
+    background-color: var(--#{$color}) !important;
+
+    .btn-close {
+      &, &:hover, &:focus {
+        color: var(--grey-white);
+        opacity: 1;
+      }
+
+      &:hover {
+        background-color: var(--#{$color}-hover);
+      }
+    }
+  }
+
+  .border-#{$state} {
+    border-color: var(--#{$color}) !important;
+  }
+}

@@ -1,0 +1,58 @@
+@use "sass:list";
+@import "../glyphicons-2.4/mixins";
+
+.alert {
+  position: relative;
+
+  padding: 1rem 2.5rem .75rem 3.5rem;
+
+  color: var(--grey-strongest);
+  background-color: var(--grey-white);
+  border-style: none;
+
+  box-shadow: inset 0 0 0 1px var(--grey-strongest), inset 2.5rem 0 0 0 var(--grey-strongest);
+
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    height: 1.5rem;
+    width: 1.5rem;
+
+    margin: 1rem .5rem;
+
+    color: var(--grey-white);
+    background-color: currentColor;
+  }
+}
+
+
+$alert-colors: (
+  "info": 846 "square-info",
+  "success": 634 "circle-check",
+  "warning": 638 "triangle-alert",
+  "danger": 640 "octagon-remove" "error"
+);
+
+@each $state, $values in $alert-colors {
+  $color: $state;
+  @if list.length($values) >= 3 {
+    $color: nth($values, 3);
+  }
+
+  .alert-#{$state} {
+    box-shadow: inset 0 0 0 1px var(--#{$color}-strong), inset 2.5rem 0 0 0 var(--#{$color}-strong);
+
+    $url: glyphicons-url("basic", #{nth($values, 1)}, #{nth($values, 2)});
+    @include glyphicons-mask($url);
+
+    &::before {
+      content: "";
+    }
+  }
+}

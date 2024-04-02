@@ -1,0 +1,65 @@
+@use "sass:math";
+
+[href] {
+  $underline-width: math.div(1em, 16);
+
+  &:not(.btn):not(.link) {
+    outline-color: $outline-color;
+    outline-offset: $outline-size;
+    outline-width: $outline-size;
+
+    background-image: linear-gradient(0deg, currentColor, currentColor), linear-gradient(0deg, currentColor, currentColor);
+    background-position: 0 100%, 0 calc(100% - $underline-width);
+    background-repeat: no-repeat, no-repeat;
+    background-size: 0 (2 * $underline-width), 100% $underline-width;
+
+    transition: background-size 0s;
+
+    //@include gradient-directional($start-color: currentColor, $end-color: currentColor, $deg: 0deg);
+
+    &, &:hover, &:focus {
+      color: inherit;
+    }
+
+    &:hover {
+      //background-position-y: 100%;
+      background-size: 100% (2 * $underline-width), 100% $underline-width;
+    }
+
+    &:focus-visible {
+      outline-style: solid;
+    }
+
+    &.text-decoration-none {
+      background-size: 0;
+    }
+
+    &[target=_blank] {
+      &:not(.stretched-link) {
+        $url: glyphicons-url("halflings", 75, "square-new-window");
+
+        &::after {
+          content: "";
+          display: inline-block;
+          position: relative;
+          top: .1em;
+          vertical-align: baseline;
+
+          height: 1em;
+          width: 1em;
+
+          mask-position: center;
+          -webkit-mask-position: center;
+          mask-repeat: no-repeat;
+          -webkit-mask-repeat: no-repeat;
+          mask-size: contain;
+          -webkit-mask-size: contain;
+          mask-image: url("#{$url}");
+          -webkit-mask-image: url("#{$url}");
+
+          background-color: currentColor;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.safran-desktop-item {
+  .rounded-start {
+    border-radius: 0 !important;
+  }
+
+  .card-body {
+    height: 2 * map-get($spacers, 1) + 2 * $line-height-computed-sm + 2 * $line-height-computed-base !important;
+  }
+
+  .card-title {
+    font-size: $font-size-base;
+  }
+
+  .text-truncate {
+    height: $line-height-computed-sm;
+  }
+
+  &:hover {
+    &, .card-body {
+      background-color: var(--grey-white-hover);
+    }
+
+    .safran-desktop-image {
+      &::after, img {
+        filter: brightness(90%);
+      }
+    }
+  }
+}

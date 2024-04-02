@@ -1,0 +1,25 @@
+.badge {
+  border-radius: map-get($spacers, 1);
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+
+
+$badge-colors: "info", "success", "warning", "danger";
+
+@each $state in $badge-colors {
+  $color: $state;
+  @if $state == "danger" {
+    $color: "error";
+  }
+
+  .badge {
+    &.text-#{$state}, &.text-bg-#{$state} {
+      color: var(--#{$color}-strong) !important;
+    }
+
+    &.bg-#{$state}, &.text-bg-#{$state} {
+      background-color: var(--#{$color}-lighter) !important;
+    }
+  }
+}

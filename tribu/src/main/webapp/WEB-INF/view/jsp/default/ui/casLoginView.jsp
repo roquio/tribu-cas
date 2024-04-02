@@ -1,114 +1,98 @@
-<jsp:directive.include file="includes/top.jsp" />
+<jsp:directive.include file="includes/top.jsp"/>
+
 
 <c:if test="${not pageContext.request.secure}">
-    <div id="msg" class="errors">
-        <h2><spring:message code="screen.nonsecure.title" /></h2>
-        <p><spring:message code="screen.nonsecure.message" /></p>
+    <div id="msg" class="alert alert-danger">
+        <h2><spring:message code="screen.nonsecure.title"/></h2>
+        <p><spring:message code="screen.nonsecure.message"/></p>
     </div>
 </c:if>
 
-<div id="cookiesDisabled" class="errors" style="display:none;">
-    <h2><spring:message code="screen.cookies.disabled.title" /></h2>
-    <p><spring:message code="screen.cookies.disabled.message" /></p>
+<div id="cookiesDisabled" class="alert alert-danger" style="display:none;">
+    <h2><spring:message code="screen.cookies.disabled.title"/></h2>
+    <p><spring:message code="screen.cookies.disabled.message"/></p>
 </div>
 
 
-<c:out value="${portalLinks.registerUrl}"></c:out>
+<c:out value="${portalLinks.registerUrl}"/>
 
 
-<!-- Content header -->
-<div class="content-header-container">
-    <div class="content-header-navbar">
-        <h2 class="content-title"><spring:message code="screen.welcome.instructions" /></h2>
-    </div>
-</div>
+<h2><spring:message code="screen.welcome.instructions"/></h2>
 
 
-<div class="tiles">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <form:form method="post" id="fm1" cssClass="form-horizontal" commandName="${commandName}" htmlEscape="true" role="form">
-                <form:errors path="*" cssClass="alert alert-danger" id="status" element="div" />
-                
-                <div class="clearfix" id="login">
-                    <spring:bind path="username">
-                        <div class="form-group required ${status.error ? 'has-error has-feedback' : ''}">
-                            <form:label path="username" cssClass="col-sm-3 col-lg-2 control-label"><spring:message code="screen.welcome.label.netid" /></form:label>
-                            
-                            <div class="col-sm-9 col-lg-10">
-                                <c:if test="${not empty sessionScope.openIdLocalId}">
-                                    <strong>${sessionScope.openIdLocalId}</strong>
-                                    <input type="hidden" id="username" name="username" value="${sessionScope.openIdLocalId}" />
-                                </c:if>
-                    
-                                <c:if test="${empty sessionScope.openIdLocalId}">
-                                    <spring:message code="screen.welcome.label.netid.accesskey" var="userNameAccessKey" />
-                                    <form:input cssClass="form-control" id="username" size="20" tabindex="1" accesskey="${userNameAccessKey}" path="username" autocomplete="false" htmlEscape="true" />
-                                </c:if>
-                                
-                                <form:errors path="username" cssClass="help-block" />
-                            </div>
-                        </div>
-                    </spring:bind>
-                    
-                    <spring:bind path="password">
-                        <div class="form-group required ${status.error ? 'has-error has-feedback' : ''}">
-                            <form:label path="password" cssClass="col-sm-3 col-lg-2 control-label"><spring:message code="screen.welcome.label.password" /></form:label>
-                            <%--
-                            NOTE: Certain browsers will offer the option of caching passwords for a user.  There is a non-standard attribute,
-                            "autocomplete" that when set to "off" will tell certain browsers not to prompt to cache credentials.  For more
-                            information, see the following web page:
-                            http://www.geocities.com/technofundo/tech/web/ie_autocomplete.html
-                            --%>
-                            <div class="col-sm-9 col-lg-10">
-                                <spring:message code="screen.welcome.label.password.accesskey" var="passwordAccessKey" />
-                                <form:password cssClass="form-control" id="password" size="20" tabindex="2" path="password" accesskey="${passwordAccessKey}" htmlEscape="true" autocomplete="off" />
-                                <form:errors path="password" cssClass="help-block" />
-                            </div>
-                        </div>
-                    </spring:bind>
-                    
-                    <div class="form-group">
-                        <input type="hidden" name="lt" value="${loginTicket}" />
-                        <input type="hidden" name="execution" value="${flowExecutionKey}" />
-                        <input type="hidden" name="_eventId" value="submit" />
-                        
-                        <div class="col-sm-offset-3 col-sm-9 col-lg-offset-2 col-lg-10">
-                            <input class="btn btn-primary" name="submit" accesskey="l" value="<spring:message code="screen.welcome.button.login" />" tabindex="4" type="submit" />
-                            <input class="btn btn-default" name="reset" accesskey="c" value="<spring:message code="screen.welcome.button.clear" />" tabindex="5" type="reset" />
-                        </div>
-                    </div>
+<div class="card mb-3">
+    <div class="card-body">
+        <form:form method="post" id="fm1" commandName="${commandName}" htmlEscape="true" role="form">
+            <input type="hidden" name="lt" value="${loginTicket}"/>
+            <input type="hidden" name="execution" value="${flowExecutionKey}"/>
+            <input type="hidden" name="_eventId" value="submit"/>
 
-                    <div>
+            <spring:bind path="username">
+                <div class="mb-3">
+                    <form:label path="username" cssClass="form-label" cssErrorClass="form-label is-invalid">
+                        <span><spring:message code="screen.welcome.label.netid"/></span>
+                    </form:label>
+                    <c:choose>
+                        <c:when test="${empty sessionScope.openIdLocalId}">
+                            <spring:message code="screen.welcome.label.netid.accesskey" var="userNameAccessKey"/>
+                            <form:input path="username" cssClass="form-control" cssErrorClass="form-control is-invalid"
+                                        tabindex="1" accesskey="${userNameAccessKey}" autocomplete="false"
+                                        htmlEscape="true"/>
+                        </c:when>
 
-
-                    </div>
-
-                    <div class="col-sm-offset-3 col-sm-9 col-lg-offset-2 col-lg-10">
-                        <a class="btn btn-link" href="${selectorForm.pwmReinitAccountUrl}"  target="_blank">
-                            <span><spring:message code="screen.choose.reiniAccount" /></span>
-                        </a>
-                        <a class="btn btn-link" href="${selectorForm.pwmCreateAccountUrl}"  target="_blank">
-                            <span><spring:message code="screen.choose.createAccount" /></span>
-                        </a>
-                        <a class="btn btn-link" href="${selectorForm.pwmReactivateAccountUrl}"  target="_blank">
-                            <span><spring:message code="screen.choose.reactivateAccount" /></span>
-                        </a>
-                    </div>
+                        <c:otherwise>
+                            <div class="form-control-plaintext">${sessionScope.openIdLocalId}</div>
+                            <input type="hidden" id="username" name="username" value="${sessionScope.openIdLocalId}"/>
+                        </c:otherwise>
+                    </c:choose>
+                    <form:errors path="username" cssClass="invalid-feedback"/>
                 </div>
-            </form:form>
+            </spring:bind>
 
-        </div>
-    </div>
+            <spring:bind path="password">
+                <div class="mb-3">
+                    <form:label path="password" cssClass="form-label" cssErrorClass="form-label is-invalid">
+                        <span><spring:message code="screen.welcome.label.password"/></span>
+                    </form:label>
+                    <spring:message code="screen.welcome.label.password.accesskey" var="passwordAccessKey"/>
+                    <form:password path="password" cssClass="form-control" cssErrorClass="form-control is-invalid" tabindex="2" accesskey="${passwordAccessKey}"
+                                   htmlEscape="true" autocomplete="off"/>
+                    <form:errors path="password" cssClass="invalid-feedback"/>
+                </div>
+            </spring:bind>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <a class="btn btn-default" href="javascript:history.back()">
-                <span><spring:message code="screen.welcome.button.back" /></span>
-            </a>
-        </div>
+            <div class="d-flex gap-3 mb-3">
+                <button type="submit" name="submit" class="btn btn-primary" accesskey="l" tabindex="4">
+                    <span><spring:message code="screen.welcome.button.login"/></span>
+                </button>
+                <button type="reset" name="reset" class="btn btn-secondary" accesskey="c" tabindex="5">
+                    <span><spring:message code="screen.welcome.button.clear" /></span>
+                </button>
+            </div>
+
+            <div class="d-flex gap-3">
+                <a class="link" href="${selectorForm.pwmReinitAccountUrl}" target="_blank">
+                    <span><spring:message code="screen.choose.reiniAccount"/></span>
+                </a>
+
+                <a class="link" href="${selectorForm.pwmCreateAccountUrl}" target="_blank">
+                    <span><spring:message code="screen.choose.createAccount"/></span>
+                </a>
+
+                <a class="link" href="${selectorForm.pwmReactivateAccountUrl}" target="_blank">
+                    <span><spring:message code="screen.choose.reactivateAccount"/></span>
+                </a>
+            </div>
+        </form:form>
     </div>
 </div>
 
 
-<jsp:directive.include file="includes/bottom.jsp" />
+<div>
+    <a class="btn btn-secondary" href="javascript:history.back()">
+        <span><spring:message code="screen.welcome.button.back"/></span>
+    </a>
+</div>
+
+
+<jsp:directive.include file="includes/bottom.jsp"/>

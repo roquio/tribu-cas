@@ -1,0 +1,414 @@
+// https://www.systeme-de-design.gouv.fr/elements-d-interface/fondamentaux-identite-de-l-etat/couleurs-palette
+// Bleu France (thème clair)
+$blue-france-main-525: #6a6af4;
+$blue-france-main-525-hover: #9898f8;
+$blue-france-main-525-active: #aeaef9;
+$blue-france-sun-113: #000091;
+$blue-france-sun-113-hover: #1212ff;
+$blue-france-sun-113-active: #2323ff;
+$blue-france-975: #f5f5fe;
+$blue-france-975-hover: #dcdcfc;
+$blue-france-975-active: #cbcbfa;
+$blue-france-950: #ececfe;
+$blue-france-950-hover: #cecefc;
+$blue-france-950-active: #bbbbfc;
+$blue-france-925: #e3e3fd;
+$blue-france-925-hover: #c1c1fb;
+$blue-france-925-active: #adadf9;
+$blue-france-850: #cacafb;
+$blue-france-850-hover: #a1a1f8;
+$blue-france-850-active: #8b8bf6;
+// Bleu France (thème sombre)
+$blue-france-625: #8585f6;
+$blue-france-625-hover: #b1b1f9;
+$blue-france-625-active: #c6c6fb;
+$blue-france-200: #313178;
+$blue-france-200-hover: #5757ad;
+$blue-france-200-active: #6c6cbb;
+$blue-france-125: #272747;
+$blue-france-125-hover: #4a4a7d;
+$blue-france-125-active: #5e5e90;
+$blue-france-100: #21213f;
+$blue-france-100-hover: #424275;
+$blue-france-100-active: #56568c;
+$blue-france-75: #1b1b35;
+$blue-france-75-hover: #3a3a68;
+$blue-france-75-active: #4d4d83;
+// Rouge Marianne (thème clair)
+$red-marianne-main-472: #e1000f;
+$red-marianne-main-472-hover: #ff292f;
+$red-marianne-main-472-active: #ff4347;
+$red-marianne-425: #c9191e;
+$red-marianne-425-hover: #f93f42;
+$red-marianne-425-active: #f95a5c;
+$red-marianne-975: #fef4f4;
+$red-marianne-975-hover: #fcd7d7;
+$red-marianne-975-active: #fac4c4;
+$red-marianne-950: #fee9e9;
+$red-marianne-950-hover: #fdc5c5;
+$red-marianne-950-active: #fcafaf;
+$red-marianne-925: #fddede;
+$red-marianne-925-hover: #fbb6b6;
+$red-marianne-925-active: #fa9e9e;
+$red-marianne-850: #fcbfbf;
+$red-marianne-850-hover: #fb8f8f;
+$red-marianne-850-active: #fa7474;
+// Rouge Marianne (thème sombre)
+$red-marianne-625: #f95c5e;
+$red-marianne-625-hover: #fa9293;
+$red-marianne-625-active: #fbabac;
+$red-marianne-200: #5e2a2b;
+$red-marianne-200-hover: #9c4a4c;
+$red-marianne-200-active: #be5c5e;
+$red-marianne-125: #3b2424;
+$red-marianne-125-hover: #6b4545;
+$red-marianne-125-active: #865757;
+$red-marianne-100: #331f1f;
+$red-marianne-100-hover: #613f3f;
+$red-marianne-100-active: #7b5151;
+$red-marianne-75: #2b1919;
+$red-marianne-75-hover: #573737;
+$red-marianne-75-active: #704848;
+// Gris (thème clair)
+$grey-main-525: #7b7b7b;
+$grey-main-525-hover: #a6a6a6;
+$grey-main-525-active: #bababa;
+$grey-425: #666666;
+$grey-425-hover: #919191;
+$grey-425-active: #a6a6a6;
+$grey-1000: #ffffff;
+$grey-1000-hover: #f6f6f6;
+$grey-1000-active: #ededed;
+$grey-975: #f6f6f6;
+$grey-975-hover: #dfdfdf;
+$grey-975-active: #cfcfcf;
+$grey-950: #eeeeee;
+$grey-950-hover: #d2d2d2;
+$grey-950-active: #c1c1c1;
+$grey-925: #e5e5e5;
+$grey-925-hover: #c5c5c5;
+$grey-925-active: #b2b2b2;
+$grey-900: #dddddd;
+$grey-900-hover: #bbbbbb;
+$grey-900-active: #a7a7a7;
+$grey-850: #cecece;
+$grey-850-hover: #a8a8a8;
+$grey-850-active: #939393;
+// Gris (thème sombre)
+$grey-625: #929292;
+$grey-625-hover: #bbbbbb;
+$grey-625-active: #cecece;
+$grey-200: #3a3a3a;
+$grey-200-hover: #616161;
+$grey-200-active: #777777;
+$grey-175: #353535;
+$grey-175-hover: #5c5c5c;
+$grey-175-active: #717171;
+$grey-150: #2f2f2f;
+$grey-150-hover: #545454;
+$grey-150-active: #696969;
+$grey-125: #2a2a2a;
+$grey-125-hover: #4e4e4e;
+$grey-125-active: #636363;
+$grey-100: #242424;
+$grey-100-hover: #474747;
+$grey-100-active: #5b5b5b;
+$grey-75: #1e1e1e;
+$grey-75-hover: #3f3f3f;
+$grey-75-active: #525252;
+$grey-50: #161616;
+$grey-50-hover: #343434;
+$grey-50-active: #474747;
+// Info (thème clair)
+$info-main-525: #0078f3;
+$info-main-525-hover: #6196ff;
+$info-main-525-active: #85a9ff;
+$info-425: #0063cb;
+$info-425-hover: #3b87ff;
+$info-425-active: #6798ff;
+$info-975: #f4f6ff;
+$info-975-hover: #d6deff;
+$info-975-active: #c2cfff;
+$info-950: #e8edff;
+$info-950-hover: #c2d1ff;
+$info-950-active: #a9bfff;
+$info-925: #dde5ff;
+$info-925-hover: #b1c6ff;
+$info-925-active: #95b4ff;
+$info-850: #bccdff;
+$info-850-hover: #83a9ff;
+$info-850-active: #5f96ff;
+// Info (thème sombre)
+$info-625: #518fff;
+$info-625-hover: #98b4ff;
+$info-625-active: #b4c7ff;
+$info-200: #273961;
+$info-200-hover: #45619f;
+$info-200-active: #5576c0;
+$info-125: #222a3f;
+$info-125-hover: #414e71;
+$info-125-active: #53638d;
+$info-100: #1d2437;
+$info-100-hover: #3b4767;
+$info-100-active: #4c5b83;
+$info-75: #171d2e;
+$info-75-hover: #333e5c;
+$info-75-active: #445177;
+// Succès (thème clair)
+$success-main-525: #1f8d49;
+$success-main-525-hover: #2ec166;
+$success-main-525-active: #36db75;
+$success-425: #18753c;
+$success-425-hover: #27a959;
+$success-425-active: #2fc368;
+$success-975: #dffee6;
+$success-975-hover: #8afcab;
+$success-975-active: #4efb8d;
+$success-950: #b8fec9;
+$success-950-hover: #46fd89;
+$success-950-active: #34eb7b;
+$success-925: #88fdaa;
+$success-925-hover: #3ee87e;
+$success-925-active: #36d070;
+$success-850: #3bea7e;
+$success-850-hover: #2cb862;
+$success-850-active: #259e53;
+// Succès (thème sombre)
+$success-625: #27a658;
+$success-625-hover: #36d975;
+$success-625-active: #3df183;
+$success-200: #204129;
+$success-200-hover: #3a6d48;
+$success-200-active: #478558;
+$success-125: #1e2e22;
+$success-125-hover: #3b5541;
+$success-125-active: #4b6b53;
+$success-100: #19271d;
+$success-100-hover: #344c3b;
+$success-100-active: #44624d;
+$success-75: #142117;
+$success-75-hover: #2e4533;
+$success-75-active: #3d5943;
+// Avertissement (thème clair)
+$warning-main-525: #d64d00;
+$warning-main-525-hover: #ff754e;
+$warning-main-525-active: #ff8e76;
+$warning-425: #b34000;
+$warning-425-hover: #ff6218;
+$warning-425-active: #ff7a55;
+$warning-975: #fff4f3;
+$warning-975-hover: #ffd7d3;
+$warning-975-active: #ffc4bd;
+$warning-950: #ffe9e6;
+$warning-950-hover: #ffc6bd;
+$warning-950-active: #ffb0a2;
+$warning-925: #ffded9;
+$warning-925-hover: #ffb6a9;
+$warning-925-active: #ff9f8b;
+$warning-850: #ffbeb4;
+$warning-850-hover: #ff8e77;
+$warning-850-active: #ff7550;
+// Avertissement (thème sombre)
+$warning-625: #fc5d00;
+$warning-625-hover: #ff8c73;
+$warning-625-active: #ffa595;
+$warning-200: #5d2c20;
+$warning-200-hover: #9a4d3a;
+$warning-200-active: #bc5f49;
+$warning-125: #3e231e;
+$warning-125-hover: #70433b;
+$warning-125-active: #8d564c;
+$warning-100: #361e19;
+$warning-100-hover: #663d35;
+$warning-100-active: #824f44;
+$warning-75: #2d1814;
+$warning-75-hover: #5b352e;
+$warning-75-active: #75473e;
+// Erreur (thème clair)
+$error-main-525: #f60700;
+$error-main-525-hover: #ff3634;
+$error-main-525-active: #ff5150;
+$error-425: #ce0500;
+$error-425-hover: #ff2725;
+$error-425-active: #ff4140;
+$error-975: #fff4f4;
+$error-975-hover: #ffd7d7;
+$error-975-active: #ffc3c3;
+$error-950: #ffe9e9;
+$error-950-hover: #ffc5c5;
+$error-950-active: #ffafaf;
+$error-925: #ffdddd;
+$error-925-hover: #ffb4b4;
+$error-925-active: #ff9c9c;
+$error-850: #ffbdbd;
+$error-850-hover: #ff8c8c;
+$error-850-active: #ff7272;
+// Erreur (thème sombre)
+$error-625: #ff5655;
+$error-625-hover: #ff8c8c;
+$error-625-active: #ffa6a6;
+$error-200: #642626;
+$error-200-hover: #a74545;
+$error-200-active: #cb5555;
+$error-125: #412121;
+$error-125-hover: #764040;
+$error-125-active: #935252;
+$error-100: #391c1c;
+$error-100-hover: #6c3a3a;
+$error-100-active: #894b4b;
+$error-75: #301717;
+$error-75-hover: #603434;
+$error-75-active: #7c4444;
+
+
+// Gray color variables
+$white: $grey-1000;
+$gray-100: $grey-975;
+$gray-200: $grey-950;
+$gray-300: $grey-925;
+$gray-400: $grey-850;
+$gray-500: $grey-625;
+$gray-600: $grey-425;
+$gray-700: $grey-200;
+$gray-800: $grey-125;
+$gray-900: $grey-75;
+$black: $grey-50;
+
+
+// Outline
+$outline-color: #0a76f6;
+$outline-size: 2px;
+
+
+// Theme color variables
+$primary: $blue-france-sun-113;
+$secondary: $grey-425;
+$success: $success-425;
+$info: $info-425;
+$warning: $warning-425;
+$danger: $error-425;
+$light: $grey-950;
+$dark: $grey-125;
+$marianne: $red-marianne-main-472;
+
+
+$primary-text: $primary;
+$secondary-text: $secondary;
+$success-text: $success;
+$info-text: $info;
+$warning-text: $warning;
+$danger-text: $danger;
+$light-text: $grey-425;
+$dark-text: $grey-200;
+
+$primary-bg-subtle: $blue-france-950;
+$secondary-bg-subtle: $grey-950;
+$success-bg-subtle: $success-950;
+$info-bg-subtle: $info-950;
+$warning-bg-subtle: $warning-950;
+$danger-bg-subtle: $error-950;
+$light-bg-subtle: $grey-975;
+$dark-bg-subtle: $grey-850;
+
+$primary-border-subtle: $blue-france-850;
+$secondary-border-subtle: $grey-850;
+$success-border-subtle: $success-850;
+$info-border-subtle: $info-850;
+$warning-border-subtle: $warning-850;
+$danger-border-subtle: $error-850;
+$light-border-subtle: $grey-950;
+$dark-border-subtle: $grey-625;
+
+$primary-text-dark: $blue-france-625;
+$secondary-text-dark: $grey-625;
+
+
+// Options
+$enable-rounded: false;
+$enable-negative-margins: true;
+$enable-transitions: false;
+//$color-mode-type: media-query;
+
+
+// Spacing
+$spacer: 1rem;
+
+
+// Body
+$body-color: $grey-200;
+$body-bg: $grey-1000;
+
+$body-color-dark: $grey-850;
+$body-bg-dark: $grey-50;
+
+
+// Links
+$link-decoration: none;
+$link-hover-decoration: none;
+
+
+// Typography
+// Font, line-height, and color for body text, headings, and more.
+$font-family-sans-serif: "Marianne", system-ui, Arial, sans-serif;
+
+$font-size-base: 1rem; //  16px
+$font-size-xl: $font-size-base * 1.25; // 20px
+$font-size-lg: $font-size-base * 1.125; // 18px
+$font-size-sm: $font-size-base * .875; // 14px
+$font-size-xs: $font-size-base * .75; // 12px
+
+$font-weight-lighter: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-bolder: 900;
+
+$line-height-base: 1.5;
+
+$line-height-computed-base: $font-size-base * $line-height-base; // 24px
+$line-height-computed-xl: 2rem; // 32px
+$line-height-computed-lg: 1.75rem; // 28px
+$line-height-computed-sm: $line-height-computed-base; // 24px
+$line-height-computed-xs: 1.25rem; // 20px
+
+$h1-font-size: $font-size-base * 2; // 32px
+$h2-font-size: $font-size-base * 1.75; // 28px
+$h3-font-size: $font-size-base * 1.5; // 24px
+$h4-font-size: $font-size-base * 1.375; // 22px
+$h5-font-size: $font-size-base * 1.25; // 20px
+$h6-font-size: $font-size-base * 1.125; // 18px
+
+$headings-margin-bottom: $spacer * 1.5; // 24px
+$headings-font-weight: $font-weight-bold;
+$headings-line-height: 1.25;
+
+
+// Buttons + Forms
+$input-btn-padding-y: .5rem;
+$input-btn-padding-x: 1rem;
+
+
+// Buttons
+$btn-padding-y: .5rem;
+$btn-padding-x: 1rem;
+
+
+// Forms
+$input-border-color: $gray-400;
+
+
+// Navbar
+$navbar-nav-link-padding-x: $btn-padding-x;
+
+
+// Cards
+$card-spacer-y: 2 * $spacer;
+$card-spacer-x: 2 * $spacer;
+
+
+// Badges
+$badge-font-size: $font-size-sm;
+$badge-font-weight: $font-weight-bold;
+$badge-padding-y: 0;
+$badge-padding-x: .5rem;

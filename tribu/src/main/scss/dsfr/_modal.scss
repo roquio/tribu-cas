@@ -1,0 +1,33 @@
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: map-get($spacers, 3);
+
+  padding-bottom: 0;
+
+  border-bottom-style: none;
+
+  > * {
+    order: 2;
+
+    &.btn-close {
+      order: 1;
+    }
+  }
+
+  .modal-title {
+    font-size: $h4-font-size;
+  }
+}
+
+
+.btn-close {
+  .modal & {
+    padding: .375rem .875rem;
+
+    &::before {
+      content: "Fermer";
+    }
+  }
+}

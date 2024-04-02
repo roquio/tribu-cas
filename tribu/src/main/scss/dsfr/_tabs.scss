@@ -1,0 +1,98 @@
+.nav-tabs {
+  $tabs-spacer: map-get($spacers, 2);
+
+  flex-wrap: nowrap;
+  gap: $tabs-spacer;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding-left: 2 * $tabs-spacer;
+  padding-right: 2 * $tabs-spacer;
+
+  border-bottom-style: none;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+
+    border-bottom-style: solid;
+    border-bottom-width: map-get($border-widths, 1);
+    border-bottom-color: var(--grey-default);
+  }
+
+  + * {
+    padding-top: 4 * $tabs-spacer;
+  }
+
+  ~ * {
+    padding-left: 4 * $tabs-spacer;
+    padding-right: 4 * $tabs-spacer;
+
+    border-left-style: solid;
+    border-right-style: solid;
+    border-width: map-get($border-widths, 1);
+    border-color: var(--grey-default);
+
+    &:last-child {
+      padding-bottom: 4 * $tabs-spacer;
+
+      border-bottom-style: solid;
+    }
+  }
+
+  .nav-link {
+    position: relative;
+
+    color: var(--grey-black);
+    background-color: var(--blue-france-light);
+    background-image: none !important;
+    border-color: transparent;
+    font-weight: $font-weight-bold;
+
+    &, &:hover {
+      color: var(--grey-black);
+    }
+
+    &:hover, &:focus {
+      background-color: var(--blue-france-light-hover);
+      border-color: transparent;
+    }
+
+    &:active {
+      background-color: var(--blue-france-light-active);
+    }
+
+    &.active {
+      z-index: 2;
+
+      padding-top: calc(var(--bs-nav-link-padding-y) - #{map-get($border-widths, 2) - map-get($border-widths, 1)});
+
+      color: var(--blue-france-strong);
+      background-color: var(--grey-white);
+      border-top-width: map-get($border-widths, 2);
+      border-top-color: var(--blue-france-strong);
+
+      &:hover, &:focus {
+        background-color: var(--grey-white-hover);
+        border-left-color: var(--grey-default);
+        border-right-color: var(--grey-default);
+      }
+    }
+
+    &, * {
+      white-space: nowrap;
+    }
+  }
+
+  &.card-header-tabs {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,37 @@
+.breadcrumb {
+  margin-bottom: map-get($spacers, 5);
+}
+
+.breadcrumb-item {
+  color: var(--grey-strong);
+  font-size: $font-size-xs;
+  line-height: $line-height-computed-xs;
+
+  &.active {
+    color: var(--grey-black);
+  }
+
+  a {
+    text-decoration: none;
+
+    &, &:hover, &:focus {
+      color: var(--grey-strong);
+    }
+
+    &:hover, &:focus {
+      text-decoration-color: var(--grey-black);
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+    }
+  }
+
+  + .breadcrumb-item {
+    &::before {
+      content: url("../img/glyphicons-2.4/halflings/glyphicons-halflings-220-chevron-thin-right.svg");
+      height: 1rem;
+      width: 1rem;
+
+      color: var(--grey-strong);
+    }
+  }
+}
