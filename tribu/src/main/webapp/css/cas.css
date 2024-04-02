@@ -1,6 +1,10 @@
 .text-min-height {
     min-height: 32px;
 }
-.btn-default {
+.btn {
     text-transform: inherit !important;
+}
+
+.tiles .btn-lg {
+    font-size: 18px;
 }

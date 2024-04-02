@@ -78,17 +78,34 @@
                             <input class="btn btn-default" name="reset" accesskey="c" value="<spring:message code="screen.welcome.button.clear" />" tabindex="5" type="reset" />
                         </div>
                     </div>
+
+                    <div>
+
+
+                    </div>
+
+                    <div class="col-sm-offset-3 col-sm-9 col-lg-offset-2 col-lg-10">
+                        <a class="btn btn-link" href="${selectorForm.pwmReinitAccountUrl}"  target="_blank">
+                            <span><spring:message code="screen.choose.reiniAccount" /></span>
+                        </a>
+                        <a class="btn btn-link" href="${selectorForm.pwmCreateAccountUrl}"  target="_blank">
+                            <span><spring:message code="screen.choose.createAccount" /></span>
+                        </a>
+                        <a class="btn btn-link" href="${selectorForm.pwmReactivateAccountUrl}"  target="_blank">
+                            <span><spring:message code="screen.choose.reactivateAccount" /></span>
+                        </a>
+                    </div>
                 </div>
             </form:form>
-            
-            
-            <div class="row">
-                <div class="col-sm-offset-3 col-sm-9 col-lg-offset-2 col-lg-10">
-                    <a href="javascript:history.back()">
-                        <span><spring:message code="screen.welcome.button.back" /></span>
-                    </a>
-                </div>
-            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <a class="btn btn-default" href="javascript:history.back()">
+                <span><spring:message code="screen.welcome.button.back" /></span>
+            </a>
         </div>
     </div>
 </div>
