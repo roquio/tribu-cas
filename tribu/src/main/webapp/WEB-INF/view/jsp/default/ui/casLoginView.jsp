@@ -27,6 +27,8 @@
             <input type="hidden" name="execution" value="${flowExecutionKey}"/>
             <input type="hidden" name="_eventId" value="submit"/>
 
+            <form:errors path="*" cssClass="alert alert-danger" id="status" element="div" />
+
             <spring:bind path="username">
                 <div class="mb-3">
                     <form:label path="username" cssClass="form-label" cssErrorClass="form-label is-invalid">
