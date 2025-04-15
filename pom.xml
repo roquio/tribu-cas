@@ -1,53 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd ">
-	<modelVersion>4.0.0</modelVersion>
-	
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd ">
+    <modelVersion>4.0.0</modelVersion>
+
     <groupId>fr.gouv.education.foad</groupId>
     <artifactId>cas-server-parent</artifactId>
-	<version>4.4-SNAPSHOT</version>
+    <version>4.5</version>
+    <packaging>pom</packaging>
 
-	<packaging>pom</packaging>
-	<name>Apereo CAS Web Application - parent</name>
+    <name>Apereo CAS Web Application - parent</name>
 
-	<modules>
-		<module>tribu</module>
-		<module>tribin</module>
-	</modules>
 
-<!--
-	<repositories>
-		<repository>
-			<id>sonatype-releases</id>
-			<url>http://oss.sonatype.org/content/repositories/releases/</url>
-		</repository>
-		<repository>
-			<id>sonatype-snapshots</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</repository>
-		<repository>
-			<id>shibboleth-releases</id>
-			<url>https://build.shibboleth.net/nexus/content/repositories/releases</url>
-		</repository>
-	</repositories>
--->
-	<scm>
-		<url>https://github.com/osivia/cas-webapp</url>
-		<connection>scm:git:ssh://git@github.com/osivia/cas-webapp.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/osivia/cas-webapp.git</developerConnection>
-		<tag>HEAD</tag>
-	</scm>
+    <modules>
+        <module>tribu</module>
+        <module>tribin</module>
+    </modules>
 
-	<distributionManagement>
-		<repository>
-			<id>osivia-releases</id>
-			<url>http://www.osivia.org/nexus/content/repositories/osivia-releases
-			</url>
-		</repository>
-		<snapshotRepository>
-			<id>osivia-snapshots</id>
-			<url>http://www.osivia.org/nexus/content/repositories/osivia-snapshots
-			</url>
-		</snapshotRepository>
-	</distributionManagement>
+
+    <build>
+        <plugins>
+
+            <!--GitFlow-->
+            <plugin>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>1.21.0</version>
+                <configuration>
+                    <gitFlowConfig>
+                        <productionBranch>main</productionBranch>
+                        <developmentBranch>develop</developmentBranch>
+                        <featureBranchPrefix>feature/</featureBranchPrefix>
+                        <releaseBranchPrefix>release/</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+                        <supportBranchPrefix>support/</supportBranchPrefix>
+                        <versionTagPrefix/>
+                        <origin>origin</origin>
+                    </gitFlowConfig>
+
+                    <commitMessages>
+                        <releaseStartMessage>🔖 Version @{version}</releaseStartMessage>
+                        <releaseFinishMessage>🔖 Version @{version}</releaseFinishMessage>
+                        <versionUpdateMessage>🔖 Version @{version}</versionUpdateMessage>
+                    </commitMessages>
+
+                    <digitsOnlyDevVersion>true</digitsOnlyDevVersion>
+                    <updateVersionDigitToIncrement>3</updateVersionDigitToIncrement>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+    <repositories>
+        <repository>
+            <id>roquio-maven-public</id>
+            <name>Roquio Maven public</name>
+            <url>https://packages.roqu.io/repository/maven-public</url>
+        </repository>
+    </repositories>
+
+
+    <distributionManagement>
+        <repository>
+            <id>roquio-maven-releases</id>
+            <name>Roquio Maven releases</name>
+            <url>https://packages.roqu.io/repository/maven-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </distributionManagement>
 
 </project>
